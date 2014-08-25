@@ -2,8 +2,6 @@
 
 ## Contents
 
- - [core](core)
- - [engine](engine)
- - [editor-ui](editor-ui)
- - [editor](editor)
+ - [Chinese (Simple)](zh)
+ - [Engilish](en)
 
