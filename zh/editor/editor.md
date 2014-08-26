@@ -27,9 +27,13 @@
 ### 建立项目
 
  - 选择目录
- - 调用 newProject
+ - 调用 EditorApp.newProject
 
 ### 打开项目
 
- - 选择目录
- - 调用 loadProject
+ - 假设项目目录 ~/projects/foobar/
+ - 调用 EditorApp.openProject 打开路径 `~/projects/foobar/`
+    - 调用 AssetDB.mount 悬挂路径 `~/projects/foobar/assets/`
+    - 调用 AssetDB.refresh 检查所有悬挂路径的 assets 的更新情况 (这步是async)
+ - 当 MainWindow ready 时
+    - 调用 ProjectTree.load 读取 `assets://` 目录下的文件 (这步是async)
