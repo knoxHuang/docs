@@ -4,7 +4,7 @@
 
  - 遍历 AssetDB._mounts, 并 walk 每一个 mount point 的真实路径 
  - 检查 .meta 文件是否有对应的raw data
-   - 如果没有对应的raw data 或者对应的是 folder 则删除这份 .meta 文件
+   - 如果没有对应的raw data 则删除这份 .meta 文件
  - 检查 raw data 是否有对应的 .meta 文件
    - 如果有对应的 .meta 文件，则读取该文件
      - 如果该文件读取失败，则重新创建一份 .meta 文件
