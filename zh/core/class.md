@@ -8,19 +8,22 @@ Fireball-x 的数据类型(Class)有一套自己的定义方式，用于支持�
 ## 定义
 
 定义一个新类的方法如下
-```
+
+```javascript
 var Sprite = FIRE.define('Sprite');
 ```
 
 如果要定义成员变量，可以在define时传入一个构造函数
-```
+
+```javascript
 var Sprite = FIRE.define('Sprite', function () {
     this.url = 'img/fb.png';
 });
 ```
 
 如果要添加实例方法，可以
-```
+
+```javascript
 var Sprite = FIRE.define(...);    // 同上
 Sprite.prototype.load = function () {
     // load this.url
@@ -28,7 +31,8 @@ Sprite.prototype.load = function () {
 ```
 
 实例化时采用
-```
+
+```javascript
 var sprite = new Sprite();
 sprite.url = 'www/' + sprite.url;
 sprite.load();
