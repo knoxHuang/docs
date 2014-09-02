@@ -1,6 +1,6 @@
 # Fireball-x Editor Docs
 
-## Dev Documentations 
+## Developer Manual
 
  - [Editor](editor.md)
  - [Editor Events](editor-events.md)

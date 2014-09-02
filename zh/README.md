@@ -1,9 +1,8 @@
 # Fireball-x Documentation
 
-## Contents
+## User Manual
 
- - [core](core)
- - [engine](engine)
- - [editor-ui](editor-ui)
- - [editor](editor)
+## Developer Manual
+
+ - [Editor](editor/README.md)
 
