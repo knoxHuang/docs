@@ -142,6 +142,42 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
     });
 ```
 
+- 调用父类的构造函数
+
+  - 如果你省略了子类的构造函数，实例化时父类的构造函数将被自动调用。参数将一并传给父构造函数。
+  ```js
+    var Node = FIRE.define('Node', function (name, id) {
+        this.name = name;
+        this.id = id;
+    });
+    var Sprite = FIRE.define('Sprite', Node);
+    var obj = new Sprite('player', 250);
+    console.log(obj.name);    // player
+    console.log(obj.id);      // 250
+  ```
+
+  - 如果子类有自己的构造函数，则父类的构造函数需要子类显式调用。
+  ```js
+    var Sprite = FIRE.define('Sprite', Node, function (id) {
+        Node.call(this, 'player', id);
+    });
+    var obj = new Sprite(250);
+    console.log(obj.name);    // player
+    console.log(obj.id);      // 250
+  ```
+
+- FireClass 提供了 `$super` 这个静态变量，保存了对父类的引用。因此父类也可以用 $super 代替：
+```js
+    var Sprite = FIRE.define('Sprite', Node, function (id) {
+        Sprite.$super.call(this, 'player', id);
+    });
+    Sprite.prototype.draw = function () {
+        console.log('before draw');
+        Sprite.$super.prototype.draw.call(this);
+        console.log('after draw');
+    };
+```
+
 - 备注：
   - 当省略第三个参数时，如果第二个参数传入的是一个普通的 javascript 构造函数，就是定义新类而不是继承。
   - 当你的基类不是 FireClass 时，如果你希望派生的子类是 FireClass，则必须提供第三个参数，如果你想省略构造函数，可以传入`null`。
