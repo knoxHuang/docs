@@ -39,7 +39,7 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
     obj.url = 'www/' + obj.url;
 ```
 
-- 如果要添加**实例方法**，方法和javascript一样。
+- 如果要添加**实例方法**，做法和javascript一样。
 ```js
     // 实例方法
     Sprite.prototype.load = function () {
@@ -47,7 +47,7 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
     };
 ```
 
-- 如果要添加**静态变量**或**静态方法**，方法和javascript一样。
+- 如果要添加**静态变量**或**静态方法**，做法和javascript一样。
 ```js
     // 静态变量
     Sprite.count = 0;
@@ -143,7 +143,7 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
 ```
 
 - 备注：
-  - 如果传入的是一个普通的 javascript 构造函数，就是定义新类而不是继承。
+  - 当省略第三个参数时，如果第二个参数传入的是一个普通的 javascript 构造函数，就是定义新类而不是继承。
   - 当你的基类不是 FireClass 时，如果你希望派生的子类是 FireClass，则必须提供第三个参数，如果你想省略构造函数，可以传入`null`。
   - 当你希望子类仅仅是原始的 javascript 构造函数，而不是 FireClass 时，你应该调用的是 FIRE.extend 而不是 FIRE.define。FIRE.extend 更加底层，只是实现最基本的继承，详细用法请查看相关 api。
 
@@ -176,13 +176,13 @@ FireClass 提供了 **prop** 方法用于声明属性(property)。属性是特�
 
 - 属性默认情况下都会被序列化，也会在inspector中显示。
   - 如果只想序列化，但不想显示在 Inspector，可以指定 `FIRE.HideInInspector` 参数。
-    ```js
-        Sprite.prop('id', 0, FIRE.HideInInspector);
-    ```
+```js
+    Sprite.prop('id', 0, FIRE.HideInInspector);
+```
   - 如果不想序列化，只想显示在 Inspector，可以指定 `FIRE.NonSerialized` 参数。
-    ```js
-        Sprite.prop('url', 0, FIRE.NonSerialized);
-    ```
+```js
+    Sprite.prop('url', 0, FIRE.NonSerialized);
+```
   - 如果不想序列化，也不想显示在 Inspector，那可以同时传入 FIRE.NonSerialized 和 FIRE.HideInInspector。  
 (但这就和直接把变量定义在构造函数里没区别，不使用属性也可以。)
 
@@ -191,7 +191,6 @@ FireClass 提供了 **prop** 方法用于声明属性(property)。属性是特�
 - 属性都能被继承，但子类和父类的属性不能重名。
 
 - 备注：
-  - 如果要显示在 Inspector，Sprite 需要继承自 Component，然后添加到 Entity 上。
   - 如果属性的默认值需要调用其它方法才能获得，可以在构造函数里重新赋值。
 ```js
     var Sprite = FIRE.define('Sprite', function () {
@@ -210,21 +209,22 @@ FireClass 提供了 **prop** 方法用于声明属性(property)。属性是特�
                           return this._color;
                       });
 ```
+  - 如果要显示在 Inspector，实际上 Sprite 还需要继承自 Component，然后添加到 Entity 上。
 
 ## <a name="accessor"></a>访问器
 
 访问器(Accessor)就是 **getter** 或 **setter**。在 javascript 中，可以用 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 声明访问器。  
 
-FireClass 封装了定义访问器的接口，这些接口和`prop`很类似。访问器定义的值默认将显示在 Inspector 中，但它们不能也不会被序列化。
+FireClass 封装了定义访问器的接口，这些接口和`prop`类似。访问器定义的值默认将显示在 Inspector 中，但它们不能也不会被序列化。
 
 - FireClass提供了 **get** 方法用于声明一个 getter。  
-它的第一个参数是访问器的变量名，第二个是用于获取值的方法，该方法可以返回任意类型的值。
+它的第一个参数是访问器的变量名，第二个是用于获取值的方法，该方法可以返回任意类型的值。  
 ```js
     var Sprite = FIRE.define('Sprite');
     Sprite.get('width', function () {
         return 128;
     });
-```
+```  
 以上代码定义了 width 的 getter，getter 可以在包括构造函数在内的代码里直接访问，例如：
 ```js
     var Sprite = FIRE.define('Sprite', function () {
@@ -237,7 +237,7 @@ FireClass 封装了定义访问器的接口，这些接口和`prop`很类似。�
     var obj = new Sprite();
     console.log(obj.width);    // 128
 ```
-和 `prop` 一样，get 可附加任意多个参数(Attribute)，用于指定在Inspector中的显示方式。
+和 `prop` 一样，get 可附加任意多个参数(Attribute)，用于指定在 Inspector 中的显示方式。
 ```js
     Sprite.get('width', function () {
         return this._width;
@@ -245,7 +245,7 @@ FireClass 封装了定义访问器的接口，这些接口和`prop`很类似。�
 ```
 以上代码规定了 width 在 Inspector 里只能输入整数，并且当鼠标移到参数上时，弹出对应的介绍。  
 
-- **set**
+- **set**  
 set 方法和 get 类似，它的第一个参数是访问器的变量名，第二个是用于设置值的方法，该方法可以传入一个任意类型的参数。  
 set 方法不能附加任何参数(Attribute)，如果需要，请由相应的 get 方法传入参数。如果没有对应的 get，则不在 Inspector 中显示。
 ```js
@@ -259,9 +259,9 @@ set 方法不能附加任何参数(Attribute)，如果需要，请由相应的 g
     });
 ```
 
-- **getset**
-可使用getset合并get和set调用
-```js
+- **getset**  
+可使用 getset 合并 get 和 set 调用
+```javascript
     var Sprite = FIRE.define('Sprite');
     Sprite.getset('width',
         function () {
