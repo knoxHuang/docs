@@ -8,7 +8,7 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
 - [定义FireClass](#define)
 - [成员](#member)
 - [继承](#inherit)
-- [属性(Property)](#Property)
+- [属性(Property)](#property)
 - [访问器](#accessor)
 - [反注册](#unregister)
 
@@ -175,17 +175,12 @@ FireClass 提供了 **prop** 方法用于声明属性(property)。属性是特�
 以上代码规定了 width 在 Inspector 里只能输入整数，并且当鼠标移到参数上时，弹出对应的介绍。
 
 - 属性默认情况下都会被序列化，也会在inspector中显示。
-  - 如果只想序列化，但不想显示在 Inspector，可以指定 `FIRE.HideInInspector` 参数。
-```js
-    Sprite.prop('id', 0, FIRE.HideInInspector);
-```
-  - 如果不想序列化，只想显示在 Inspector，可以指定 `FIRE.NonSerialized` 参数。
-```js
-    Sprite.prop('url', 0, FIRE.NonSerialized);
-```
+  - 如果只想序列化，但不想显示在 Inspector，可以指定 `FIRE.HideInInspector` 参数。  
+    `Sprite.prop('id', 0, FIRE.HideInInspector);`
+  - 如果不想序列化，只想显示在 Inspector，可以指定 `FIRE.NonSerialized` 参数。  
+    `Sprite.prop('url', 0, FIRE.NonSerialized);`
   - 如果不想序列化，也不想显示在 Inspector，那可以同时传入 FIRE.NonSerialized 和 FIRE.HideInInspector。  
-(但这就和直接把变量定义在构造函数里没区别，不使用属性也可以。)
-
+    (但这就和直接把变量定义在构造函数里没区别，不使用属性也可以。)
   - 如果只想在编辑器下序列化，打包时不序列化，可以指定 `FIRE.EditorOnly` 参数。这个选项用于指定一些只在开发过程中需要保存的属性，当构建项目的发布版本时，这些属性将被跳过以节省包的大小。
 
 - 属性都能被继承，但子类和父类的属性不能重名。
@@ -261,7 +256,7 @@ set 方法不能附加任何参数(Attribute)，如果需要，请由相应的 g
 
 - **getset**  
 可使用 getset 合并 get 和 set 调用
-```javascript
+```js
     var Sprite = FIRE.define('Sprite');
     Sprite.getset('width',
         function () {
