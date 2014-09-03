@@ -22,14 +22,14 @@ TODO: 还没有
 
 ## 如何加入新参数
 
-1. 注册参数 
+### 1. 注册参数 
 
 TODO: 暂时还没有这个流程
 
 参数注册中需要记录参数的简写(-f), 扩写(--file)，是否有参数值(--file=args)，
 是否约束参数值的输入(file, directory 或者可选列表)，以及help描述。
 
-2. 解析并使用参数
+### 2. 解析并使用参数
 
 在 Editor 运行后，外部参数会被自动解析到 EditorApp.options 中。我们采用
 [minimist](https://www.npmjs.org/package/minimist) 这个模块进行参数的解析。
