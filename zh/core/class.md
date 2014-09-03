@@ -91,16 +91,16 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
 - 备注：
   - 这样定义的所有实例和静态成员都将被子类继承。
   - 如果不希望静态成员被子类继承，可以用 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 声明静态成员：
-```js
+  ```js
     Object.defineProperty(Sprite, 'getBounds', {
         value: function (spriteList) {
             // do get bounds ...
         },
         enumerable: false
     });
-```
+  ```
   - 如果要定义**私有**成员，不建议在Sprite上声明，建议用闭包(Closure)实现。
-```js
+  ```js
     // 私有实例方法
     var _loadSprite = function (self) {
         // do load ...
@@ -121,7 +121,7 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
             _getBound(spriteList);
         }
     };
-```
+  ```
   - 这里所说的`实例成员`(instance member)包含了`成员变量`(member variable)和`实例方法`(instance method)。
   - 这里所说的`静态成员`(static member)包含了`静态变量`(static variable)和`静态方法`(static method)。
 
@@ -187,14 +187,14 @@ FireClass 提供了 **prop** 方法用于声明属性(property)。属性是特�
 
 - 备注：
   - 如果属性的默认值需要调用其它方法才能获得，可以在构造函数里重新赋值。
-```js
+  ```js
     var Sprite = FIRE.define('Sprite', function () {
         this.img = LoadImage();
     });
     Sprite.prop('img', null);
-```
+  ```
   - FireClass 的接口都支持链式调用，即
-```js
+  ```js
     var Sprite = FIRE.define('Sprite', Component, function () {
                           this.id = 0;
                       })
@@ -203,7 +203,7 @@ FireClass 提供了 **prop** 方法用于声明属性(property)。属性是特�
                      .get('color', function () {
                           return this._color;
                       });
-```
+  ```
   - 如果要显示在 Inspector，实际上 Sprite 还需要继承自 Component，然后添加到 Entity 上。
 
 ## <a name="accessor"></a>访问器
