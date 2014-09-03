@@ -3,7 +3,8 @@
 ## Developer Manual
 
  - [Editor](editor.md)
- - [Editor Events](editor-events.md)
+ - [Editor 运行参数](editor-arguments.md)
+ - [Editor 事件](editor-events.md)
  - [Project](project.md)
  - [Asset](asset.md)
  - [Share](share.md)

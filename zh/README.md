@@ -4,6 +4,6 @@
 
 ## Developer Manual
 
- - [Editor](editor/README.md)
  - [Core](core/README.md)
+ - [Editor](editor/README.md)
 
