@@ -96,6 +96,7 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
         value: function (spriteList) {
             // do get bounds ...
         },
+        writable: true,
         enumerable: false
     });
   ```
