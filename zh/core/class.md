@@ -179,6 +179,40 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
     };
 ```
 
+- FIRE 提供了 `superof` 和 `childof` 两个函数用于类关系检查。
+
+**注意**: 类关系检查的传入参数是类constructor本身而不是实例。请不要和 `instanceof` 搞混。
+例如我们定义了:
+
+```js
+var Texture = FIRE.define('Texture');
+var Texture2D = FIRE.define('Texture2D', Texture);
+```
+
+可以通过以下代码得到两个类定义之间的关系:
+
+```js
+var result1 = FIRE.childof( Texture2D, Texture );
+var result2 = FIRE.superof( Texture, Texture2D );
+```
+
+而他们的实例，则需用用以下代码来检查关系:
+
+```js
+var tex = new Texture2D();
+var result = tex instanceof Texture;
+```
+
+**注意2**: `childof` 和 `superof` 不会检查同级关系。当你以下代码时，返回结果是 false:
+
+```js
+FIRE.childof( Texture2D, Texture2D );
+```
+
+`childof` 和 `superof` 通常用于你将某个 constructor 作为变量存储，在运行时调用这个 constructor
+变量实例化时进行的一些类型检查。比如实例化前，希望判断以下这个 constructor 是否继承自某个class，
+以防止我们将不必要的类型实例化。
+
 - 备注：
   - 当省略第三个参数时，如果第二个参数传入的是一个普通的 javascript 构造函数，就是定义新类而不是继承。
   - 当你的基类不是 FireClass 时，如果你希望派生的子类是 FireClass，则必须提供第三个参数，如果你想省略构造函数，可以传入`null`。
