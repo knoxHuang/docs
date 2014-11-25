@@ -182,16 +182,16 @@ Fireball-x 的数据类型(Class)使用 **Fire.define** 进行定义，以便简
 ```js
     var Texture = Fire.define('Texture');
     var Texture2D = Fire.define('Texture2D', Texture);
-    var result = Fire.isChildClassOf(Texture2D, Texture);	// 传入参数是类 constructor 本身而不是实例。
+    var result = Fire.isChildClassOf(Texture2D, Texture);   // 传入参数是类 constructor 本身而不是实例。
 ```
-	而他们的实例，可以用 JavaScript 的 `instanceof` 来检查：  
+    **注意**: `isChildClassOf` 也包含两个类相等的情况，以下代码返回 true： 
+```js
+    Fire.isChildClassOf(Texture2D, Texture2D);
+```
+    而它们的实例，可以用 `instanceof` 来检查：
 ```js
     var tex = new Texture2D();
-    var result = tex instanceof Texture;
-```
-	**注意**: `isChildClassOf` 也包含两个类相等的情况，以下代码返回 true：  
-```js
-	Fire.isChildClassOf(Texture2D, Texture2D);
+    var result = tex instanceof Texture;	// true
 ```
 
 - 备注：
