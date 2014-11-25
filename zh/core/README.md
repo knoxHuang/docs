@@ -1,4 +1,4 @@
 # Fireball-x Core Developer Manuals
 
- - [Class Definition](class.md)
- - [Serialization](serialization.md)
+ - [类型定义(Class Definition)](class.md)
+ - [序列化(Serialization)](serialization.md)
