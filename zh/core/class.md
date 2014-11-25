@@ -1,8 +1,11 @@
 # 类型定义(Class Definition)
 
-`本文档对应的实现代码在 core/src/class.js`
+```
+本文档对应的实现代码在 core/src/class.js
+所有“备注”都属于进阶内容，初学者不需要了解。
+```
 
-Fireball-x 的数据类型(Class)使用 **Fire.define** 进行定义，以便简化继承、支持序列化、定义属性等。为了方便区分，这些类叫做**FireClass**。  
+Fireball-x 的数据类型(Class)使用 **Fire.define** 进行定义，以便简化继承、支持[序列化](serialization.md)、定义属性等。为了方便区分，这些类叫做**FireClass**。  
 
 本文索引：
 - [定义FireClass](#define)
@@ -17,7 +20,7 @@ Fireball-x 的数据类型(Class)使用 **Fire.define** 进行定义，以便简
 ```js
     var Sprite = Fire.define('Sprite');
 ```
-以上代码定义了一个名为 'Sprite' 的 FireClass，并且赋给 Sprite 变量。'Sprite' 这个名字将用于反序列化，如果修改了名字，之前旧的内容将无法再加载进来。
+以上代码定义了一个名为 'Sprite' 的 FireClass，并且赋给 Sprite 变量。'Sprite' 这个名字将用于[反序列化](serialization.md#register)。
 
 - **实例化**时采用
 ```js
@@ -201,7 +204,7 @@ Fireball-x 的数据类型(Class)使用 **Fire.define** 进行定义，以便简
 
 ## <a name="property"></a>属性(Property)
 
-FireClass 提供了 **prop** 方法用于声明属性(property)。属性是特殊的成员变量，能够显示在 Inspector 中，也能被**序列化**。
+FireClass 提供了 **prop** 方法用于声明属性(property)。属性是特殊的成员变量，能够显示在 Inspector 中，也能被[序列化](serialization.md#custom)。
 - prop 需要两个参数，一是属性变量名，二是属性的默认值，默认值可以是任意类型。  
 ```js
     var Sprite = Fire.define('Sprite');
@@ -232,7 +235,6 @@ FireClass 提供了 **prop** 方法用于声明属性(property)。属性是特�
   - 如果不想序列化，只想显示在 Inspector，可以添加 `Fire.NonSerialized` 参数。  
     `Sprite.prop('url', 0, Fire.NonSerialized);`
   - 如果不想序列化，也不想显示在 Inspector，可以同时传入 Fire.NonSerialized 和 Fire.HideInInspector。也可以干脆不用属性，直接在构造函数里定义的变量即可。
-  - 如果只想在编辑器下序列化，打包时不序列化，可以指定 `Fire.EditorOnly` 参数。这个选项用于指定一些只在开发过程中需要保存的属性，当构建项目的发布版本时，这些属性将被剔除以节省体积。
 
 - 属性都能被继承，但子类和父类的属性不能重名。
 
