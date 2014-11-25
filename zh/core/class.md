@@ -1,6 +1,6 @@
 # 类型定义(Class Definition)
 
-`本文档对应源代码在 core\src\class.js`
+`本文档对应的实现代码在 core/src/class.js`
 
 Fireball-x 的数据类型(Class)使用 **Fire.define** 进行定义，以便简化继承、支持序列化、定义属性等。为了方便区分，这些类叫做**FireClass**。  
 
@@ -203,21 +203,21 @@ Fire.isChildClassOf( Texture2D, Texture2D );
 - 备注：
   - 当省略第三个参数时，如果第二个参数传入的是一个普通的 JavaScript 构造函数，就是定义新类而不是继承。
   - 当你的基类不是 FireClass 时，如果你希望派生的子类是 FireClass，则必须提供第三个参数，如果你想省略构造函数，可以传入`null`。
-  - 当你希望子类仅仅是原始的 JavaScript 构造函数，而不是 FireClass 时，你应该调用的是 FIRE.extend 而不是 FIRE.define。FIRE.extend 更加底层，只是实现最基本的继承，详细用法请查看相关 api。
+  - 当你希望子类仅仅是原始的 JavaScript 构造函数，而不是 FireClass 时，你应该调用的是 Fire.extend 而不是 Fire.define。Fire.extend 更加底层，只是实现最基本的继承，详细用法请查看相关 api。
 
 ## <a name="property"></a>属性(Property)
 
 FireClass 提供了 **prop** 方法用于声明属性(property)。属性是特殊的成员变量，能够显示在 Inspector 中，也能被**序列化**。
 - prop 需要两个参数，一是属性变量名，二是属性的默认值，默认值可以是任意类型。  
 ```js
-    var Sprite = FIRE.define('Sprite');
+    var Sprite = Fire.define('Sprite');
     Sprite.prop('width', 128);
 ```
 以上代码定义了 width 属性，width 将显示在 Inspector，保存时也将被序列化。
 
 - FireClass 在实例化前将自动添加属性到成员变量，可以在包括构造函数在内的代码里直接访问。
 ```js
-    var Sprite = FIRE.define('Sprite', function () {
+    var Sprite = Fire.define('Sprite', function () {
         console.log(this.width);    // 128
     });
     Sprite.prop('width', 128);
