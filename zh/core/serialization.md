@@ -2,7 +2,7 @@
 
 `本文档相关代码是 core/src/serialize.js 和 core/src/deserialize.js`
 
-Fireball 拥有一套序列化(和反序列化)机制，用于资源的存储和加载。这些操作由编辑器自动完成，因此本教程不介绍 API，只谈一些使用上的事项。
+Fireball 拥有一套序列化(和反序列化)机制，用于资源的存储和加载。这些操作由编辑器自动完成，本教程只谈一些注意事项。
 
 本文索引：
 - [序列化做了什么](#intro)
@@ -18,15 +18,15 @@ Fireball 的序列化可以用来储存和读取**任意的** JavaScript 对象�
 
 Fireball 在序列化时，需要保存数据的类型，该类型可以是任意**全局唯一**的字符串，以便重建对象时查找出对应的构造函数。
 
-- 对 FireClass 而言，就是 define 时传入的第一个参数：
-  ```js
+- 对 FireClass 而言，就是 define 时传入的第一个参数： 
+```js
   var Sprite = Fire.define('Company.Sprite');
-  ```
+```
 - 对其它 JavaScript 构造函数，可以使用 `Fire.registerClass` 注册类型：
-  ```js
+```js
   var Sprite = function () {};
   Fire.registerClass('Company.Sprite', Sprite);
-  ```
+```
 
 - 备注：
     - 对所有需要序列化的对象，例如 Component 而言，**不推荐**声明构造函数。实在有必要，构造函数也只应该作用于初始化**不**序列化的变量。
