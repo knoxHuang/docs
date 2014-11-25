@@ -10,7 +10,6 @@ Fireball-x 的数据类型(Class)使用 **Fire.define** 进行定义，以便简
 - [继承](#inherit)
 - [属性(Property)](#property)
 - [访问器](#accessor)
-- [反注册](#unregister)
 
 ## <a name="define"></a>定义FireClass
 
@@ -331,6 +330,3 @@ set 方法不能附加任何参数，如果需要，请把参数加到相应的 
 - 备注：
   - 如果访问器附带了`Fire.HideInInspector`参数，则不在 Inspector 中显示，但仍然能从代码访问。
   - 如果一个 getter 没有相应的 setter，则在 Inspector 中是只读的，但它如果是对象或数组，内部的字段仍然可修改。
-
-## <a name="unregister"></a>反注册
-(TODO)
