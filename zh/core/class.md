@@ -2,7 +2,7 @@
 
 `本文档对应源代码在 core\src\class.js`
 
-Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简化继承、支持序列化、定义属性等。为了方便区分，这些类叫做**FireClass**。  
+Fireball-x 的数据类型(Class)使用 **Fire.define** 进行定义，以便简化继承、支持序列化、定义属性等。为了方便区分，这些类叫做**FireClass**。  
 
 本文索引：
 - [定义FireClass](#define)
@@ -14,32 +14,32 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
 
 ## <a name="define"></a>定义FireClass
 
-- 调用 FIRE.define 来定义FireClass，传入的类名将用于反序列化。
+- FireClass 其实就是一个特殊的 JavaScript 构造函数，通过调用 `Fire.define` 来定义。
 ```js
-    var Sprite = FIRE.define('Sprite');
+    var Sprite = Fire.define('Sprite');
 ```
-以上代码定义了 Sprite 这个 FireClass，FireClass 其实就是一个 javascript 构造函数，只不过包含了额外的接口和数据。
+以上代码定义了一个名为 'Sprite' 的 FireClass，并且赋给 Sprite 变量。'Sprite' 这个名字将用于反序列化，如果修改了名字，之前旧的内容将无法再加载进来。
 
 - **实例化**时采用
 ```js
-    var obj = new Sprite();  // 和 javascript 一样
+    var obj = new Sprite();  // 和 JavaScript 一样 
 ```
 
 ## <a name="member"></a>成员
 
-- 如果要定义**成员变量**，可以在define时传入一个构造函数，在构造函数中添加成员变量。
+- 如果要定义**成员变量**，请在 `define` 时传入一个构造函数，在构造函数中初始化成员。
 ```js
-    var Sprite = FIRE.define('Sprite', function (url) {
-        // 添加成员变量
+    var Sprite = Fire.define('Sprite', function (url) {
+        // 定义成员变量
         this.url = url;
         this.id = -1;
     });
-    // 测试
+    // 调用
     var obj = new Sprite('img/fb.png');
     obj.url = 'www/' + obj.url;
 ```
 
-- 如果要添加**实例方法**，做法和javascript一样。
+- 和 JavaScript 一样，**实例方法**请在 prototype 上定义：
 ```js
     // 实例方法
     Sprite.prototype.load = function () {
@@ -47,7 +47,7 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
     };
 ```
 
-- 如果要添加**静态变量**或**静态方法**，做法和javascript一样。
+- 和 JavaScript 一样，**静态变量**或**静态方法**请直接添加到 FireClass：
 ```js
     // 静态变量
     Sprite.count = 0;
@@ -59,7 +59,7 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
 
 - 完整代码如下
 ```js
-    var Sprite = FIRE.define('Sprite', function (url) {
+    var Sprite = Fire.define('Sprite', function (url) {
         this.url = url;    // 声明成员变量
         this.id = Sprite.count;    // 访问静态变量
         ++Sprite.count;
@@ -89,8 +89,8 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
 ```
 
 - 备注：
-  - 这样定义的所有实例和静态成员都将被子类继承。
-  - 如果不希望静态成员被子类继承，可以用 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 声明静态成员：
+  - 所有实例和静态成员都将被子类继承。
+  - 如果不希望静态成员被子类继承，可以用 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 声明：
   ```js
     Object.defineProperty(Sprite, 'getBounds', {
         value: function (spriteList) {
@@ -100,26 +100,26 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
         enumerable: false
     });
   ```
-  - 如果要定义**私有**成员，不建议在Sprite上声明，建议用闭包(Closure)实现。
+  - 如果要定义**私有**成员，不建议在 Sprite 上声明，建议用闭包(Closure)实现。
   ```js
     // 私有实例方法
-    var _loadSprite = function (self) {
+    var loadSprite = function (self) {
         // do load ...
     };
     Sprite.prototype.load = function () {
-        _loadSprite(this);
+        loadSprite(this);
     };
     
     // 私有静态变量
-    var _debug = false;
+    var debug = false;
     
     // 私有静态方法
-    var _getBound = function (spriteList) {
+    var getBound = function (spriteList) {
         // do get bound...
     };
     Sprite.getBounds = function (spriteList) {
-        if (_debug) {
-            _getBound(spriteList);
+        if (debug) {
+            getBound(spriteList);
         }
     };
   ```
@@ -128,38 +128,38 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
 
 ## <a name="inherit"></a>继承
 
-- 调用 FIRE.define 时，第二个参数如果传入的是 FireClass，将从 FireClass 派生出一个子类。
+- 调用 Fire.define 时，第二个参数如果传入的是 FireClass，将从 FireClass 派生出一个子类。
 ```js
-    var Node = FIRE.define('Node');
-    var Sprite = FIRE.define('Sprite', Node);    // Inherit
+    var Node = Fire.define('Node');
+    var Sprite = Fire.define('Sprite', Node);    // inherit
     var obj = new Sprite();    // test
     console.log(sprite instanceof Node);    // true
 ```
 
-- 还可以将构造函数作为第三个参数传入，此时第二个参数可以不必是 FireClass，只要是任意 javascript 构造函数。
+- 还可以将构造函数作为第三个参数传入，此时第二个参数可以不必是 FireClass，只要是任意 JavaScript 构造函数。
 ```js
-    var Sprite = FIRE.define('Sprite', Node, function (url) {
+    var Sprite = Fire.define('Sprite', Node, function (url) {
         this.url = url;
     });
 ```
 
 - 调用父类的构造函数
 
-  - 如果你省略了子类的构造函数，实例化时父类的构造函数将被自动调用。参数将一并传给父构造函数。
+  - 如果你省略了子类的构造函数，实例化时父类的构造函数将被自动调用。参数将自动传给父构造函数。
   ```js
-    var Node = FIRE.define('Node', function (name, id) {
+    var Node = Fire.define('Node', function (name, id) {
         this.name = name;
         this.id = id;
     });
-    var Sprite = FIRE.define('Sprite', Node);
+    var Sprite = Fire.define('Sprite', Node);	// 省略构造函数
     var obj = new Sprite('player', 250);
     console.log(obj.name);    // player
     console.log(obj.id);      // 250
   ```
 
-  - 如果子类有自己的构造函数，则父类的构造函数需要子类显式调用。
+  - 如果子类有自己的构造函数，则父类的构造函数需要子类手动调用，调用方法和 JavaScript 一致。
   ```js
-    var Sprite = FIRE.define('Sprite', Node, function (id) {
+    var Sprite = Fire.define('Sprite', Node, function (id) {
         Node.call(this, 'player', id);
     });
     var obj = new Sprite(250);
@@ -169,7 +169,7 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
 
 - FireClass 提供了 `$super` 这个静态变量，保存了对父类的引用。因此父类也可以用 $super 代替：
 ```js
-    var Sprite = FIRE.define('Sprite', Node, function (id) {
+    var Sprite = Fire.define('Sprite', Node, function (id) {
         Sprite.$super.call(this, 'player', id);
     });
     Sprite.prototype.draw = function () {
@@ -179,44 +179,31 @@ Fireball-x 的数据类型(Class)使用 **FIRE.define** 进行定义，以便简
     };
 ```
 
-- FIRE 提供了 `superof` 和 `childof` 两个函数用于类关系检查。
-
-**注意**: 类关系检查的传入参数是类constructor本身而不是实例。请不要和 `instanceof` 搞混。
-例如我们定义了:
+- Fire 提供了 `isChildClassOf` 用于判断继承，例如:
 
 ```js
-var Texture = FIRE.define('Texture');
-var Texture2D = FIRE.define('Texture2D', Texture);
+var Texture = Fire.define('Texture');
+var Texture2D = Fire.define('Texture2D', Texture);
+var result = Fire.isChildClassOf( Texture2D, Texture );	// 传入参数是类 constructor 本身而不是实例。
 ```
 
-可以通过以下代码得到两个类定义之间的关系:
-
-```js
-var result1 = FIRE.childof( Texture2D, Texture );
-var result2 = FIRE.superof( Texture, Texture2D );
-```
-
-而他们的实例，则需用用以下代码来检查关系:
+而他们的实例，可以用 JavaScript 的 `instanceof` 来检查:
 
 ```js
 var tex = new Texture2D();
 var result = tex instanceof Texture;
 ```
 
-**注意2**: `childof` 和 `superof` 不会检查同级关系。当你以下代码时，返回结果是 false:
+**注意**: `isChildClassOf` 也包含两个类相等的情况，以下代码返回 true:
 
 ```js
-FIRE.childof( Texture2D, Texture2D );
+Fire.isChildClassOf( Texture2D, Texture2D );
 ```
 
-`childof` 和 `superof` 通常用于你将某个 constructor 作为变量存储，在运行时调用这个 constructor
-变量实例化时进行的一些类型检查。比如实例化前，希望判断以下这个 constructor 是否继承自某个class，
-以防止我们将不必要的类型实例化。
-
 - 备注：
-  - 当省略第三个参数时，如果第二个参数传入的是一个普通的 javascript 构造函数，就是定义新类而不是继承。
+  - 当省略第三个参数时，如果第二个参数传入的是一个普通的 JavaScript 构造函数，就是定义新类而不是继承。
   - 当你的基类不是 FireClass 时，如果你希望派生的子类是 FireClass，则必须提供第三个参数，如果你想省略构造函数，可以传入`null`。
-  - 当你希望子类仅仅是原始的 javascript 构造函数，而不是 FireClass 时，你应该调用的是 FIRE.extend 而不是 FIRE.define。FIRE.extend 更加底层，只是实现最基本的继承，详细用法请查看相关 api。
+  - 当你希望子类仅仅是原始的 JavaScript 构造函数，而不是 FireClass 时，你应该调用的是 FIRE.extend 而不是 FIRE.define。FIRE.extend 更加底层，只是实现最基本的继承，详细用法请查看相关 api。
 
 ## <a name="property"></a>属性(Property)
 
