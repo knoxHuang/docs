@@ -2,7 +2,7 @@
 
 ## User Manual
 
- - [脚本编写](scripting/README.md)
+ - [脚本编写(Scripting)](scripting/README.md)
 
 ## Developer Manual
 
