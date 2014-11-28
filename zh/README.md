@@ -2,6 +2,8 @@
 
 ## User Manual
 
+ - [脚本编写](scripting/README.md)
+
 ## Developer Manual
 
  - [Core](core/README.md)
