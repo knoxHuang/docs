@@ -34,5 +34,39 @@
     
 ## <a name="define"></a>定义模块
 
-新建
+其实每一个单独的脚本文件就是一个模块，例如新建一个脚本 `rotate.js`，内容如下
+```js
+var Rotate = Fire.define('Rotate', Fire.Component);
+Fire.addComponentMenu(Rotate, 'Rotate');
+Rotate.prop('speed', 1);
+Rotate.prototype.update = function () {
+    this.transform.rotation += this.speed;
+};
+```
+这个模块定义了一个Component，但只有在菜单里才能添加这个Component，没办法在其它代码里访问到这个Component。为了可以在外部调用它，我们在最后加上一行代码：
+```js
+module.exports = Rotate;
+```
+这里把 **module.exports** 赋值为 Rotate 之后，当有人访问这个模块，就将获得 Rotate 指向的这个 Component。
+
+## <a name="import"></a>引用模块
+
+所有模块都通过**文件名**进行访问，这个名字不包含路径也不包含后缀。上面这个模块，就能通过 `"rotate"` 来访问：
+```js
+var Rotate = require('rotate');
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
