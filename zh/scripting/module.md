@@ -9,7 +9,8 @@
 - [概述](#intro)
 - [定义模块](#define)
 - [引用模块](#import)
-- [](#)
+- [示例](#example)
+	- [封装私有变量](#private)
 
 ## <a name="intro"></a>概述
 
@@ -72,10 +73,15 @@ module.exports = SinRotate;	// export again
 这里我们定义了一个新的 Component：SinRotate，它继承自 Rotate，并对 update 方法进行了重写。当然，最后我们还是可以通过 `module.exports` 将 SinRotate 再次导出给其它模块使用。
 
 备注：
-- 可以随时在 Developer Tools 中 require 任意模块。
+  - require 可以在脚本的任意地方任何时刻进行调用。
+  - 单个模块不论被 require 几次，始终都只有一份。也就是说多个脚本不论调用多少次 require，同个模块名总是返回相同模块。
+  - 可以随时在 Developer Tools 中 require 任意模块。
 
+## <a name="example"></a>示例
 
-
+	### <a name="private"></a>封装私有变量
+    
+    
 
 
 
