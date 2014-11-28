@@ -68,7 +68,7 @@ SinRotate.prototype.update = function () {
     this.transform.rotation += this.speed * Math.sin(Fire.Time.time);
 };
 
-module.exports = SinRotate;	// export again
+module.exports = SinRotate;	// can export again
 ```
 这里我们定义了一个新的 Component：SinRotate，它继承自 Rotate，并对 update 方法进行了重写。当然，最后我们还是可以通过 `module.exports` 将 SinRotate 再次导出给其它模块使用。
 
