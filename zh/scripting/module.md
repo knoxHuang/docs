@@ -30,7 +30,7 @@
 	- 使用 `module.exports` 对象输出变量。
 
 - 备注
-	- 不论模块如何定义，所有用户代码最终会由 Fireball-x 编译为原生的 JavaScript，可在手机浏览器中运行。
+	- 不论模块如何定义，所有用户代码最终会由 Fireball-x 编译为原生的 JavaScript，可直接在手机浏览器中运行。
     
 ## <a name="define"></a>定义模块
 
