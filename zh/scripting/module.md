@@ -79,7 +79,7 @@ module.exports = SinRotate;	// export again
 
 ## <a name="example"></a>示例
 
-	### <a name="private"></a>封装私有变量
+### <a name="private"></a>封装私有变量
     
     
 
