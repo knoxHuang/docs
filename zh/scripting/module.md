@@ -10,6 +10,7 @@
 - [定义模块](#define)
 - [引用模块](#import)
 - [示例](#example)
+	- [导出变量](#exports)
 	- [封装私有变量](#private)
 
 ## <a name="intro"></a>概述
@@ -73,17 +74,71 @@ module.exports = SinRotate;	// can export again
 这里我们定义了一个新的 Component：SinRotate，它继承自 Rotate，并对 update 方法进行了重写。当然，最后我们还是可以通过 `module.exports` 将 SinRotate 再次导出给其它模块使用。
 
 备注：
-  - require 可以在脚本的任意地方任何时刻进行调用。
+  - require 可以在脚本的任何地方任意时刻进行调用。
   - 单个模块不论被 require 几次，始终都只有一份。也就是说多个脚本不论调用多少次 require，同个模块名总是返回相同模块。
   - 可以随时在 Developer Tools 中 require 任意模块。
 
 ## <a name="example"></a>示例
 
+### <a name="exports"></a>导出变量
+
+- module.exports 可以直接用来增加新的字段，不一定要提前赋值。
+	```js
+	// foobar.js:
+	module.exports.foo = function () {
+    	Fire.log("foo");
+    };
+    module.exports.bar = function () {
+    	Fire.log("bar");
+    };
+    // test.js:
+    var foobar = require("foobar");
+    foobar.foo();	// "foo"
+    foobar.bar();	// "bar"
+	```
+- module.exports 能直接导出任意 JavaScript 对象。
+	```js
+	// foobar.js:
+	module.exports = {
+    	FOO: function () {
+            this.type = "foo";
+        },
+        bar: "bar"
+    };
+    // test.js:
+    var foobar = require("foobar");
+    var foo = new foobar.FOO();
+    Fire.log(foo.type);		// "foo"
+    Fire.log(foobar.bar);	// "bar"
+	```
+    
 ### <a name="private"></a>封装私有变量
-    
-    
 
+由于每个模块都是一个单独的作用域，在模块内使用 **var** 定义的局部变量，将无法被模块外部访问。我们就可以这样来封装模块内的私有变量。
+```js
+// foobar.js:
+var dirty = false;
+module.exports = {
+	setDirty: function () {
+        dirty = true;
+	},
+};
+// test.js:
+var foo = require("foobar");
+Fire.log(typeof foo.dirty);		// "undefined"
+```
 
+**警告：定义变量前一定要在前面加上`var`**，否则将会变成全局变量！在 Fireball-x 中禁止使用全局变量，否则会引起很多问题。
+
+```js
+// foobar.js:
+dirty = false;		// 这是错的，dirty 会变成全局变量！前面应该加上 var ！
+module.exports = {
+	setDirty: function () {
+        dirty = true;
+	},
+};
+```
 
 
 
