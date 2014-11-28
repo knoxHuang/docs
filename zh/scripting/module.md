@@ -34,7 +34,7 @@
     
 ## <a name="define"></a>定义模块
 
-其实每一个单独的脚本文件就是一个模块，例如新建一个脚本 `rotate.js`，内容如下
+其实每一个单独的脚本文件就是一个模块，例如新建一个脚本 `rotate.js`，在里面定义一个 Component：
 ```js
 var Rotate = Fire.define('Rotate', Fire.Component);
 Rotate.prop('speed', 1);
@@ -44,7 +44,7 @@ Rotate.prototype.update = function () {
     this.transform.rotation += this.speed;
 };
 ```
-这个模块定义了一个Component，但只有在菜单里才能添加这个Component，没办法在其它代码里访问到这个Component。为了可以在外部调用它，我们还需要在 `rotate.js` 最后加上一行代码：
+我们定义了 Rotate 这个 Component，但只有从菜单里才能添加，从别的脚本文件直接读取 Rotate 其实是空的。为了可以在外部访问到 Rotate，我们还需要在 `rotate.js` 最后加上一行代码：
 ```js
 module.exports = Rotate;
 ```
@@ -52,29 +52,27 @@ module.exports = Rotate;
 
 ## <a name="import"></a>引用模块
 
-模块需要使用 `require` 来访问，require 将返回模块内定义的 module.exports 对象：
+除了 Fireball-x 提供的接口，所有用户定义的模块都需要使用 **require** 来访问。
 ```js
 var Rotate = require('rotate');
 ```
-调用 require 时传入的字符串就是模块的**文件名**，这个名字不包含路径也不包含后缀，而且大小写敏感。  
+调用 require 时传入的字符串就是模块的**文件名**，这个名字不包含路径也不包含后缀，而且大小写敏感。require 返回的就是模块内定义的 module.exports 对象。
 
 我们可以使用 Rotate 派生一个子类，新建一个脚本 `sinRotate.js`：
 ```js
 var Rotate = require('rotate');
 
 var SinRotate = Fire.define('SinRotate', Rotate);
-Fire.addComponentMenu(SinRotate, 'SinRotate');
-
 SinRotate.prototype.update = function () {
     this.transform.rotation += this.speed * Math.sin(Fire.Time.time);
 };
 
-module.exports = SinRotate;
+module.exports = SinRotate;	// export again
 ```
 这里我们定义了一个新的 Component：SinRotate，它继承自 Rotate，并对 update 方法进行了重写。当然，最后我们还是可以通过 `module.exports` 将 SinRotate 再次导出给其它模块使用。
 
 备注：
-1. 可以随时在 Developer Tools 中 require 任意模块。
+- 可以随时在 Developer Tools 中 require 任意模块。
 
 
 
