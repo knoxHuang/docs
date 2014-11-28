@@ -9,7 +9,7 @@
 - [概述](#intro)
 - [定义模块](#define)
 - [引用模块](#import)
-- [其它注意事项](#note)
+- [](#)
 
 ## <a name="intro"></a>概述
 
@@ -37,24 +37,46 @@
 其实每一个单独的脚本文件就是一个模块，例如新建一个脚本 `rotate.js`，内容如下
 ```js
 var Rotate = Fire.define('Rotate', Fire.Component);
-Fire.addComponentMenu(Rotate, 'Rotate');
 Rotate.prop('speed', 1);
+Fire.addComponentMenu(Rotate, 'Rotate');
+
 Rotate.prototype.update = function () {
     this.transform.rotation += this.speed;
 };
 ```
-这个模块定义了一个Component，但只有在菜单里才能添加这个Component，没办法在其它代码里访问到这个Component。为了可以在外部调用它，我们在最后加上一行代码：
+这个模块定义了一个Component，但只有在菜单里才能添加这个Component，没办法在其它代码里访问到这个Component。为了可以在外部调用它，我们还需要在 `rotate.js` 最后加上一行代码：
 ```js
 module.exports = Rotate;
 ```
-这里把 **module.exports** 赋值为 Rotate 之后，当有人访问这个模块，就将获得 Rotate 指向的这个 Component。
+当我们把 **module.exports** 赋值为 Rotate 之后，只要有人引用这个模块，就将获得 Rotate 指向的这个 Component。
 
 ## <a name="import"></a>引用模块
 
-所有模块都通过**文件名**进行访问，这个名字不包含路径也不包含后缀。上面这个模块，就能通过 `"rotate"` 来访问：
+模块需要使用 `require` 来访问，require 将返回模块内定义的 module.exports 对象：
 ```js
 var Rotate = require('rotate');
 ```
+调用 require 时传入的字符串就是模块的**文件名**，这个名字不包含路径也不包含后缀，而且大小写敏感。  
+
+我们可以使用 Rotate 派生一个子类，新建一个脚本 `sinRotate.js`：
+```js
+var Rotate = require('rotate');
+
+var SinRotate = Fire.define('SinRotate', Rotate);
+Fire.addComponentMenu(SinRotate, 'SinRotate');
+
+SinRotate.prototype.update = function () {
+    this.transform.rotation += this.speed * Math.sin(Fire.Time.time);
+};
+
+module.exports = SinRotate;
+```
+这里我们定义了一个新的 Component：SinRotate，它继承自 Rotate，并对 update 方法进行了重写。当然，最后我们还是可以通过 `module.exports` 将 SinRotate 再次导出给其它模块使用。
+
+备注：
+1. 可以随时在 Developer Tools 中 require 任意模块。
+
+
 
 
 
