@@ -9,7 +9,6 @@ Fireball 的所有第三方代码，包括项目和插件代码，都会经过�
 本文索引：
 - [脚本编译做了什么](#intro)
 - [基本流程](#pipeline)
-- [browserify](#browserify)
 - [引用模块(require)](#require)
 
 ## <a name="intro"></a>脚本编译做了什么
@@ -35,9 +34,18 @@ Fireball 的所有第三方代码，包括项目和插件代码，都会经过�
 3. 生成**主文件**，用来 require 所有上个步骤生成的脚本。
 4. 通过**browserify**，将主文件包含的所有脚本打包成为 `%project%/library/bundle.js`。
 
-## <a name="browserify"></a>browserify
-
-[browserify](http://browserify.org/) 在前端提供了 CommonJS 风格的模块编写方式，能够让你像 node.js 那样用同步的方式 require 模块。
-
 ## <a name="require"></a>引用模块(require)
+
+[browserify](http://browserify.org/) 在前端提供了 CommonJS 风格的模块编写方式，能够让你像 node.js 那样用同步的方式 require 模块。在打包过程中，我们使用 browserify 提供快捷方式，为所有模块都增加了别名，使得用户可以不用关心脚本在 assets 中存放的位置。只需直接使用文件名本身即可访问任意模块：`var Rotate = require('rotate');`，这也就要求了**所有脚本不可重名**。
+
+
+
+
+
+
+
+
+
+
+
 
