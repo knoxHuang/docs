@@ -87,4 +87,4 @@ exclude_generator: archive, category, post, home
 deploy:
   type: github
   repo: git@github.com:fireball-x/docs.git
-  branch: master
+  branch: gh-pages

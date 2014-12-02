@@ -63,11 +63,13 @@ Simply click the link "Edit This Page" on the bottom of each article to jump to 
 
 ### Code Highlighting
 
-<code>
+<pre>
+
 ``` [language] [title] [url] [link text]
 code snippet
 ```
-</code>
+
+</pre>
 
 
 ## Deployment
