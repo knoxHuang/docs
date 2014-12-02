@@ -18,6 +18,7 @@
                 <%- page.content %>
             </div>
             <footer id="page-footer">
+                <a href="http://prose.io/#fireball-x/docs/edit/master/source/<%- page.source %>" class="article-edit-link">Edit This Page</a>
                 <time id="page-footer-updated" datetime="<%= date_xml(page.updated) %>" itemprop="dateModified">Last updated: <%= date(page.updated) %></time>
                 <%- page_nav() %>
             </footer>

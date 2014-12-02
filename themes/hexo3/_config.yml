@@ -2,23 +2,48 @@ menu:
   Home: http://fireball-x.com
   Docs: /docs/
   API: /docs/api
+  中文: /docs/zh
 
 doc_sidebar:
   Getting Started:
-    Overview: index.html
-    Setup: en/setup
-    Help: en/help
+      Overview: index.html
+      Setup: en/setup
+      Help: en/help
+  Core:
+      Class: en/core/class
+      Script-Building: en/core/script-building
+      Serialization: en/core/serialization
+  Editor:
+      Editor Startup: en/editor/editor
+      Editor Arguments: en/editor/editor-arguments
+      Editor Events: en/editor/editor-events
+      Node Modules: en/editor/node-modules
+      AssetDatabase: en/editor/asset-db
+      Share Library: en/editor/share
+  Scripting:
+      Module: en/scripting/module
 
 doc_sidebar_zh:
     新手上路:
         简介: zh/index.html
         设置: zh/setup
         帮助: zh/help
-    基本使用:
-        标题一: zh/chatper1
+    核心:
+        类型定义: zh/core/class
+        脚本编译: zh/core/script-building
+        序列化: zh/core/serialization
+    Editor编辑器:
+        Editor启动流程: zh/editor/editor
+        Editor运行参数: zh/editor/editor-arguments
+        Editor事件: zh/editor/editor-events
+        Node Modules: zh/editor/node-modules
+        AssetDB资源数据库: zh/editor/asset-db
+        Share文件夹: zh/editor/share
+    脚本编写:
+        模块化: zh/scripting/module
 
 google_analytics:
-fb_admins: 
+fb_admins:
 swiftype_key: WM9aFPtvcpZwMuaRj9Yc
 twitter: hexojs
 github: fireball-x/docs
