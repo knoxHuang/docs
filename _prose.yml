@@ -1,0 +1,24 @@
+prose:
+  media: 'media'
+  metadata:
+    docs:
+      - name: "layout"
+        field:
+          element: "select"
+          label: "Select Layout"
+          placeholder: "Select Layout"
+          options:
+            - name: "Chinese"
+              value: "page_zh"
+            - name: "English"
+              value: "page"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Title"
+          value: ""
+      - name: "permalink"
+        field:
+          element: "text"
+          label: "Permalink"
+          value: ""
