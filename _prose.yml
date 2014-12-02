@@ -1,7 +1,6 @@
 prose:
-  media: 'media'
+  media: 'docs/media'
   metadata:
-    docs:
       - name: "layout"
         field:
           element: "select"
