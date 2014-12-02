@@ -3,18 +3,18 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: Fireball Docs
 subtitle:
 description:
-author: John Doe
-email:
+author: Firebox Team
+email: team@firebox.im
 language:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
-root: /
-permalink: :year/:month/:day/:title/
+url: http://fireball-x.com
+root: /docs
+permalink: :title/
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
@@ -27,7 +27,7 @@ public_dir: public
 
 # Writing
 new_post_name: :title.md # File name of new posts
-default_layout: post
+default_layout: page
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
@@ -80,9 +80,11 @@ disqus_shortname:
 ## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
 ## Themes: https://github.com/hexojs/hexo/wiki/Themes
 theme: landscape
-exclude_generator:
+exclude_generator: archive, category, post, home
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: github
+  repo: git@github.com:fireball-x/docs.git
+  branch: master
