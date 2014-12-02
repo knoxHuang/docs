@@ -1,0 +1,24 @@
+menu:
+  Home: http://fireball-x.com
+  Docs: /docs/
+  API: /docs/api
+
+doc_sidebar:
+  Getting Started:
+    Overview: index.html
+    Setup: en/setup
+    Help: en/help
+
+doc_sidebar_zh:
+    新手上路:
+        简介: zh/index.html
+        设置: zh/setup
+        帮助: zh/help
+    基本使用:
+        标题一: zh/chatper1
+
+google_analytics:
+fb_admins: 
+swiftype_key: WM9aFPtvcpZwMuaRj9Yc
+twitter: hexojs
+github: fireball-x/docs

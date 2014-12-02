@@ -79,7 +79,7 @@ disqus_shortname:
 # Extensions
 ## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
 ## Themes: https://github.com/hexojs/hexo/wiki/Themes
-theme: landscape
+theme: hexo3
 exclude_generator: archive, category, post, home
 
 # Deployment
@@ -88,3 +88,4 @@ deploy:
   type: github
   repo: git@github.com:fireball-x/docs.git
   branch: gh-pages
+  message: "Updated site [skip ci]"
