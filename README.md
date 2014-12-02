@@ -45,7 +45,7 @@ This will start a server at `localhost:4000` with watch.
 
 This will add a new page at `source/<page name>/index.md`
 
-Because the documentation is multi-language and we put all doc pages into "source/en" and "source/zh" folder. You may want to add the page manually by your text editor or file system so you can specify the folder correctly.
+Because the documentation is multi-language and we put all doc pages into `source/en` and `source/zh` folder. You may want to add the page manually by your text editor or file system so you can specify the folder correctly.
 
 ### Front-matter
 
@@ -63,11 +63,12 @@ Simply click the link "Edit This Page" on the bottom of each article to jump to 
 
 ### Code Highlighting
 
-``` bash
+<code>
 ``` [language] [title] [url] [link text]
 code snippet
 ```
-```
+</code>
+
 
 ## Deployment
 
