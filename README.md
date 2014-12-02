@@ -1,5 +1,7 @@
 # Fireball-x Documentation
 
+[ ![Codeship Status for fireball-x/docs](https://codeship.com/projects/ccff76b0-59bb-0132-c1ec-123ab8314f17/status)](https://codeship.com/projects/50304)
+
 This is the documentation site for Fireball-x Engine.
 
 ## Getting Started
@@ -64,11 +66,9 @@ Simply click the link "Edit This Page" on the bottom of each article to jump to 
 ### Code Highlighting
 
 <pre>
-
 ``` [language] [title] [url] [link text]
 code snippet
 ```
-
 </pre>
 
 
