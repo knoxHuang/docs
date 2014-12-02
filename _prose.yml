@@ -1,9 +1,12 @@
 prose:
-  media: 'docs/media'
+  media: 'media'
+  rooturl: 'docs'
+  siteurl: 'http://fireball-x.com'
+  relativeLinks: 
   metadata:
       - name: "layout"
         field:
-          element: "select"
+          element: "multiselect"
           label: "Select Layout"
           placeholder: "Select Layout"
           options:
