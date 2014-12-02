@@ -1,8 +1,8 @@
 prose:
-  media: 'media'
+  media: 'source/media'
   rooturl: 'docs'
   siteurl: 'http://fireball-x.com'
-  relativeLinks: 
+  relativeLinks:
   metadata:
       - name: "layout"
         field:
