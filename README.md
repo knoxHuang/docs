@@ -1,6 +1,6 @@
 # Fireball-x Documentation
 
-[![Circle CI](https://circleci.com/gh/fireball-x/docs.svg?style=svg&circle-token=943e84c36e9a8e6cdeaf15cca651c526a687b0e9)]
+![Circle CI](https://circleci.com/gh/fireball-x/docs.svg?style=svg&circle-token=943e84c36e9a8e6cdeaf15cca651c526a687b0e9)
 
 This is the documentation site for Fireball-x Engine.
 
