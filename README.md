@@ -2,7 +2,7 @@
 
 ![Circle CI](https://circleci.com/gh/fireball-x/docs.svg?style=svg&circle-token=943e84c36e9a8e6cdeaf15cca651c526a687b0e9)
 
-This is the documentation site for Fireball-x Engine.
+This is the documentation site for Fireball-x Engine. [Fireball Documentation](http://fireball-x.github.io/docs)
 
 ## Getting Started
 
@@ -94,8 +94,6 @@ permalink: /page-link
 ---
 ```
 
-
-
 ### Code Highlighting
 
 <pre>
@@ -104,6 +102,34 @@ code snippet
 ```
 </pre>
 
+## Menu And Sidebar
+
+To modify top menu and sidebar menu, all you need to do is modify the `themes/hexo3/_config.yml` YAML file.
+
+``` yaml
+menu:
+    Home: http://fireball-x.com
+    Docs: /docs/
+    API: /docs/api
+    中文: /docs/zh
+
+doc_sidebar:
+    Getting Started:
+        Overview: index.html
+        Setup: en/setup
+        Help: en/help
+doc_sidebar_zh:
+    新手上路:
+        简介: zh/index.html
+        设置: zh/setup
+        帮助: zh/help
+```
+
+Keys in root level represents different menu. Keys with indention are menu categories and menu items. Menu items has value as the link url. You only need to write the relative path to `/docs`.
+
+### Multi-language
+
+The site is built with English and Chinese language. All documentation markdown files are put into `en` and `zh` folder respectively to their written language. As of menu, we created different menus for different language. See `doc_sidebar` and `doc_sidebar_zh`. They have different keys as their display text in the menu and different links to their respective language version.
 
 ## Deployment
 

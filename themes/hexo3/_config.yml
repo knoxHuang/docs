@@ -1,44 +1,69 @@
 menu:
   Home: http://fireball-x.com
-  Docs: /docs/
+  Docs: /
+  Developer: /docs/en/dev
   API: /docs/api
   中文: /docs/zh
 
+menu_zh:
+    Home: http://fireball-x.com
+    用户文档: /zh
+    开发者文档: /docs/zh/dev
+    API: /docs/api
+    English: /
+
 doc_sidebar:
   Getting Started:
-      Overview: index.html
-      Setup: en/setup
+      Overview: en/dev
+      Setup: en/dev/setup
       Help: en/help
   Core:
-      Class: en/core/class
-      Script-Building: en/core/script-building
-      Serialization: en/core/serialization
+      Class: en/dev/core/class
+      Script-Building: en/dev/core/script-building
+      Serialization: en/dev/core/serialization
   Editor:
-      Editor Startup: en/editor/editor
-      Editor Arguments: en/editor/editor-arguments
-      Editor Events: en/editor/editor-events
-      Node Modules: en/editor/node-modules
-      AssetDatabase: en/editor/asset-db
-      Share Library: en/editor/share
-  Scripting:
-      Module: en/scripting/module
+      Editor Startup: en/dev/editor/editor
+      Editor Arguments: en/dev/editor/editor-arguments
+      Editor Events: en/dev/editor/editor-events
+      Node Modules: en/dev/editor/node-modules
+      AssetDatabase: en/dev/editor/asset-db
+      Share Library: en/dev/editor/share
 
 doc_sidebar_zh:
     新手上路:
-        简介: zh/index.html
-        设置: zh/setup
+        简介: zh/dev
+        设置: zh/dev/setup
         帮助: zh/help
     核心:
-        类型定义: zh/core/class
-        脚本编译: zh/core/script-building
-        序列化: zh/core/serialization
+        类型定义: zh/dev/core/class
+        脚本编译: zh/dev/core/script-building
+        序列化: zh/dev/core/serialization
     Editor编辑器:
-        Editor启动流程: zh/editor/editor
-        Editor运行参数: zh/editor/editor-arguments
-        Editor事件: zh/editor/editor-events
-        Node Modules: zh/editor/node-modules
-        AssetDB资源数据库: zh/editor/asset-db
-        Share文件夹: zh/editor/share
+        Editor启动流程: zh/dev/editor/editor
+        Editor运行参数: zh/dev/editor/editor-arguments
+        Editor事件: zh/dev/editor/editor-events
+        Node Modules: zh/dev/editor/node-modules
+        AssetDB资源数据库: zh/dev/editor/asset-db
+        Share文件夹: zh/dev/editor/share
+
+
+user_sidebar:
+    Getting Started:
+        Get Fireball: /
+        Create a Project: /
+    User Manual:
+        Know the Editor: /
+        Asset Pipeline: /
+    Scripting:
+        Module: en/scripting/module
+
+user_sidebar_zh:
+    新手上路:
+        获取Fireball: zh/
+        新建项目: zh/
+    用户手册:
+        认识Editor: zh/
+        资源工作流程: zh/
     脚本编写:
         模块化: zh/scripting/module
 
