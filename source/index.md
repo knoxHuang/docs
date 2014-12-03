@@ -14,4 +14,4 @@ Profit!
 
 This paragraph is added in prose.io. Now CircleCI is connected.
 
-![64.png](/source/media/64.png)
+![64.png](/docs/media/64.png)
