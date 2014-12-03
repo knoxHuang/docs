@@ -1,19 +1,13 @@
 prose:
   media: 'source/media'
-  rooturl: 'docs'
-  siteurl: 'http://fireball-x.com'
-  relativeLinks:
+  rooturl: '/docs'
+  siteurl: 'http://fireball-x.com/docs'
   metadata:
       - name: "layout"
         field:
-          element: "multiselect"
-          label: "Select Layout"
-          placeholder: "Select Layout"
-          options:
-            - name: "Chinese"
-              value: "page_zh"
-            - name: "English"
-              value: "page"
+          element: "text"
+          label: "layout ejs"
+          value: "page"
       - name: "title"
         field:
           element: "text"
