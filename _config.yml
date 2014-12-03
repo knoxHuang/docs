@@ -88,4 +88,4 @@ deploy:
   type: github
   repo: git@github.com:fireball-x/docs.git
   branch: gh-pages
-  message: "Updated site [skip ci]"
+  message: "Updated site [ci skip]"
