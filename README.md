@@ -18,9 +18,15 @@ Simply click the link "Edit This Page" on the bottom of each article to jump to 
 
 To create a file. Open up [project page in Prose.io](http://prose.io/#fireball-x/docs) and click `New File` button in the right folder.
 
-To create a new folder, you have to go back to [project page on Github](https://github.com/fireball-x/docs) and click the `+` besides the branch selection control:
+![Prose add new file](/source/media/prose_new_file.png)
 
-![Add folder in Github](/source/media/add_folder_github.png)
+Edit the path field of the file so it presents the destination of the file on this repo exactly:
+
+![prose_set_path_and_front_matter](/source/media/prose_set_path_and_front_matter.png)
+
+To add file link to navigation sidebar, simple click the "Edit Navigation" link at the bottom of the sidebar. This will open up `themes/hexo/_config.yml`. See section **Menu And Sidebar** below for more details.
+
+![prose_edit_navigation](/source/media/prose_edit_navigation.png)
 
 ### Add Image File
 
