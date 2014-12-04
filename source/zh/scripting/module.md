@@ -7,14 +7,6 @@ permalink: /zh/scripting/module
 所有“备注”都属于进阶内容，一开始不需要了解。
 ```
 
-本文索引：
-- [概述](#intro)
-- [定义模块](#define)
-- [引用模块](#import)
-- [示例](#example)
-	- [导出变量](#exports)
-	- [封装私有变量](#private)
-
 ## <a name="intro"></a>概述
 
 如果你还不确定**模块化**究竟能做什么，模块化相当于：  
