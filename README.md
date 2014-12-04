@@ -88,9 +88,8 @@ Because the documentation is multi-language and we put all doc pages into `sourc
 Every page must start with a block wrapped with `---` in front of the file. Like this:
 
 ``` yaml
----
 title: Page Title
-permalink: /page-link
+permalink: page-link
 ---
 ```
 
