@@ -2,7 +2,8 @@
   <% _.each(theme[get_sidebar()], function(menu, title){ %>
     <strong class="sidebar-title"><%= title %></strong>
     <% _.each(menu, function(link, text){ %>
-      <a href="<%- url_for(link) %>" class="sidebar-link<% if (is_current(link, true)){ %> current<% } %>"><%= text %></a>
+      <% var finalLink = (link + "/index.html").replace(/\/{2}/, '/'); %>
+      <a href="<%- url_for(link) %>" class="sidebar-link<% if (is_current(finalLink, true)){ %> current<% } %>"><%= text %></a>
     <% }) %>
   <% }) %>
 </aside>

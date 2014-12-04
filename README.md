@@ -138,3 +138,13 @@ Just commit your changes in `master` branch and push it to github. The CI servic
 ## Help
 
 Any problem, create an issue or send a mail to `nantas@gmail.com`
+
+## Hexo Tips
+
+### Url Related Variables
+
+In [Hexo Documentation Variable Section](http://hexo.io/docs/variables.html) there're several url related variables, which the documentation didn't give clear examples. And in case of a doc page of Fireball documentation site (front-matter defined permalink: `/zh/dev/editor/share`), each variables output following result:
+
+- page.path: `/zh/dev/editor/share/index.html`
+- page.permalink: `http://fireball-x.com/docs//zh/dev/editor/share/index.html`
+- url_for(page.path): `/docs/zh/dev/editor/share/index.html`

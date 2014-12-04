@@ -1,5 +1,5 @@
 title: Node模块
-permalink: /zh/dev/editor/node-modules
+permalink: zh/dev/editor/node-modules
 ---
 
 ## Fireball-x 编辑器中使用到得 Node.js 模块

@@ -1,5 +1,5 @@
 title: 类型定义
-permalink: /zh/dev/core/class
+permalink: zh/dev/core/class
 ---
 
 ```

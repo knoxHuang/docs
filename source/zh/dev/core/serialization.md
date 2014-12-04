@@ -1,5 +1,5 @@
 title: 序列化机制
-permalink: /zh/dev/core/serialization
+permalink: zh/dev/core/serialization
 ---
 
 ```

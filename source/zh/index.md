@@ -1,5 +1,5 @@
 title: 文档首页
-permalink: /zh/
+permalink: zh/
 ---
 
 欢迎来到 Fireball-x 引擎的文档网站。

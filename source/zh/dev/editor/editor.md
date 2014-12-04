@@ -1,5 +1,5 @@
 title: Editor启动流程
-permalink: /zh/dev/editor/editor
+permalink: zh/dev/editor/editor
 ---
 
 ## 流程

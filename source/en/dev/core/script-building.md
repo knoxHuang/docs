@@ -2,7 +2,7 @@ title: Script Building
 permalink: en/dev/core/script-building
 ---
 
-```
+``` plain
 本文档相关代码是 main/tools/gulp-compile.js
 所有“备注”都属于进阶内容，初学者不需要了解。
 ```

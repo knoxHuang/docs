@@ -1,5 +1,5 @@
 title: Editor运行参数
-permalink: /zh/dev/editor/editor-arguments
+permalink: zh/dev/editor/editor-arguments
 ---
 
 ## 使用方法

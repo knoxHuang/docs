@@ -16,7 +16,6 @@ doc_sidebar:
   Getting Started:
       Overview: en/dev
       Setup: en/dev/setup
-      Help: en/help
   Core:
       Class: en/dev/core/class
       Script-Building: en/dev/core/script-building
@@ -33,7 +32,6 @@ doc_sidebar_zh:
     新手上路:
         简介: zh/dev
         设置: zh/dev/setup
-        帮助: zh/help
     核心:
         类型定义: zh/dev/core/class
         脚本编译: zh/dev/core/script-building
@@ -49,21 +47,23 @@ doc_sidebar_zh:
 
 user_sidebar:
     Getting Started:
-        Get Fireball: /
-        Create a Project: /
+        Get Fireball: en/start/install
+        Create a Project: en/start/new-project
+        Help: en/help
     User Manual:
-        Know the Editor: /
-        Asset Pipeline: /
+        Know the Editor: en/manual/editor
+        Asset Pipeline: en/manual/assets
     Scripting:
         Module: en/scripting/module
 
 user_sidebar_zh:
     新手上路:
-        获取Fireball: zh/
-        新建项目: zh/
+        获取Fireball: zh/start/install
+        新建项目: zh/start/new-project
+        帮助: zh/help
     用户手册:
-        认识Editor: zh/
-        资源工作流程: zh/
+        认识Editor: zh/manual/editor
+        资源工作流程: zh/manual/assets
     脚本编写:
         模块化: zh/scripting/module
 

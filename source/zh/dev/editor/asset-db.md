@@ -1,5 +1,5 @@
 title: Asset DataBase
-permalink: /zh/dev/editor/asset-db
+permalink: zh/dev/editor/asset-db
 ---
 
 ## AssetDB refresh 读取流程

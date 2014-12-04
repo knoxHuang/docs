@@ -1,8 +1,8 @@
 title: 脚本编译
-permalink: /zh/dev/core/script-building
+permalink: zh/dev/core/script-building
 ---
 
-```
+``` plain
 本文档相关代码是 main/tools/gulp-compile.js
 所有“备注”都属于进阶内容，初学者不需要了解。
 ```

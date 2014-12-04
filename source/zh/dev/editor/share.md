@@ -1,5 +1,5 @@
 title: Share Library
-permalink: /zh/dev/editor/share
+permalink: zh/dev/editor/share
 ---
 
 ## Intro

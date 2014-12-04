@@ -1,5 +1,5 @@
 title: 配置开发环境
-permalink: /zh/dev/setup
+permalink: zh/dev/setup
 ---
 
 ## 在 Window 上开发

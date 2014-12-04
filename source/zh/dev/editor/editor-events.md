@@ -1,5 +1,5 @@
 title: Editor Events
-permalink: /zh/dev/editor/editor-events
+permalink: zh/dev/editor/editor-events
 ---
 
 ## API
