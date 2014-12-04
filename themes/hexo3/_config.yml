@@ -49,6 +49,7 @@ user_sidebar:
     Getting Started:
         Get Fireball: en/start/install
         Create a Project: en/start/new-project
+        From Unity: en/start/from-unity
         Help: en/help
     User Manual:
         Know the Editor: en/manual/editor
@@ -60,6 +61,7 @@ user_sidebar_zh:
     新手上路:
         获取Fireball: zh/start/install
         新建项目: zh/start/new-project
+        Unity开发者上手: zh/start/from-unity
         帮助: zh/help
     用户手册:
         认识Editor: zh/manual/editor
