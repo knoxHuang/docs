@@ -36,3 +36,19 @@
   &.current
     font-weight: bold
     border-left-color: color-blue
+
+#sidebar-edit
+  display: block
+  margin: 40px 0 10px
+  color: color-blue
+  font-weight: bold
+  position: relative
+  padding-left: 0px
+  &:hover, &.current
+    color: color-blue
+  &.current
+    font-weight: bold
+    border-left-color: color-blue
+  &:before
+    @extend $icon-font
+    content: "\f040"

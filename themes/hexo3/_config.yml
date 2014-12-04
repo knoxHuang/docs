@@ -3,14 +3,12 @@ menu:
   Docs: /
   Developer: /docs/en/dev
   API: /docs/api
-  中文: /docs/zh
 
 menu_zh:
-    Home: http://fireball-x.com
+    首页: http://fireball-x.com
     用户文档: /zh
     开发者文档: /docs/zh/dev
     API: /docs/api
-    English: /
 
 doc_sidebar:
   Getting Started:

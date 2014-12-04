@@ -42,6 +42,35 @@ hexo.extend.helper.register('item_flags', function(data){
   return result;
 });
 
+hexo.extend.helper.register('toggle_lang_url', function() {
+    var resultLink;
+    //console.log("this.path: " + this.path);
+    if (/zh\//.test(this.path)) {
+        if (/zh\/+index.html/.test(this.path)) {
+            resultLink = this.path.replace(/zh\//, '/');
+        } else {
+            resultLink = this.path.replace(/zh\//, 'en/');
+        }
+    } else {
+        if (/en\//.test(this.path)) {
+            resultLink = this.path.replace(/en\//, 'zh/');
+        } else {
+            resultLink = 'zh/' + this.path;
+        }
+    }
+    //console.log("resultLink: " + resultLink);
+    //console.log("replace / :" + resultLink.replace(/\/{2}/, '/'));
+    return (this.config.root + "/" + resultLink).replace(/\/+/, '/');
+});
+
+hexo.extend.helper.register('toggle_lang_title', function() {
+    if (/zh\//.test(this.path)) {
+        return "English";
+    } else {
+        return "中文";
+    }
+});
+
 hexo.extend.helper.register('get_sidebar', function() {
     var permalink = this.path;
     var reZh = /^zh\/|^\/zh\//;

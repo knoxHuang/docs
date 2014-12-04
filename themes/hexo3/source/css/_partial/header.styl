@@ -112,6 +112,22 @@ $header-btn
   @media mq-normal
     display: block
 
+.main-nav-lang
+  float: left
+  display: block
+  font-weight: bold
+  text-decoration: none
+  color: color-grey
+  text-align: center
+  line-height: 1
+  padding: 10px 10px 10px 30px
+  &:hover
+    color: color-blue
+  &:before
+    font-size: @width
+  @media mq-normal
+    display: block
+
 #github-btn
   @extend $header-btn
   &:before
