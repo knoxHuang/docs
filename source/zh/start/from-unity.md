@@ -2,7 +2,7 @@ title: Unity 开发者上手
 permalink: zh/start/from-unity
 ---
 
-虽然 Fireball-x 和 [Unity®](http://unity3d.com/cn/public-relations/brand) 有很多不同之处，但他们都是基于组件进行设计，有一些相似的使用体验。所以 Unity 的相关经验对入门 Fireball-x 有一定帮助，如果你了解过 Unity，那么这篇短文就是为你准备的。  
+虽然 Fireball-x 和 [Unity®](http://unity3d.com/) 有很多不同之处，但他们都是基于组件进行设计，有一些相似的使用体验。所以 Unity 的相关经验对入门 Fireball-x 有一定帮助，如果你了解过 Unity，那么这篇短文就是为你准备的。  
 本文并不从头介绍 Fireball-x，也不完整列举 Fireball-x 和 Unity 的所有不同点。
 
 ## 设计上的区别
