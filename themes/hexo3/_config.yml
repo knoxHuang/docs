@@ -56,6 +56,7 @@ user_sidebar:
         Asset Pipeline: en/manual/assets
     Scripting:
         Module: en/scripting/module
+        Reserved Words: zh/scripting/reserved-words
 
 user_sidebar_zh:
     新手上路:
@@ -68,6 +69,7 @@ user_sidebar_zh:
         资源工作流程: zh/manual/assets
     脚本编写:
         模块化: zh/scripting/module
+        附录：保留字: zh/scripting/reserved-words
 
 google_analytics:
 fb_admins:
