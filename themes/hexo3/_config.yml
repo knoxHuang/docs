@@ -56,7 +56,7 @@ user_sidebar:
         Asset Pipeline: en/manual/assets
     Scripting:
         Module: en/scripting/module
-        Reserved Words: zh/scripting/reserved-words
+        Reserved Words: en/scripting/reserved-words
 
 user_sidebar_zh:
     新手上路:
