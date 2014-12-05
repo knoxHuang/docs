@@ -79,25 +79,25 @@ module.exports = SinRotate;
 
 - module.exports 可以直接用来增加新的字段，不一定要提前赋值。
 
-	```js
-	// foobar.js:
-	module.exports.foo = function () {
-    	Fire.log("foo");
+    ```js
+    // foobar.js:
+    module.exports.foo = function () {
+        Fire.log("foo");
     };
     module.exports.bar = function () {
-    	Fire.log("bar");
+        Fire.log("bar");
     };
     // test.js:
     var foobar = require("foobar");
-    foobar.foo();	// "foo"
-    foobar.bar();	// "bar"
-	```
+    foobar.foo();    // "foo"
+    foobar.bar();    // "bar"
+    ```
 - module.exports 能直接导出任意 JavaScript 对象。
 
-	```js
-	// foobar.js:
-	module.exports = {
-    	FOO: function () {
+    ```js
+    // foobar.js:
+    module.exports = {
+        FOO: function () {
             this.type = "foo";
         },
         bar: "bar"
@@ -105,9 +105,9 @@ module.exports = SinRotate;
     // test.js:
     var foobar = require("foobar");
     var foo = new foobar.FOO();
-    Fire.log(foo.type);		// "foo"
-    Fire.log(foobar.bar);	// "bar"
-	```
+    Fire.log(foo.type);      // "foo"
+    Fire.log(foobar.bar);    // "bar"
+    ```
 
 ### <a name="private"></a>封装私有变量
 
@@ -116,23 +116,23 @@ module.exports = SinRotate;
 // foobar.js:
 var dirty = false;
 module.exports = {
-	setDirty: function () {
+    setDirty: function () {
         dirty = true;
-	},
+    },
 };
 // test.js:
 var foo = require("foobar");
-Fire.log(typeof foo.dirty);		// "undefined"
+Fire.log(typeof foo.dirty);        // "undefined"
 ```
 
 **警告：定义变量前一定要在前面加上 var**，否则将会变成全局变量！在 Fireball-x 中禁止使用全局变量。
 
 ```js
 // foobar.js:
-dirty = false;		// 这是错的，dirty 会变成全局变量！前面应该加上 var ！
+dirty = false;        // 这是错的，dirty 会变成全局变量！前面应该加上 var ！
 module.exports = {
-	setDirty: function () {
+    setDirty: function () {
         dirty = true;
-	},
+    },
 };
 ```
