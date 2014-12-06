@@ -1,0 +1,77 @@
+.main-layout
+    position: relative;
+    overflow: hidden;
+    -moz-transition: all 300ms ease-out 0ms;
+    -o-transition: all 300ms ease-out 0ms;
+    -webkit-transition: all 300ms ease-out;
+    -webkit-transition-delay: 0ms;
+    transition: all 300ms ease-out 0ms
+
+.sidebar-open .main-layout
+    @media mq-normal
+        margin-left: 400px;
+
+.discuss-sidebar
+    z-index: 110;
+    background: #161124;
+    color: white;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    z-index: 100;
+    -moz-transition: all 300ms ease-out 0ms;
+    -o-transition: all 300ms ease-out 0ms;
+    -webkit-transition: all 300ms ease-out;
+    -webkit-transition-delay: 0ms;
+    transition: all 300ms ease-out 0ms
+    @media mq-normal
+        width: 400px;
+        left: -400px;
+    @media mq-mobile
+        width: 90%;
+        left: -90%;
+
+.discuss-sidebar .sidebar-toggle
+    color: white;
+    text-align: center;
+    text-overflow: clip;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 40px;
+    padding-left: 40px;
+    top: 40px;
+    background: rgba(253, 185, 44, 1) url("images/question.svg") center center no-repeat;
+    background-size: 24px 24px
+
+    -moz-transition: all 300ms ease-out 0ms;
+    -o-transition: all 300ms ease-out 0ms;
+    -webkit-transition: all 300ms ease-out;
+    -webkit-transition-delay: 0ms;
+    transition: all 300ms ease-out 0ms;
+
+.sidebar-toggle
+    display: block;
+    height: 40px;
+    width: 80px;
+    position: absolute;
+    right: -80px;
+    top: 0px;
+    -moz-transition: all 300ms ease-out 0ms;
+    -o-transition: all 300ms ease-out 0ms;
+    -webkit-transition: all 300ms ease-out;
+    -webkit-transition-delay: 0ms;
+    transition: all 300ms ease-out 0ms;
+
+.sidebar-open .discuss-sidebar
+    left: 0px;
+    z-index: 1000;
+    .sidebar-toggle
+        background-color: #e2e1e4;
+
+.sidebar-open .discuss-sidebar .sidebar-toggle
+    padding-left: 0;
+    background-color: rgba(253, 185, 44, 1);
+    width: 60px;
+    right: -60px;
+    color: rgba(0,0,0,0);

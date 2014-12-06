@@ -1,9 +1,15 @@
 <%- partial('_partial/head') %>
 
 <body>
-  <%- partial('_partial/header') %>
-  <%- body %>
-  <%- partial('_partial/footer') %>
-  <%- partial('_partial/after-footer') %>
+    <div class="main-layout">
+        <%- partial('_partial/header') %>
+        <%- body %>
+        <%- partial('_partial/footer') %>
+        <%- partial('_partial/after-footer') %>
+    </div>
+    <div class="discuss-sidebar">
+        <%- partial('_partial/discuss-sidebar') %>
+    </div>
 </body>
+
 </html>
