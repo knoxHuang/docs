@@ -2,7 +2,7 @@ title: Serialization
 permalink: en/dev/core/serialization
 ---
 
-```
+``` plain
 本文档相关代码是 core/src/serialize.js 和 core/src/deserialize.js
 所有“备注”都属于进阶内容，初学者不需要了解。
 ```
