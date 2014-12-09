@@ -42,3 +42,7 @@ permalink: zh/dev/editor/editor
    - 初始化 Fire.Engine
    - 初始化 game view 和 scene view 的 RenderContenxt
    - 完成启动流程
+   
+## 注意
+
+在 main 这个 repo 中的代码 (主要指 main.js 和 page-init.js), 一般都是未初始化之前, 用于做初始化操作的. 比如 main.js 主要用于初始化 Fire. page-init 主要用于初始化页面. 所以书写时时牢记还未初始化的东西, 避免使用未初始化的函数或功能.
