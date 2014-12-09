@@ -25,7 +25,7 @@ permalink: zh/dev/editor/editor
 
 ### fireball.html 页面启动流程
 
- - 加载 `fire://launch.js` 进行页面的基本初始化操作
+ - 加载 `fire://page-init.js` 进行页面的基本初始化操作
  - 在 `fireball.html` 的 body 部分, 依次加载
    - 第三方依赖库
    - core, engine, editor-share, editor
