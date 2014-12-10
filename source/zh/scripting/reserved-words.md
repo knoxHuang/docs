@@ -31,7 +31,7 @@ permalink: /zh/scripting/reserved-words
 - `$super`
 - `__props__`
 
-### 定义在所有 FireClass 上的实例变量
+### 定义在所有 FireClass 上的成员变量
 
 - `_observing`
 
