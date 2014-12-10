@@ -17,9 +17,10 @@ permalink: /zh/scripting/reserved-words
 - `_iN$t`
 - `_hostext`
 
-### 可能定义在任意prototype上的变量
+### 可能定义在任意类型或 prototype 上的变量
 
 - 任何以 `_attrs$` 开头的变量
+- `__classname__`
 
 ### 定义在所有 FireClass 上的静态变量
 
