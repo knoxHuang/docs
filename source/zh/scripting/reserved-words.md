@@ -2,7 +2,7 @@ title: 附录：保留字
 permalink: /zh/scripting/reserved-words
 ---
 
-除了类已经定义的变量外，以下是其它 Fireball-x 中已经使用的变量名，请避免冲突。
+除了类已经定义的变量外，以下是其它 Fireball-x 中已经使用的变量名，请避免冲突。这些变量有一些是保留用途，只有特殊情况才会声明。
 
 ### 全局变量
 
@@ -22,7 +22,7 @@ permalink: /zh/scripting/reserved-words
 - 任何以 `_attrs$` 开头的变量
 - `__classname__`
 
-### 定义在所有 FireClass 上的静态变量
+### FireClass 上的静态变量
 
 - `get`
 - `set`
@@ -31,7 +31,7 @@ permalink: /zh/scripting/reserved-words
 - `$super`
 - `__props__`
 
-### 定义在所有 FireClass 上的成员变量
+### FireClass 上的成员变量
 
 - `_observing`
-
+- `_$erialized`
