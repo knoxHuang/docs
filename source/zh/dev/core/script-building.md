@@ -34,6 +34,7 @@ Fireball 的所有第三方代码，包括项目和插件代码，都会经过�
 
 1. 获取 `%project%/assets` 下所有脚本，如  JavaScript、TypeScript、CoffeeScript 等。
 2. 将代码预编译为 JavaScript，放入`%project%/temp`，保留相对路径。
+2.1 插入调试信息。
 3. 生成**主文件**，用来 require 所有上个步骤生成的脚本。
 4. 通过**browserify**，将主文件包含的所有脚本打包成为 `%project%/library/bundle.js`。
 
