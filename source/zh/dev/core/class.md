@@ -22,7 +22,7 @@ Fireball-x 的数据类型(Class)使用 **Fire.define** 进行定义，以便简
 ```js
     var Sprite = Fire.define('Sprite');
 ```
-以上代码定义了一个名为 'Sprite' 的 FireClass，并且赋给 Sprite 变量。'Sprite' 这个名字将用于[反序列化](serialization.md#register)。
+以上代码定义了一个名为 'Sprite' 的 FireClass，并且赋给 Sprite 变量。'Sprite' 这个名字即是类名又是类型ID，将会用于[序列化](serialization.md#register)。
 
 - **实例化**时采用
 ```js
