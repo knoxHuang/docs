@@ -21,6 +21,7 @@ permalink: /zh/scripting/reserved-words
 
 - 任何以 `_attrs$` 开头的变量
 - `__classname__`
+- `__cid__`
 
 ### FireClass 上的静态变量
 
