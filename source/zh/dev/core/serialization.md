@@ -24,13 +24,13 @@ Fireball 的序列化可以用来储存和读取**任意的** JavaScript 对象�
 
 ## <a name="register"></a>类型注册
 
-Fireball 在序列化时，需要保存数据的**类型名**，该类型可以是任意**全局唯一**的字符串，以便重建对象时查找出对应的构造函数。
+Fireball 在序列化时，需要保存数据的**类型ID**，该类型可以是任意**全局唯一**的字符串，以便重建对象时查找出对应的构造函数。
 
-- 对 [FireClass](class.md) 而言，就是 define 时传入的第一个参数：
+- 对 [FireClass](class.md) 而言，类型ID默认等于类名，也就是 define 时传入的第一个参数：
 ```js
   var Sprite = Fire.define('Company.Sprite');
 ```
-- 对其它 JavaScript 构造函数，可以使用 `Fire.registerClass` 注册类型：
+- 对其它 JavaScript 构造函数，可以使用 `Fire.registerClass` 注册类型ID：
 ```js
   var Sprite = function () {};
   Fire.registerClass('Company.Sprite', Sprite);
@@ -38,7 +38,7 @@ Fireball 在序列化时，需要保存数据的**类型名**，该类型可以�
 
 - 备注：
     - 如果类型名经过修改，之前已序列化好的内容将无法再加载。
-    - 如果某个类型永远不再使用，需要调用`Fire.unregisterClass`进行反注册，否则类型不会被GC。
+    - 运行时如果希望销毁类型，需要调用`Fire.unregisterClass`进行反注册。
 
 ## <a name="custom"></a>自定义序列化内容
 
