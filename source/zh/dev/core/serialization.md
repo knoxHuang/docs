@@ -37,7 +37,7 @@ Fireball 在序列化时，需要保存数据的**类型ID**，该类型可以�
 ```
 
 - 备注：
-    - 如果类型名经过修改，之前已序列化好的内容将无法再加载。
+    - 如果类型名经过修改，之前已序列化好的内容将无法再加载。(Component的声明不需要类型ID，所以不受改名限制。)
     - 运行时如果希望销毁类型，需要调用`Fire.unregisterClass`进行反注册。
 
 ## <a name="custom"></a>自定义序列化内容
@@ -51,7 +51,8 @@ Fireball 在序列化时，需要保存数据的**类型ID**，该类型可以�
 
 例如，定义一个 Component，它的 `_width` 属性虽然会被序列化，但不在 Inspector 中显示。Inspector 中显示的是 `width`，但其实 `width` 并没保存。
 ```js
-    var Sprite = Fire.define('Sprite', Fire.Component);
+    // Sprite.js
+    var Sprite = Fire.defineComponent();
     Sprite.prop('_width', 128, Fire.HideInInspector);
     Sprite.getset('width',
         function () {
