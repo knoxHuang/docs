@@ -2,7 +2,7 @@ title: Node.js 图像处理性能评测
 permalink: zh/reports/image-process-performance
 ---
 
-我们主要测试 lwip 和 gm 两个 node.js 库.
+我们主要测试 lwip 和 gm 两个 node.js 库. 关联 Issue: https://github.com/fireball-x/dev/issues/137
 
 
 ## 测试条件 1 (普通条件):
