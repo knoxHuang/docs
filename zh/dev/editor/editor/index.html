@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Editor启动流程 | Fireball</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="http://fireball-x.com/docs/zh/dev/editor/editor/index.html">
+  <link rel="apple-touch-icon" sizes="57x57" href="/docs/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/docs/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/docs/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/docs/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/docs/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/docs/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/docs/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/docs/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/docs/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/docs/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/docs/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/docs/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/docs/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/docs/mstile-144x144.png">
+  <link rel="stylesheet" href="/docs/css/style.css" type="text/css">
+
+<!--   <link href="//fonts.googleapis.com/css?family=Lato:300,700" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+ -->
+  <link rel="alternative" href="/docs/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <meta name="description" content="流程
+Editor Core 初始化
+通过 main.js 初始化 Editor 内核.
+
+解析 arguments
+在 App.ready 时
+注册 Protocol ( fire://, library://, uuid://)
+初始化 FireApp, 读取 core, editor-share 模块
+读取 userProfile ( fire-app://profile.json )">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Editor启动流程">
+<meta property="og:url" content="http://fireball-x.com/docs/docs/zh/dev/editor/editor/index.html">
+<meta property="og:site_name" content="Fireball Docs">
+<meta property="og:description" content="流程
+Editor Core 初始化
+通过 main.js 初始化 Editor 内核.
+
+解析 arguments
+在 App.ready 时
+注册 Protocol ( fire://, library://, uuid://)
+初始化 FireApp, 读取 core, editor-share 模块
+读取 userProfile ( fire-app://profile.json )">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Editor启动流程">
+<meta name="twitter:description" content="流程
+Editor Core 初始化
+通过 main.js 初始化 Editor 内核.
+
+解析 arguments
+在 App.ready 时
+注册 Protocol ( fire://, library://, uuid://)
+初始化 FireApp, 读取 core, editor-share 模块
+读取 userProfile ( fire-app://profile.json )">
+<meta name="twitter:site" content="@fireballengine">
+
+  
+</head>
+
+
+<body>
+    <div class="main-layout">
+        <header id="header">
+  <div class="outer">
+    <div class="inner">
+      <h1 id="logo-wrap">
+        <a href="/docs/" id="logo">Hexo</a>
+        <a id="main-nav-toggle"></a>
+      </h1>
+      <nav id="main-nav">
+        <ul id="main-nav-list">
+          
+            <li class="main-nav-item">
+              <a href="http://fireball-x.com" class="main-nav-link">首页</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/zh" class="main-nav-link">用户文档</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/zh/dev" class="main-nav-link">开发者文档</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/api" class="main-nav-link">API</a>
+            </li>
+          
+        </ul>
+        <a href="/docs//en/dev/editor/editor/index.html" class="main-nav-lang">English</a>
+        <a href="https://github.com/fireball-x/docs" id="github-btn" title="GitHub" target="_blank"></a>
+        <a id="search-btn" class="st-search-launcher" title="Search"></a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+        <article class="page" itemscope itemtype="http://schema.org/Article">
+  <header id="page-banner">
+    <div class="outer">
+      <div id="page-banner-inner" class="inner">
+        <h1 id="page-title" itemprop="name">Editor启动流程</h1>
+        <a href="http://prose.io/#fireball-x/docs/edit/master/source/zh/dev/editor/editor.md"  title="Improve this doc" id="page-edit-link"></a>
+      </div>
+    </div>
+  </header>
+  <div class="outer">
+    <div id="mobile-menu-wrap"></div>
+    <div class="page-content">
+      <div class="toc-wrap">
+        <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#流程"><span class="toc-number">1.</span> <span class="toc-text">流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Editor_Core_初始化"><span class="toc-number">1.1.</span> <span class="toc-text">Editor Core 初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fireball_启动流程"><span class="toc-number">1.2.</span> <span class="toc-text">Fireball 启动流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fireball-html_页面启动流程"><span class="toc-number">1.3.</span> <span class="toc-text">fireball.html 页面启动流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#main-window_初始化流程"><span class="toc-number">1.4.</span> <span class="toc-text">main-window 初始化流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意"><span class="toc-number">2.</span> <span class="toc-text">注意</span></a></li></ol>
+      </div>
+      <div class="page-entry" itemprop="articleBody">
+        <h2 id="流程">流程</h2>
+<h3 id="Editor_Core_初始化">Editor Core 初始化</h3>
+<p>通过 main.js 初始化 Editor 内核.</p>
+<ul>
+<li>解析 arguments</li>
+<li>在 App.ready 时<ul>
+<li>注册 Protocol ( <code>fire://</code>, <code>library://</code>, <code>uuid://</code>)</li>
+<li>初始化 FireApp, 读取 core, editor-share 模块</li>
+<li>读取 userProfile ( <code>fire-app://profile.json</code> )</li>
+</ul>
+</li>
+<li>如果没有在 arguments 中提供 project 则进入 Dashboard, 否则进入 Fireball</li>
+</ul>
+<h3 id="Fireball_启动流程">Fireball 启动流程</h3>
+<ul>
+<li>实例化 AssetDB, Selection 等模块</li>
+<li>检查项目文件夹是否健全</li>
+<li>初始化 MainMenu</li>
+<li>新建窗口并读取 <code>fire://static/fireball.html</code></li>
+<li>等待 ipc 消息 <code>project:init</code></li>
+</ul>
+<h3 id="fireball-html_页面启动流程">fireball.html 页面启动流程</h3>
+<ul>
+<li>加载 <code>fire://page-init.js</code> 进行页面的基本初始化操作</li>
+<li>在 <code>fireball.html</code> 的 body 部分, 依次加载<ul>
+<li>第三方依赖库</li>
+<li>core, engine, editor-share, editor</li>
+<li>polymer, editor-ui 以及最终加载 main-window</li>
+</ul>
+</li>
+</ul>
+<h3 id="main-window_初始化流程">main-window 初始化流程</h3>
+<ul>
+<li>在 domReady 中发送 ipc 消息 <code>project:init</code><ul>
+<li>Editor Core 中初始化 AssetDB</li>
+<li>调用 <code>AssetDB.refreshAll()</code> 扫描并更新资源</li>
+</ul>
+</li>
+<li>等待 ipc 消息 <code>project:ready</code><ul>
+<li>Import 最基本的 plugins</li>
+<li>调用 Plugin 的 <code>init</code> 函数完成插件初始化并设置窗口布局</li>
+<li>初始化 Fire.Engine</li>
+<li>初始化 game view 和 scene view 的 RenderContenxt</li>
+<li>完成启动流程</li>
+</ul>
+</li>
+</ul>
+<h2 id="注意">注意</h2>
+<p>在 main 这个 repo 中的代码 (主要指 main.js 和 page-init.js), 一般都是未初始化之前, 用于做初始化操作的. 比如 main.js 主要用于初始化 Fire. page-init 主要用于初始化页面. 所以书写时时牢记还未初始化的东西, 避免使用未初始化的函数或功能.</p>
+
+      </div>
+      <footer id="page-footer">
+          <a href="http://prose.io/#fireball-x/docs/edit/master/source/zh/dev/editor/editor.md" class="article-edit-link">Edit This Page</a>
+        <time id="page-footer-updated" datetime="2015-01-20T04:15:54.000Z" itemprop="dateModified">Last updated: Jan 20 2015</time>
+        <a href="http://fireball-x.com/docs/zh/dev/core/serialization" id="page-footer-prev" title="序列化">Prev</a><a href="http://fireball-x.com/docs/zh/dev/editor/editor-arguments" id="page-footer-next" title="Editor运行参数">Next</a>
+      </footer>
+      
+    </div>
+    <aside id="sidebar">
+  
+    <strong class="sidebar-title">新手上路</strong>
+    
+      
+      <a href="/docs/zh/dev" class="sidebar-link">简介</a>
+    
+      
+      <a href="/docs/zh/dev/setup" class="sidebar-link">设置</a>
+    
+  
+    <strong class="sidebar-title">核心</strong>
+    
+      
+      <a href="/docs/zh/dev/core/class" class="sidebar-link">类型定义</a>
+    
+      
+      <a href="/docs/zh/dev/core/script-building" class="sidebar-link">脚本编译</a>
+    
+      
+      <a href="/docs/zh/dev/core/serialization" class="sidebar-link">序列化</a>
+    
+  
+    <strong class="sidebar-title">Editor编辑器</strong>
+    
+      
+      <a href="/docs/zh/dev/editor/editor" class="sidebar-link current">Editor启动流程</a>
+    
+      
+      <a href="/docs/zh/dev/editor/editor-arguments" class="sidebar-link">Editor运行参数</a>
+    
+      
+      <a href="/docs/zh/dev/editor/editor-events" class="sidebar-link">Editor事件</a>
+    
+      
+      <a href="/docs/zh/dev/editor/node-modules" class="sidebar-link">Node Modules</a>
+    
+      
+      <a href="/docs/zh/dev/editor/asset-db" class="sidebar-link">AssetDB资源数据库</a>
+    
+      
+      <a href="/docs/zh/dev/editor/share" class="sidebar-link">Share文件夹</a>
+    
+      
+      <a href="/docs/zh/dev/editor/init-quick-window" class="sidebar-link">Quick Window 初始化流程</a>
+    
+  
+  <a href="http://prose.io/#fireball-x/docs/edit/master/themes/hexo3/_config.yml" id="sidebar-edit">Edit Navigation</a>
+</aside>
+
+  </div>
+</article>
+
+        <footer id="footer">
+  <div class="outer">
+    <div class="inner">
+      <div id="footer-copyright">
+        &copy; 2015 <a href="http://firebox.im/">Firebox Technologies</a><br>
+        Background: <a href="http://subtlepatterns.com/shattered/" target="_blank">Shattered</a> by <a href="http://luukvanbaars.com/" target="_blank">Luuk van Baars</a>
+      </div>
+      <div id="footer-links">
+        <a href="https://twitter.com/fireballengine" id="footer-link-twitter" class="footer-link" target="_blank"><span>Twitter</span></a>
+        <a href="https://github.com/fireball-x/docs" id="footer-link-github" class="footer-link" target="_blank"><span>GitHub</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+        
+<!-- Swiftype -->
+<script>
+var Swiftype = window.Swiftype || {};
+(function() {
+  Swiftype.key = 'WM9aFPtvcpZwMuaRj9Yc';
+
+  /** DO NOT EDIT BELOW THIS LINE **/
+  var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+  script.src = "//s.swiftypecdn.com/embed.js";
+  var entry = document.getElementsByTagName('script')[0];
+  document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+}());
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/docs/js/retina.min.js" type="text/javascript"></script>
+
+<script src="/docs/js/script.js" type="text/javascript"></script>
+
+<!-- Google+ -->
+<!-- <script type="text/javascript" src="//apis.google.com/js/plusone.js"></script> -->
+<!-- Twitter -->
+<!-- <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
+
+    </div>
+    <div class="discuss-sidebar">
+        <a href="#disqus_thread" class="sidebar-toggle" onclick="toggle_sidebar();" data-disqus-identifier="zh/dev/editor/editor/index.html"></a>
+<div class="sidebar-inner">
+    <!-- disqus embed -->
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'fireball-docs'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+
+<!-- disqus comments count -->
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'fireball-docs'; // required: replace example with your forum shortname
+var disqus_identifier = "zh/dev/editor/editor/index.html";
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+    </div>
+</body>
+
+</html>

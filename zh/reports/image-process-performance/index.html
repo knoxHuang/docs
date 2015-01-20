@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Node.js 图像处理性能评测 | Fireball</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="http://fireball-x.com/docs/zh/reports/image-process-performance/index.html">
+  <link rel="apple-touch-icon" sizes="57x57" href="/docs/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/docs/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/docs/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/docs/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/docs/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/docs/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/docs/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/docs/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/docs/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/docs/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/docs/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/docs/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/docs/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/docs/mstile-144x144.png">
+  <link rel="stylesheet" href="/docs/css/style.css" type="text/css">
+
+<!--   <link href="//fonts.googleapis.com/css?family=Lato:300,700" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+ -->
+  <link rel="alternative" href="/docs/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <meta name="description" content="我们主要测试 lwip 和 gm 两个 node.js 库. 关联 Issue: https://github.com/fireball-x/dev/issues/137
+测试条件 1 (普通条件):
+
+小魔女assets
+包含图片: 481张
+总大小: 22.7M
+类型: jpeg,png
+平均分辨率大小: 100-100
+生成大小: 10px * 10px
+
+
+
+
+模块名称
+测试次数
+消耗时间">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js 图像处理性能评测">
+<meta property="og:url" content="http://fireball-x.com/docs/docs/zh/reports/image-process-performance/index.html">
+<meta property="og:site_name" content="Fireball Docs">
+<meta property="og:description" content="我们主要测试 lwip 和 gm 两个 node.js 库. 关联 Issue: https://github.com/fireball-x/dev/issues/137
+测试条件 1 (普通条件):
+
+小魔女assets
+包含图片: 481张
+总大小: 22.7M
+类型: jpeg,png
+平均分辨率大小: 100-100
+生成大小: 10px * 10px
+
+
+
+
+模块名称
+测试次数
+消耗时间">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js 图像处理性能评测">
+<meta name="twitter:description" content="我们主要测试 lwip 和 gm 两个 node.js 库. 关联 Issue: https://github.com/fireball-x/dev/issues/137
+测试条件 1 (普通条件):
+
+小魔女assets
+包含图片: 481张
+总大小: 22.7M
+类型: jpeg,png
+平均分辨率大小: 100-100
+生成大小: 10px * 10px
+
+
+
+
+模块名称
+测试次数
+消耗时间">
+<meta name="twitter:site" content="@fireballengine">
+
+  
+</head>
+
+
+<body>
+    <div class="main-layout">
+        <header id="header">
+  <div class="outer">
+    <div class="inner">
+      <h1 id="logo-wrap">
+        <a href="/docs/" id="logo">Hexo</a>
+        <a id="main-nav-toggle"></a>
+      </h1>
+      <nav id="main-nav">
+        <ul id="main-nav-list">
+          
+            <li class="main-nav-item">
+              <a href="http://fireball-x.com" class="main-nav-link">首页</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/zh" class="main-nav-link">用户文档</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/zh/dev" class="main-nav-link">开发者文档</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/api" class="main-nav-link">API</a>
+            </li>
+          
+        </ul>
+        <a href="/docs//en/reports/image-process-performance/index.html" class="main-nav-lang">English</a>
+        <a href="https://github.com/fireball-x/docs" id="github-btn" title="GitHub" target="_blank"></a>
+        <a id="search-btn" class="st-search-launcher" title="Search"></a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+        <article class="page" itemscope itemtype="http://schema.org/Article">
+  <header id="page-banner">
+    <div class="outer">
+      <div id="page-banner-inner" class="inner">
+        <h1 id="page-title" itemprop="name">Node.js 图像处理性能评测</h1>
+        <a href="http://prose.io/#fireball-x/docs/edit/master/source/zh/reports/image-process-performance.md"  title="Improve this doc" id="page-edit-link"></a>
+      </div>
+    </div>
+  </header>
+  <div class="outer">
+    <div id="mobile-menu-wrap"></div>
+    <div class="page-content">
+      <div class="toc-wrap">
+        <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#测试条件_1_(普通条件):"><span class="toc-number">1.</span> <span class="toc-text">测试条件 1 (普通条件):</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试条件_2_(缩略图大小改变):"><span class="toc-number">2.</span> <span class="toc-text">测试条件 2 (缩略图大小改变):</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试条件_3_(缩略图大小改变):"><span class="toc-number">3.</span> <span class="toc-text">测试条件 3 (缩略图大小改变):</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试条件4_(原图为大图)"><span class="toc-number">4.</span> <span class="toc-text">测试条件4 (原图为大图)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+      <div class="page-entry" itemprop="articleBody">
+        <p>我们主要测试 lwip 和 gm 两个 node.js 库. 关联 Issue: <a href="https://github.com/fireball-x/dev/issues/137" target="_blank" rel="external">https://github.com/fireball-x/dev/issues/137</a></p>
+<h2 id="测试条件_1_(普通条件):">测试条件 1 (普通条件):</h2>
+<ul>
+<li>小魔女assets</li>
+<li>包含图片: <code>481张</code></li>
+<li>总大小: <code>22.7M</code></li>
+<li>类型: <code>jpeg,png</code></li>
+<li>平均分辨率大小: <code>100-100</code></li>
+<li>生成大小: <code>10px * 10px</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">模块名称</th>
+<th style="text-align:center">测试次数</th>
+<th style="text-align:center">消耗时间(ms)</th>
+<th style="text-align:center">平均消耗(ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">lwip</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">[665] [697] [648] [560] [593] [564] [626] [554] [534] [709]</td>
+<td style="text-align:center">615</td>
+</tr>
+<tr>
+<td style="text-align:center">gm</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">[2112] [1820] [1871] [1809] [1915] [1894] [1899] [2014] [1848] [1978] [1809]</td>
+<td style="text-align:center">1906</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="测试条件_2_(缩略图大小改变):">测试条件 2 (缩略图大小改变):</h2>
+<ul>
+<li>小魔女assets</li>
+<li>包含图片: <code>481张</code></li>
+<li>总大小: <code>22.7M</code></li>
+<li>类型: <code>jpeg,png</code></li>
+<li>平均分辨率大小: <code>100-100</code></li>
+<li>生成大小: <code>50px * 50px</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">模块名称</th>
+<th style="text-align:center">测试次数</th>
+<th style="text-align:center">消耗时间(ms)</th>
+<th style="text-align:center">平均消耗(ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">lwip</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">[860] [688] [610] [615] [684] [669] [614] [721] [798] [782]</td>
+<td style="text-align:center">704</td>
+</tr>
+<tr>
+<td style="text-align:center">gm</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">[1952] [2082] [2029] [1927] [1777] [2021] [2197] [1940] [2014] [2057] [1980]</td>
+<td style="text-align:center">2170</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="测试条件_3_(缩略图大小改变):">测试条件 3 (缩略图大小改变):</h2>
+<ul>
+<li>小魔女assets</li>
+<li>包含图片: <code>481张</code></li>
+<li>总大小: <code>22.7M</code></li>
+<li>类型: <code>jpeg,png</code></li>
+<li>平均分辨率大小: <code>100-100</code></li>
+<li>生成大小: <code>150px * 150px</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">模块名称</th>
+<th style="text-align:center">测试次数</th>
+<th style="text-align:center">消耗时间(ms)</th>
+<th style="text-align:center">平均消耗(ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">lwip</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">[1749] [1669] [1690] [1772] [1865] [2070] [1884] [2062] [1897] [1826]</td>
+<td style="text-align:center">1679</td>
+</tr>
+<tr>
+<td style="text-align:center">gm</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">[2364] [2320] [2180] [2339] [2307] [2436] [2649] [2550] [2584] [2343]</td>
+<td style="text-align:center">2407</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="测试条件4_(原图为大图)">测试条件4 (原图为大图)</h2>
+<ul>
+<li>壁纸级图片</li>
+<li>包含图片: <code>100张</code></li>
+<li>总大小: <code>11.9M</code></li>
+<li>类型: <code>jpeg,png</code></li>
+<li>平均分辨率大小: <code>1024-800</code></li>
+<li>生成大小: <code>20px * 20px</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">模块名称</th>
+<th style="text-align:center">测试次数</th>
+<th style="text-align:center">消耗时间(ms)</th>
+<th style="text-align:center">平均消耗(ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">lwip</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">[1630] [1733] [1694] [1986] [1784] [1986] [1829] [2060] [1841] [2031]</td>
+<td style="text-align:center">1856</td>
+</tr>
+<tr>
+<td style="text-align:center">gm</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">[703] [675] [666] [705] [719] [668] [676] [718] [705] [660]</td>
+<td style="text-align:center">689.5</td>
+</tr>
+</tbody>
+</table>
+<h2 id="总结">总结</h2>
+<ul>
+<li>在以上测试中,gm性能不及lwip,主要表现为在相同的图片资源下,生成的缩略图越小<br>lwip的性能越高，但随着生成缩略图的尺寸增大,gm相对于稳定,lwip<br>增长较快。</li>
+<li>在原图小(长宽保持100-200),且生成缩略图大小在正常范围内,<code>lwip  &gt; gm</code></li>
+<li>在原图大的情况下(长宽在1000以上),gm的性能比lwip要好的多 <code>gm &gt; lwip</code></li>
+<li>根据实际情况，更偏向于用lwip，关键gm和imagemagick这两个库必须得有依赖关系，不能很好移植</li>
+</ul>
+
+      </div>
+      <footer id="page-footer">
+          <a href="http://prose.io/#fireball-x/docs/edit/master/source/zh/reports/image-process-performance.md" class="article-edit-link">Edit This Page</a>
+        <time id="page-footer-updated" datetime="2015-01-20T04:15:54.000Z" itemprop="dateModified">Last updated: Jan 20 2015</time>
+        <a href="http://fireball-x.com/docs/zh/start/install" id="page-footer-next" title="获取Fireball">Next</a>
+      </footer>
+      
+    </div>
+    <aside id="sidebar">
+  
+    <strong class="sidebar-title">新手上路</strong>
+    
+      
+      <a href="/docs/zh/start/install" class="sidebar-link">获取Fireball</a>
+    
+      
+      <a href="/docs/zh/start/new-project" class="sidebar-link">新建项目</a>
+    
+      
+      <a href="/docs/zh/start/from-unity" class="sidebar-link">Unity开发者上手</a>
+    
+      
+      <a href="/docs/zh/help" class="sidebar-link">帮助</a>
+    
+  
+    <strong class="sidebar-title">用户手册</strong>
+    
+      
+      <a href="/docs/zh/manual/editor" class="sidebar-link">认识Editor</a>
+    
+      
+      <a href="/docs/zh/manual/assets" class="sidebar-link">资源工作流程</a>
+    
+  
+    <strong class="sidebar-title">脚本编写</strong>
+    
+      
+      <a href="/docs/zh/scripting/module" class="sidebar-link">模块化</a>
+    
+      
+      <a href="/docs/zh/scripting/reserved-words" class="sidebar-link">附录：保留字</a>
+    
+  
+  <a href="http://prose.io/#fireball-x/docs/edit/master/themes/hexo3/_config.yml" id="sidebar-edit">Edit Navigation</a>
+</aside>
+
+  </div>
+</article>
+
+        <footer id="footer">
+  <div class="outer">
+    <div class="inner">
+      <div id="footer-copyright">
+        &copy; 2015 <a href="http://firebox.im/">Firebox Technologies</a><br>
+        Background: <a href="http://subtlepatterns.com/shattered/" target="_blank">Shattered</a> by <a href="http://luukvanbaars.com/" target="_blank">Luuk van Baars</a>
+      </div>
+      <div id="footer-links">
+        <a href="https://twitter.com/fireballengine" id="footer-link-twitter" class="footer-link" target="_blank"><span>Twitter</span></a>
+        <a href="https://github.com/fireball-x/docs" id="footer-link-github" class="footer-link" target="_blank"><span>GitHub</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+        
+<!-- Swiftype -->
+<script>
+var Swiftype = window.Swiftype || {};
+(function() {
+  Swiftype.key = 'WM9aFPtvcpZwMuaRj9Yc';
+
+  /** DO NOT EDIT BELOW THIS LINE **/
+  var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+  script.src = "//s.swiftypecdn.com/embed.js";
+  var entry = document.getElementsByTagName('script')[0];
+  document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+}());
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/docs/js/retina.min.js" type="text/javascript"></script>
+
+<script src="/docs/js/script.js" type="text/javascript"></script>
+
+<!-- Google+ -->
+<!-- <script type="text/javascript" src="//apis.google.com/js/plusone.js"></script> -->
+<!-- Twitter -->
+<!-- <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
+
+    </div>
+    <div class="discuss-sidebar">
+        <a href="#disqus_thread" class="sidebar-toggle" onclick="toggle_sidebar();" data-disqus-identifier="zh/reports/image-process-performance/index.html"></a>
+<div class="sidebar-inner">
+    <!-- disqus embed -->
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'fireball-docs'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+
+<!-- disqus comments count -->
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'fireball-docs'; // required: replace example with your forum shortname
+var disqus_identifier = "zh/reports/image-process-performance/index.html";
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+    </div>
+</body>
+
+</html>

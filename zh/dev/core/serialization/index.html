@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>序列化机制 | Fireball</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="http://fireball-x.com/docs/zh/dev/core/serialization/index.html">
+  <link rel="apple-touch-icon" sizes="57x57" href="/docs/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/docs/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/docs/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/docs/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/docs/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/docs/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/docs/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/docs/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/docs/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/docs/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/docs/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/docs/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/docs/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/docs/mstile-144x144.png">
+  <link rel="stylesheet" href="/docs/css/style.css" type="text/css">
+
+<!--   <link href="//fonts.googleapis.com/css?family=Lato:300,700" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+ -->
+  <link rel="alternative" href="/docs/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <meta name="description" content="本文档相关代码是 core/src/serialize.js 和 core/src/deserialize.js所有“备注”都属于进阶内容，初学者不需要了解。
+
+Fireball 拥有一套序列化(和反序列化)机制，用于资源的存储和加载。这些操作由编辑器自动完成，本教程只谈一些注意事项。
+本文索引：
+
+序列化做了什么
+类型注册
+自定义序列化内容
+引用
+其它注意事项
+
+序列化做了什么
+序列化指的是将内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="序列化机制">
+<meta property="og:url" content="http://fireball-x.com/docs/docs/zh/dev/core/serialization/index.html">
+<meta property="og:site_name" content="Fireball Docs">
+<meta property="og:description" content="本文档相关代码是 core/src/serialize.js 和 core/src/deserialize.js所有“备注”都属于进阶内容，初学者不需要了解。
+
+Fireball 拥有一套序列化(和反序列化)机制，用于资源的存储和加载。这些操作由编辑器自动完成，本教程只谈一些注意事项。
+本文索引：
+
+序列化做了什么
+类型注册
+自定义序列化内容
+引用
+其它注意事项
+
+序列化做了什么
+序列化指的是将内">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="序列化机制">
+<meta name="twitter:description" content="本文档相关代码是 core/src/serialize.js 和 core/src/deserialize.js所有“备注”都属于进阶内容，初学者不需要了解。
+
+Fireball 拥有一套序列化(和反序列化)机制，用于资源的存储和加载。这些操作由编辑器自动完成，本教程只谈一些注意事项。
+本文索引：
+
+序列化做了什么
+类型注册
+自定义序列化内容
+引用
+其它注意事项
+
+序列化做了什么
+序列化指的是将内">
+<meta name="twitter:site" content="@fireballengine">
+
+  
+</head>
+
+
+<body>
+    <div class="main-layout">
+        <header id="header">
+  <div class="outer">
+    <div class="inner">
+      <h1 id="logo-wrap">
+        <a href="/docs/" id="logo">Hexo</a>
+        <a id="main-nav-toggle"></a>
+      </h1>
+      <nav id="main-nav">
+        <ul id="main-nav-list">
+          
+            <li class="main-nav-item">
+              <a href="http://fireball-x.com" class="main-nav-link">首页</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/zh" class="main-nav-link">用户文档</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/zh/dev" class="main-nav-link">开发者文档</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/api" class="main-nav-link">API</a>
+            </li>
+          
+        </ul>
+        <a href="/docs//en/dev/core/serialization/index.html" class="main-nav-lang">English</a>
+        <a href="https://github.com/fireball-x/docs" id="github-btn" title="GitHub" target="_blank"></a>
+        <a id="search-btn" class="st-search-launcher" title="Search"></a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+        <article class="page" itemscope itemtype="http://schema.org/Article">
+  <header id="page-banner">
+    <div class="outer">
+      <div id="page-banner-inner" class="inner">
+        <h1 id="page-title" itemprop="name">序列化机制</h1>
+        <a href="http://prose.io/#fireball-x/docs/edit/master/source/zh/dev/core/serialization.md"  title="Improve this doc" id="page-edit-link"></a>
+      </div>
+    </div>
+  </header>
+  <div class="outer">
+    <div id="mobile-menu-wrap"></div>
+    <div class="page-content">
+      <div class="toc-wrap">
+        <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#序列化做了什么"><span class="toc-number">1.</span> <span class="toc-text">序列化做了什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型注册"><span class="toc-number">2.</span> <span class="toc-text">类型注册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义序列化内容"><span class="toc-number">3.</span> <span class="toc-text">自定义序列化内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引用"><span class="toc-number">4.</span> <span class="toc-text">引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它注意事项"><span class="toc-number">5.</span> <span class="toc-text">其它注意事项</span></a></li></ol>
+      </div>
+      <div class="page-entry" itemprop="articleBody">
+        <figure class="highlight"><pre><div class="line">本文档相关代码是 core<span class="regexp">/src/</span>serialize.js 和 core<span class="regexp">/src/</span>deserialize.js</div><div class="line">所有“备注”都属于进阶内容，初学者不需要了解。</div></pre></figure>
+
+<p>Fireball 拥有一套序列化(和反序列化)机制，用于资源的存储和加载。这些操作由编辑器自动完成，本教程只谈一些注意事项。</p>
+<p>本文索引：</p>
+<ul>
+<li><a href="#intro">序列化做了什么</a></li>
+<li><a href="#register">类型注册</a></li>
+<li><a href="#custom">自定义序列化内容</a></li>
+<li><a href="#reference">引用</a></li>
+<li><a href="#note">其它注意事项</a></li>
+</ul>
+<h2 id="序列化做了什么"><a name="intro"></a>序列化做了什么</h2>
+<p><strong>序列化</strong>指的是将内存中对象转换成数据(字符串或二进制代码)的过程，<strong>反序列化</strong>则是从保存好的数据重建出原先的对象。  </p>
+<p>Fireball 的序列化可以用来储存和读取<strong>任意的</strong> JavaScript 对象，甚至是一整个游戏场景，但用户最关心的一般是序列化自定义的 <strong>Component</strong>。比起 JavaScript 原生的 <strong>JSON</strong>，Fireball 的序列化支持<strong>保存类型、循环引用、引用其它资源、自定义序列化内容</strong>等操作。</p>
+<h2 id="类型注册"><a name="register"></a>类型注册</h2>
+<p>Fireball 在序列化时，需要保存数据的<strong>类型ID</strong>，该类型可以是任意<strong>全局唯一</strong>的字符串，以便重建对象时查找出对应的构造函数。</p>
+<ul>
+<li>对 <a href="class.md">FireClass</a> 而言，类型ID默认等于类名，也就是 define 时传入的第一个参数：</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Company.Sprite'</span>);</div></pre></figure>
+
+<ul>
+<li>对其它 JavaScript 构造函数，可以使用 <code>Fire.registerClass</code> 注册类型ID：</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Sprite = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{};</div><div class="line">Fire.registerClass(<span class="string">'Company.Sprite'</span>, Sprite);</div></pre></figure>
+
+<ul>
+<li>备注：<ul>
+<li>如果类型名经过修改，之前已序列化好的内容将无法再加载。(Component的声明不需要类型ID，所以不受改名限制。)</li>
+<li>运行时如果希望销毁类型，需要调用<code>Fire.unregisterClass</code>进行反注册。</li>
+</ul>
+</li>
+</ul>
+<h2 id="自定义序列化内容"><a name="custom"></a>自定义序列化内容</h2>
+<p>如果只要序列化对象的其中一部分数据，则类型需要声明为 <a href="class.md">FireClass</a>。<br>在 FireClass 中，只有用 <a href="class.md#property">prop</a> 声明的，并且不指定<code>Fire.NonSerialized</code>参数的属性，才会被序列化。<br>  反之，<strong>不</strong>序列化的情况有：</p>
+<ul>
+<li>所有构造函数中定义的成员变量不序列化。</li>
+<li><code>get</code> 和 <code>set</code> 声明的属性不序列化。</li>
+<li><code>prop</code> 声明的属性但指定了 <code>Fire.NonSerialized</code> 参数的不序列化。</li>
+</ul>
+<p>例如，定义一个 Component，它的 <code>_width</code> 属性虽然会被序列化，但不在 Inspector 中显示。Inspector 中显示的是 <code>width</code>，但其实 <code>width</code> 并没保存。</p>
+<figure class="highlight js"><pre><div class="line"><span class="comment">// Sprite.js</span></div><div class="line"><span class="keyword">var</span> Sprite = Fire.defineComponent();</div><div class="line">Sprite.prop(<span class="string">'_width'</span>, <span class="number">128</span>, Fire.HideInInspector);</div><div class="line">Sprite.getset(<span class="string">'width'</span>,</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._width;</div><div class="line">    },</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="params">(value)</span> </span>{</div><div class="line">        <span class="keyword">this</span>._width = value;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'width changed'</span>);</div><div class="line">    });</div></pre></figure>
+
+<ul>
+<li>备注：<ul>
+<li>如果只想在编辑器下序列化，打包时不序列化，可以在属性上添加 <code>Fire.EditorOnly</code> 参数。这个选项用于指定一些只在开发过程中需要保存的属性，当构建项目的发布版本时，这些属性将被剔除以节省体积。</li>
+</ul>
+</li>
+</ul>
+<h2 id="引用"><a name="reference"></a>引用</h2>
+<ul>
+<li><p>循环引用</p>
+<p>  循环引用指的是，两个或更多对象之间相互引用，形成了引用闭环。Fireball 能完全解决这个问题，循环引用在反序列化后仍然保留，用户不需要关心。</p>
+</li>
+<li><p>重复引用</p>
+<ul>
+<li><strong>重复引用问题</strong><br>如果对同一个 JavaScript object 拥有多处引用，Fireball 在反序列化后将会为每个引用单独创建一个重复的 object。例如：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> array = [<span class="number">1</span>];</div><div class="line"><span class="keyword">var</span> data = {</div><div class="line">    array1: array,</div><div class="line">    array2: array,</div><div class="line">};</div></pre></figure>
+
+<pre><code>  在序列化之前 <span class="typedef"><span class="keyword">data</span>.array1 和 <span class="keyword">data</span>.array2 是同一个数组，对其中一个进行修改另一个也会发生变化。</span>
+</code></pre><figure class="highlight js"><pre><div class="line">data.array1.push(<span class="number">2</span>);</div><div class="line">data.array2[<span class="number">1</span>] == <span class="number">2</span>;	<span class="comment">// true</span></div></pre></figure>
+
+<pre><code>  但在反序列化 <span class="typedef"><span class="keyword">data</span> 之后，将变成：</span>
+</code></pre><figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> data = {</div><div class="line">    array1: [<span class="number">1</span>],</div><div class="line">    array2: [<span class="number">1</span>],</div><div class="line">};</div></pre></figure>
+
+<pre><code>  此时 data.array1 和 data.array2 变成了不同的数组，对其中一个进行修改，另一个并不会变化。
+
+- <span class="keyword">*</span><span class="keyword">*</span>解决方法<span class="keyword">*</span><span class="keyword">*</span>  
+  在 Fireball 里，当用户需要确保某些 object 的引用保持唯一时，只要将它们继承自 <span class="keyword">*</span><span class="keyword">*</span>FObject<span class="keyword">*</span><span class="keyword">*</span> 即可。（这个问题在同类引擎中普遍存在，但通常很少需要用户关注。）
+</code></pre><ul>
+<li><p>序列化能自动处理所有直接对 Asset 的引用。</p>
+</li>
+<li><p>备注：</p>
+<ul>
+<li>对 HTML 节点的引用将被序列化为 null。</li>
+<li>Fireball 常用的 Entity、Component、Asset 等类型都继承自 FObject。但所有值类型，例如 Fire.Vec2，并没有继承自 FObject。</li>
+</ul>
+</li>
+</ul>
+<h2 id="其它注意事项"><a name="note"></a>其它注意事项</h2>
+<ul>
+<li><p>所有需要序列化的类型（如 Component）的<strong>构造函数</strong>，都必须允许省略所有构造参数。并且都<strong>只能</strong>用于初始化<strong>不</strong>序列化的变量，不能包含其它逻辑。</p>
+</li>
+<li><p>备注：</p>
+<ul>
+<li>在反序列化过程中，<code>Fire._isDeserializing</code> 将会为 true。</li>
+<li>定义原生 JavaScript 的类型时，如果使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="external">Object.defineProperty</a>，则只有 enumerable 为 true 的字段才会被序列化。</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+      <footer id="page-footer">
+          <a href="http://prose.io/#fireball-x/docs/edit/master/source/zh/dev/core/serialization.md" class="article-edit-link">Edit This Page</a>
+        <time id="page-footer-updated" datetime="2015-01-20T04:15:54.000Z" itemprop="dateModified">Last updated: Jan 20 2015</time>
+        <a href="http://fireball-x.com/docs/zh/dev/core/script-building" id="page-footer-prev" title="脚本编译">Prev</a><a href="http://fireball-x.com/docs/zh/dev/editor/editor" id="page-footer-next" title="Editor启动流程">Next</a>
+      </footer>
+      
+    </div>
+    <aside id="sidebar">
+  
+    <strong class="sidebar-title">新手上路</strong>
+    
+      
+      <a href="/docs/zh/dev" class="sidebar-link">简介</a>
+    
+      
+      <a href="/docs/zh/dev/setup" class="sidebar-link">设置</a>
+    
+  
+    <strong class="sidebar-title">核心</strong>
+    
+      
+      <a href="/docs/zh/dev/core/class" class="sidebar-link">类型定义</a>
+    
+      
+      <a href="/docs/zh/dev/core/script-building" class="sidebar-link">脚本编译</a>
+    
+      
+      <a href="/docs/zh/dev/core/serialization" class="sidebar-link current">序列化</a>
+    
+  
+    <strong class="sidebar-title">Editor编辑器</strong>
+    
+      
+      <a href="/docs/zh/dev/editor/editor" class="sidebar-link">Editor启动流程</a>
+    
+      
+      <a href="/docs/zh/dev/editor/editor-arguments" class="sidebar-link">Editor运行参数</a>
+    
+      
+      <a href="/docs/zh/dev/editor/editor-events" class="sidebar-link">Editor事件</a>
+    
+      
+      <a href="/docs/zh/dev/editor/node-modules" class="sidebar-link">Node Modules</a>
+    
+      
+      <a href="/docs/zh/dev/editor/asset-db" class="sidebar-link">AssetDB资源数据库</a>
+    
+      
+      <a href="/docs/zh/dev/editor/share" class="sidebar-link">Share文件夹</a>
+    
+      
+      <a href="/docs/zh/dev/editor/init-quick-window" class="sidebar-link">Quick Window 初始化流程</a>
+    
+  
+  <a href="http://prose.io/#fireball-x/docs/edit/master/themes/hexo3/_config.yml" id="sidebar-edit">Edit Navigation</a>
+</aside>
+
+  </div>
+</article>
+
+        <footer id="footer">
+  <div class="outer">
+    <div class="inner">
+      <div id="footer-copyright">
+        &copy; 2015 <a href="http://firebox.im/">Firebox Technologies</a><br>
+        Background: <a href="http://subtlepatterns.com/shattered/" target="_blank">Shattered</a> by <a href="http://luukvanbaars.com/" target="_blank">Luuk van Baars</a>
+      </div>
+      <div id="footer-links">
+        <a href="https://twitter.com/fireballengine" id="footer-link-twitter" class="footer-link" target="_blank"><span>Twitter</span></a>
+        <a href="https://github.com/fireball-x/docs" id="footer-link-github" class="footer-link" target="_blank"><span>GitHub</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+        
+<!-- Swiftype -->
+<script>
+var Swiftype = window.Swiftype || {};
+(function() {
+  Swiftype.key = 'WM9aFPtvcpZwMuaRj9Yc';
+
+  /** DO NOT EDIT BELOW THIS LINE **/
+  var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+  script.src = "//s.swiftypecdn.com/embed.js";
+  var entry = document.getElementsByTagName('script')[0];
+  document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+}());
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/docs/js/retina.min.js" type="text/javascript"></script>
+
+<script src="/docs/js/script.js" type="text/javascript"></script>
+
+<!-- Google+ -->
+<!-- <script type="text/javascript" src="//apis.google.com/js/plusone.js"></script> -->
+<!-- Twitter -->
+<!-- <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
+
+    </div>
+    <div class="discuss-sidebar">
+        <a href="#disqus_thread" class="sidebar-toggle" onclick="toggle_sidebar();" data-disqus-identifier="zh/dev/core/serialization/index.html"></a>
+<div class="sidebar-inner">
+    <!-- disqus embed -->
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'fireball-docs'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+
+<!-- disqus comments count -->
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'fireball-docs'; // required: replace example with your forum shortname
+var disqus_identifier = "zh/dev/core/serialization/index.html";
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+    </div>
+</body>
+
+</html>

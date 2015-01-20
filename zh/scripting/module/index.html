@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>模块化 | Fireball</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="http://fireball-x.com/docs//zh/scripting/module/index.html">
+  <link rel="apple-touch-icon" sizes="57x57" href="/docs/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/docs/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/docs/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/docs/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/docs/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/docs/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/docs/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/docs/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/docs/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/docs/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/docs/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/docs/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/docs/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/docs/mstile-144x144.png">
+  <link rel="stylesheet" href="/docs/css/style.css" type="text/css">
+
+<!--   <link href="//fonts.googleapis.com/css?family=Lato:300,700" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+ -->
+  <link rel="alternative" href="/docs/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <meta name="description" content="本教程所说的模块化指的是将代码拆分成多个脚本文件，并且让它们能相互操作的过程。本文将介绍如何在 Fireball-x 中编写和调用模块，至于内部的原理可参考脚本编译。
+所有“备注”都属于进阶内容，一开始不需要了解。
+
+概述
+如果你还不确定模块化究竟能做什么，模块化相当于：  
+
+C/C++ 中的 include
+C# 中的 using
+Java 和 Python 中的 import
+HTML 中的">
+<meta property="og:type" content="website">
+<meta property="og:title" content="模块化">
+<meta property="og:url" content="http://fireball-x.com/docs/docs//zh/scripting/module/index.html">
+<meta property="og:site_name" content="Fireball Docs">
+<meta property="og:description" content="本教程所说的模块化指的是将代码拆分成多个脚本文件，并且让它们能相互操作的过程。本文将介绍如何在 Fireball-x 中编写和调用模块，至于内部的原理可参考脚本编译。
+所有“备注”都属于进阶内容，一开始不需要了解。
+
+概述
+如果你还不确定模块化究竟能做什么，模块化相当于：  
+
+C/C++ 中的 include
+C# 中的 using
+Java 和 Python 中的 import
+HTML 中的">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模块化">
+<meta name="twitter:description" content="本教程所说的模块化指的是将代码拆分成多个脚本文件，并且让它们能相互操作的过程。本文将介绍如何在 Fireball-x 中编写和调用模块，至于内部的原理可参考脚本编译。
+所有“备注”都属于进阶内容，一开始不需要了解。
+
+概述
+如果你还不确定模块化究竟能做什么，模块化相当于：  
+
+C/C++ 中的 include
+C# 中的 using
+Java 和 Python 中的 import
+HTML 中的">
+<meta name="twitter:site" content="@fireballengine">
+
+  
+</head>
+
+
+<body>
+    <div class="main-layout">
+        <header id="header">
+  <div class="outer">
+    <div class="inner">
+      <h1 id="logo-wrap">
+        <a href="/docs/" id="logo">Hexo</a>
+        <a id="main-nav-toggle"></a>
+      </h1>
+      <nav id="main-nav">
+        <ul id="main-nav-list">
+          
+            <li class="main-nav-item">
+              <a href="http://fireball-x.com" class="main-nav-link">首页</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/zh" class="main-nav-link">用户文档</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/zh/dev" class="main-nav-link">开发者文档</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/api" class="main-nav-link">API</a>
+            </li>
+          
+        </ul>
+        <a href="/docs///en/scripting/module/index.html" class="main-nav-lang">English</a>
+        <a href="https://github.com/fireball-x/docs" id="github-btn" title="GitHub" target="_blank"></a>
+        <a id="search-btn" class="st-search-launcher" title="Search"></a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+        <article class="page" itemscope itemtype="http://schema.org/Article">
+  <header id="page-banner">
+    <div class="outer">
+      <div id="page-banner-inner" class="inner">
+        <h1 id="page-title" itemprop="name">模块化</h1>
+        <a href="http://prose.io/#fireball-x/docs/edit/master/source/zh/scripting/module.md"  title="Improve this doc" id="page-edit-link"></a>
+      </div>
+    </div>
+  </header>
+  <div class="outer">
+    <div id="mobile-menu-wrap"></div>
+    <div class="page-content">
+      <div class="toc-wrap">
+        <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义模块"><span class="toc-number">2.</span> <span class="toc-text">定义模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引用模块"><span class="toc-number">3.</span> <span class="toc-text">引用模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-number">4.</span> <span class="toc-text">示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#导出变量"><span class="toc-number">4.1.</span> <span class="toc-text">导出变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#封装私有变量"><span class="toc-number">4.2.</span> <span class="toc-text">封装私有变量</span></a></li></ol></li></ol>
+      </div>
+      <div class="page-entry" itemprop="articleBody">
+        <p>本教程所说的模块化指的是将代码拆分成多个脚本文件，并且让它们能相互操作的过程。本文将介绍如何在 Fireball-x 中编写和调用模块，至于内部的原理可参考<a href="core/script-building.md">脚本编译</a>。</p>
+<figure class="highlight"><pre><div class="line">所有“备注”都属于进阶内容，一开始不需要了解。</div></pre></figure>
+
+<h2 id="概述"><a name="intro"></a>概述</h2>
+<p>如果你还不确定<strong>模块化</strong>究竟能做什么，模块化相当于：  </p>
+<ul>
+<li>C/C++ 中的 include</li>
+<li>C# 中的 using</li>
+<li>Java 和 Python 中的 import</li>
+<li>HTML 中的 link</li>
+</ul>
+<p>模块化使你可以在 Fireball-x 中引用其它脚本文件：  </p>
+<ul>
+<li>访问其它文件公开的参数</li>
+<li>调用其它文件公开的方法</li>
+<li>使用其它文件公开的类型</li>
+<li>使用或继承其它文件公开的Component</li>
+</ul>
+<p>Fireball-x 中的 JavaScript 使用和 node.js 相同的方式来实现模块化：  </p>
+<ul>
+<li>每一个单独的脚本文件就是一个模块。</li>
+<li>每个模块都是一个单独的作用域（在该模块内使用<code>var</code>定义的局部变量，无法被其它模块读取）。</li>
+<li>以同步的 <code>require</code> 方法来引用其它模块。</li>
+<li>使用 <code>module.exports</code> 对象输出变量。</li>
+</ul>
+<p>不论模块如何定义，所有用户代码最终会由 Fireball-x 编译为原生的 JavaScript，可直接在手机浏览器中运行。</p>
+<h2 id="定义模块"><a name="define"></a>定义模块</h2>
+<p>其实每一个单独的脚本文件就是一个模块，例如新建一个脚本 <code>rotate.js</code>，在里面定义一个 Component：</p>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Rotate = Fire.define(<span class="string">'Rotate'</span>, Fire.Component);</div><div class="line">Rotate.prop(<span class="string">'speed'</span>, <span class="number">1</span>);</div><div class="line">Fire.addComponentMenu(Rotate, <span class="string">'Rotate'</span>);</div><div class="line"></div><div class="line">Rotate.prototype.update = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">this</span>.transform.rotation += <span class="keyword">this</span>.speed;</div><div class="line">};</div></pre></figure>
+
+<p>我们定义了 Rotate 这个 Component，但只有从菜单里才能添加，从别的脚本文件是获取不到 Rotate 的。为了可以在外部访问到 Rotate，我们还需要在 <code>rotate.js</code> 最后加上一行代码：</p>
+<figure class="highlight js"><pre><div class="line"><span class="built_in">module</span>.exports = Rotate;</div></pre></figure>
+
+<p>当我们把 <strong>module.exports</strong> 赋值为 Rotate 之后，只要有人引用这个模块，就将获得 Rotate 指向的这个 Component。</p>
+<h2 id="引用模块"><a name="import"></a>引用模块</h2>
+<p>除了 Fireball-x 提供的接口，所有用户定义的模块都需要使用 <strong>require</strong> 来访问。</p>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Rotate = <span class="built_in">require</span>(<span class="string">'rotate'</span>);</div></pre></figure>
+
+<p>调用 require 时传入的字符串就是模块的<strong>文件名</strong>，这个名字不包含路径也不包含后缀，而且大小写敏感。require 返回的就是模块内定义的 module.exports 对象。</p>
+<p>我们可以使用 Rotate 派生一个子类，新建一个脚本 <code>sinRotate.js</code>：</p>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Rotate = <span class="built_in">require</span>(<span class="string">'rotate'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> SinRotate = Fire.define(<span class="string">'SinRotate'</span>, Rotate);</div><div class="line">SinRotate.prototype.update = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">this</span>.transform.rotation += <span class="keyword">this</span>.speed * <span class="built_in">Math</span>.sin(Fire.Time.time);</div><div class="line">};</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = SinRotate;</div></pre></figure>
+
+<p>这里我们定义了一个新的 Component 叫 SinRotate，它继承自 Rotate，并对 update 方法进行了重写。当然，最后我们还是可以通过 <code>module.exports</code> 将 SinRotate 再次导出给其它模块使用。</p>
+<p>备注：</p>
+<ul>
+<li>require 可以在脚本的任何地方任意时刻进行调用。</li>
+<li>单个模块不论被 require 几次，始终都只有一份。也就是说多个脚本不论调用多少次 require，同个模块名总是返回相同模块。</li>
+<li>可以随时在 Developer Tools 中 require 任意模块。</li>
+</ul>
+<h2 id="示例"><a name="example"></a>示例</h2>
+<h3 id="导出变量"><a name="exports"></a>导出变量</h3>
+<ul>
+<li>module.exports 可以直接用来增加新的字段，不一定要提前赋值。</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="comment">// foobar.js:</span></div><div class="line"><span class="built_in">module</span>.exports.foo = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    Fire.log(<span class="string">"foo"</span>);</div><div class="line">};</div><div class="line"><span class="built_in">module</span>.exports.bar = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    Fire.log(<span class="string">"bar"</span>);</div><div class="line">};</div><div class="line"><span class="comment">// test.js:</span></div><div class="line"><span class="keyword">var</span> foobar = <span class="built_in">require</span>(<span class="string">"foobar"</span>);</div><div class="line">foobar.foo();    <span class="comment">// "foo"</span></div><div class="line">foobar.bar();    <span class="comment">// "bar"</span></div></pre></figure>
+
+<ul>
+<li>module.exports 能直接导出任意 JavaScript 对象。</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="comment">// foobar.js:</span></div><div class="line"><span class="built_in">module</span>.exports = {</div><div class="line">    FOO: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">        <span class="keyword">this</span>.type = <span class="string">"foo"</span>;</div><div class="line">    },</div><div class="line">    bar: <span class="string">"bar"</span></div><div class="line">};</div><div class="line"><span class="comment">// test.js:</span></div><div class="line"><span class="keyword">var</span> foobar = <span class="built_in">require</span>(<span class="string">"foobar"</span>);</div><div class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> foobar.FOO();</div><div class="line">Fire.log(foo.type);      <span class="comment">// "foo"</span></div><div class="line">Fire.log(foobar.bar);    <span class="comment">// "bar"</span></div></pre></figure>
+
+<h3 id="封装私有变量"><a name="private"></a>封装私有变量</h3>
+<p>由于每个模块都是一个单独的作用域，在模块内使用 <strong>var</strong> 定义的局部变量，将无法被模块外部访问。我们就可以这样来封装模块内的私有变量。</p>
+<figure class="highlight js"><pre><div class="line"><span class="comment">// foobar.js:</span></div><div class="line"><span class="keyword">var</span> dirty = <span class="literal">false</span>;</div><div class="line"><span class="built_in">module</span>.exports = {</div><div class="line">    setDirty: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">        dirty = <span class="literal">true</span>;</div><div class="line">    },</div><div class="line">};</div><div class="line"><span class="comment">// test.js:</span></div><div class="line"><span class="keyword">var</span> foo = <span class="built_in">require</span>(<span class="string">"foobar"</span>);</div><div class="line">Fire.log(<span class="keyword">typeof</span> foo.dirty);        <span class="comment">// "undefined"</span></div></pre></figure>
+
+<p><strong>警告：定义变量前一定要在前面加上 var</strong>，否则将会变成全局变量！在 Fireball-x 中禁止使用全局变量。</p>
+<figure class="highlight js"><pre><div class="line"><span class="comment">// foobar.js:</span></div><div class="line">dirty = <span class="literal">false</span>;        <span class="comment">// 这是错的，dirty 会变成全局变量！前面应该加上 var ！</span></div><div class="line"><span class="built_in">module</span>.exports = {</div><div class="line">    setDirty: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">        dirty = <span class="literal">true</span>;</div><div class="line">    },</div><div class="line">};</div></pre></figure>
+
+
+      </div>
+      <footer id="page-footer">
+          <a href="http://prose.io/#fireball-x/docs/edit/master/source/zh/scripting/module.md" class="article-edit-link">Edit This Page</a>
+        <time id="page-footer-updated" datetime="2015-01-20T04:15:54.000Z" itemprop="dateModified">Last updated: Jan 20 2015</time>
+        <a href="http://fireball-x.com/docs/zh/start/install" id="page-footer-next" title="获取Fireball">Next</a>
+      </footer>
+      
+    </div>
+    <aside id="sidebar">
+  
+    <strong class="sidebar-title">新手上路</strong>
+    
+      
+      <a href="/docs/zh/start/install" class="sidebar-link">获取Fireball</a>
+    
+      
+      <a href="/docs/zh/start/new-project" class="sidebar-link">新建项目</a>
+    
+      
+      <a href="/docs/zh/start/from-unity" class="sidebar-link">Unity开发者上手</a>
+    
+      
+      <a href="/docs/zh/help" class="sidebar-link">帮助</a>
+    
+  
+    <strong class="sidebar-title">用户手册</strong>
+    
+      
+      <a href="/docs/zh/manual/editor" class="sidebar-link">认识Editor</a>
+    
+      
+      <a href="/docs/zh/manual/assets" class="sidebar-link">资源工作流程</a>
+    
+  
+    <strong class="sidebar-title">脚本编写</strong>
+    
+      
+      <a href="/docs/zh/scripting/module" class="sidebar-link">模块化</a>
+    
+      
+      <a href="/docs/zh/scripting/reserved-words" class="sidebar-link">附录：保留字</a>
+    
+  
+  <a href="http://prose.io/#fireball-x/docs/edit/master/themes/hexo3/_config.yml" id="sidebar-edit">Edit Navigation</a>
+</aside>
+
+  </div>
+</article>
+
+        <footer id="footer">
+  <div class="outer">
+    <div class="inner">
+      <div id="footer-copyright">
+        &copy; 2015 <a href="http://firebox.im/">Firebox Technologies</a><br>
+        Background: <a href="http://subtlepatterns.com/shattered/" target="_blank">Shattered</a> by <a href="http://luukvanbaars.com/" target="_blank">Luuk van Baars</a>
+      </div>
+      <div id="footer-links">
+        <a href="https://twitter.com/fireballengine" id="footer-link-twitter" class="footer-link" target="_blank"><span>Twitter</span></a>
+        <a href="https://github.com/fireball-x/docs" id="footer-link-github" class="footer-link" target="_blank"><span>GitHub</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+        
+<!-- Swiftype -->
+<script>
+var Swiftype = window.Swiftype || {};
+(function() {
+  Swiftype.key = 'WM9aFPtvcpZwMuaRj9Yc';
+
+  /** DO NOT EDIT BELOW THIS LINE **/
+  var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+  script.src = "//s.swiftypecdn.com/embed.js";
+  var entry = document.getElementsByTagName('script')[0];
+  document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+}());
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/docs/js/retina.min.js" type="text/javascript"></script>
+
+<script src="/docs/js/script.js" type="text/javascript"></script>
+
+<!-- Google+ -->
+<!-- <script type="text/javascript" src="//apis.google.com/js/plusone.js"></script> -->
+<!-- Twitter -->
+<!-- <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
+
+    </div>
+    <div class="discuss-sidebar">
+        <a href="#disqus_thread" class="sidebar-toggle" onclick="toggle_sidebar();" data-disqus-identifier="/zh/scripting/module/index.html"></a>
+<div class="sidebar-inner">
+    <!-- disqus embed -->
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'fireball-docs'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+
+<!-- disqus comments count -->
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'fireball-docs'; // required: replace example with your forum shortname
+var disqus_identifier = "/zh/scripting/module/index.html";
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+    </div>
+</body>
+
+</html>

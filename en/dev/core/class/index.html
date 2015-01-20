@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Class Definition | Fireball</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="http://fireball-x.com/docs/en/dev/core/class/index.html">
+  <link rel="apple-touch-icon" sizes="57x57" href="/docs/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/docs/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/docs/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/docs/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/docs/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/docs/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/docs/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/docs/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/docs/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/docs/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/docs/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/docs/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/docs/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/docs/mstile-144x144.png">
+  <link rel="stylesheet" href="/docs/css/style.css" type="text/css">
+
+<!--   <link href="//fonts.googleapis.com/css?family=Lato:300,700" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+ -->
+  <link rel="alternative" href="/docs/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <meta name="description" content="本文档对应的实现代码在 core/src/class.js所有“备注”都属于进阶内容，初学者不需要了解。
+
+Fireball-x 的数据类型(Class)使用 Fire.define 进行定义，以便简化继承、支持序列化、定义属性等。为了方便区分，这些类叫做FireClass。  
+本文索引：
+
+定义FireClass
+成员
+继承
+属性(Property)
+访问器
+
+定义FireClass
+
+Fir">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Class Definition">
+<meta property="og:url" content="http://fireball-x.com/docs/docs/en/dev/core/class/index.html">
+<meta property="og:site_name" content="Fireball Docs">
+<meta property="og:description" content="本文档对应的实现代码在 core/src/class.js所有“备注”都属于进阶内容，初学者不需要了解。
+
+Fireball-x 的数据类型(Class)使用 Fire.define 进行定义，以便简化继承、支持序列化、定义属性等。为了方便区分，这些类叫做FireClass。  
+本文索引：
+
+定义FireClass
+成员
+继承
+属性(Property)
+访问器
+
+定义FireClass
+
+Fir">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Class Definition">
+<meta name="twitter:description" content="本文档对应的实现代码在 core/src/class.js所有“备注”都属于进阶内容，初学者不需要了解。
+
+Fireball-x 的数据类型(Class)使用 Fire.define 进行定义，以便简化继承、支持序列化、定义属性等。为了方便区分，这些类叫做FireClass。  
+本文索引：
+
+定义FireClass
+成员
+继承
+属性(Property)
+访问器
+
+定义FireClass
+
+Fir">
+<meta name="twitter:site" content="@fireballengine">
+
+  
+</head>
+
+
+<body>
+    <div class="main-layout">
+        <header id="header">
+  <div class="outer">
+    <div class="inner">
+      <h1 id="logo-wrap">
+        <a href="/docs/" id="logo">Hexo</a>
+        <a id="main-nav-toggle"></a>
+      </h1>
+      <nav id="main-nav">
+        <ul id="main-nav-list">
+          
+            <li class="main-nav-item">
+              <a href="http://fireball-x.com" class="main-nav-link">Home</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/" class="main-nav-link">Docs</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/en/dev" class="main-nav-link">Developer</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/api" class="main-nav-link">API</a>
+            </li>
+          
+        </ul>
+        <a href="/docs//zh/dev/core/class/index.html" class="main-nav-lang">中文</a>
+        <a href="https://github.com/fireball-x/docs" id="github-btn" title="GitHub" target="_blank"></a>
+        <a id="search-btn" class="st-search-launcher" title="Search"></a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+        <article class="page" itemscope itemtype="http://schema.org/Article">
+  <header id="page-banner">
+    <div class="outer">
+      <div id="page-banner-inner" class="inner">
+        <h1 id="page-title" itemprop="name">Class Definition</h1>
+        <a href="http://prose.io/#fireball-x/docs/edit/master/source/en/dev/core/class.md"  title="Improve this doc" id="page-edit-link"></a>
+      </div>
+    </div>
+  </header>
+  <div class="outer">
+    <div id="mobile-menu-wrap"></div>
+    <div class="page-content">
+      <div class="toc-wrap">
+        <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义FireClass"><span class="toc-number">1.</span> <span class="toc-text">定义FireClass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#成员"><span class="toc-number">2.</span> <span class="toc-text">成员</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#继承"><span class="toc-number">3.</span> <span class="toc-text">继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性(Property)"><span class="toc-number">4.</span> <span class="toc-text">属性(Property)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#访问器"><span class="toc-number">5.</span> <span class="toc-text">访问器</span></a></li></ol>
+      </div>
+      <div class="page-entry" itemprop="articleBody">
+        <figure class="highlight"><pre><div class="line">本文档对应的实现代码在 core/src/<span class="class"><span class="keyword">class</span>.<span class="title">js</span></span></div><div class="line">所有“备注”都属于进阶内容，初学者不需要了解。</div></pre></figure>
+
+<p>Fireball-x 的数据类型(Class)使用 <strong>Fire.define</strong> 进行定义，以便简化继承、支持<a href="serialization.md">序列化</a>、定义属性等。为了方便区分，这些类叫做<strong>FireClass</strong>。  </p>
+<p>本文索引：</p>
+<ul>
+<li><a href="#define">定义FireClass</a></li>
+<li><a href="#member">成员</a></li>
+<li><a href="#inherit">继承</a></li>
+<li><a href="#property">属性(Property)</a></li>
+<li><a href="#accessor">访问器</a></li>
+</ul>
+<h2 id="定义FireClass"><a name="define"></a>定义FireClass</h2>
+<ul>
+<li>FireClass 其实就是一个特殊的 JavaScript 构造函数，通过调用 <strong>Fire.define</strong> 来定义。</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Sprite'</span>);</div></pre></figure>
+
+<p>以上代码定义了一个名为 ‘Sprite’ 的 FireClass，并且赋给 Sprite 变量。’Sprite’ 这个名字将用于<a href="serialization.md#register">反序列化</a>。</p>
+<ul>
+<li><strong>实例化</strong>时采用</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> Sprite();  <span class="comment">// 和 JavaScript 一样</span></div></pre></figure>
+
+<h2 id="成员"><a name="member"></a>成员</h2>
+<ul>
+<li>如果要定义<strong>成员变量</strong>，请在 <code>define</code> 时传入一个构造函数，在构造函数中初始化成员。</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Sprite'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(url)</span> </span>{</div><div class="line">    <span class="comment">// 定义成员变量</span></div><div class="line">    <span class="keyword">this</span>.url = url;</div><div class="line">    <span class="keyword">this</span>.id = -<span class="number">1</span>;</div><div class="line">});</div><div class="line"><span class="comment">// 调用</span></div><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> Sprite(<span class="string">'img/fb.png'</span>);</div><div class="line">obj.url = <span class="string">'www/'</span> + obj.url;</div></pre></figure>
+
+<ul>
+<li>和 JavaScript 一样，<strong>实例方法</strong>请在 prototype 上定义：</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="comment">// 实例方法</span></div><div class="line">Sprite.prototype.load = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="comment">// load this.url</span></div><div class="line">};</div></pre></figure>
+
+<ul>
+<li>和 JavaScript 一样，<strong>静态变量</strong>或<strong>静态方法</strong>请直接添加到 FireClass：</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="comment">// 静态变量</span></div><div class="line">Sprite.count = <span class="number">0</span>;</div><div class="line"><span class="comment">// 静态方法</span></div><div class="line">Sprite.getBounds = <span class="function"><span class="keyword">function</span> <span class="params">(spriteList)</span> </span>{</div><div class="line">    <span class="comment">// do get bounds ...</span></div><div class="line">};</div></pre></figure>
+
+<ul>
+<li>完整代码如下</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Sprite'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(url)</span> </span>{</div><div class="line">    <span class="keyword">this</span>.url = url;    <span class="comment">// 声明成员变量</span></div><div class="line">    <span class="keyword">this</span>.id = Sprite.count;    <span class="comment">// 访问静态变量</span></div><div class="line">    ++Sprite.count;</div><div class="line">});</div><div class="line"></div><div class="line"><span class="comment">// 静态变量</span></div><div class="line">Sprite.count = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="comment">// 静态方法</span></div><div class="line">Sprite.getBounds = <span class="function"><span class="keyword">function</span> <span class="params">(spriteList)</span> </span>{</div><div class="line">    <span class="comment">// do get bounds ...</span></div><div class="line">};</div><div class="line"></div><div class="line"><span class="comment">// 实例方法</span></div><div class="line">Sprite.prototype.load = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="comment">// do load this.url</span></div><div class="line">};</div><div class="line"></div><div class="line"><span class="comment">// 实例化</span></div><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> Sprite(<span class="string">'img/fb.png'</span>);</div><div class="line"><span class="comment">// 访问成员变量</span></div><div class="line">obj.url = <span class="string">'www/'</span> + obj.url;</div><div class="line"><span class="comment">// 调用实例方法</span></div><div class="line">obj.load();</div><div class="line"><span class="comment">// 调用静态方法</span></div><div class="line">obj.getBounds([obj]);</div></pre></figure>
+
+<ul>
+<li>备注：<ul>
+<li>所有实例和静态成员都将被子类继承。</li>
+<li>如果不希望静态成员被子类继承，可以用 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="external">Object.defineProperty</a> 声明：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="built_in">Object</span>.defineProperty(Sprite, <span class="string">'getBounds'</span>, {</div><div class="line">    value: <span class="function"><span class="keyword">function</span> <span class="params">(spriteList)</span> </span>{</div><div class="line">        <span class="comment">// do get bounds ...</span></div><div class="line">    },</div><div class="line">    writable: <span class="literal">true</span>,</div><div class="line">    enumerable: <span class="literal">false</span></div><div class="line">});</div></pre></figure>
+
+<ul>
+<li>如果要定义<strong>私有</strong>成员，不建议在 Sprite 上声明，建议用闭包(Closure)实现。</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="comment">// 私有实例方法</span></div><div class="line"><span class="keyword">var</span> loadSprite = <span class="function"><span class="keyword">function</span> <span class="params">(self)</span> </span>{</div><div class="line">    <span class="comment">// do load ...</span></div><div class="line">};</div><div class="line">Sprite.prototype.load = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    loadSprite(<span class="keyword">this</span>);</div><div class="line">};</div><div class="line"></div><div class="line"><span class="comment">// 私有静态变量</span></div><div class="line"><span class="keyword">var</span> debug = <span class="literal">false</span>;</div><div class="line"></div><div class="line"><span class="comment">// 私有静态方法</span></div><div class="line"><span class="keyword">var</span> getBound = <span class="function"><span class="keyword">function</span> <span class="params">(spriteList)</span> </span>{</div><div class="line">    <span class="comment">// do get bound...</span></div><div class="line">};</div><div class="line">Sprite.getBounds = <span class="function"><span class="keyword">function</span> <span class="params">(spriteList)</span> </span>{</div><div class="line">    <span class="keyword">if</span> (debug) {</div><div class="line">        getBound(spriteList);</div><div class="line">    }</div><div class="line">};</div></pre></figure>
+
+<ul>
+<li>这里所说的<code>实例成员</code>(instance member)包含了<code>成员变量</code>(member variable)和<code>实例方法</code>(instance method)。</li>
+<li>这里所说的<code>静态成员</code>(static member)包含了<code>静态变量</code>(static variable)和<code>静态方法</code>(static method)。</li>
+</ul>
+<h2 id="继承"><a name="inherit"></a>继承</h2>
+<ul>
+<li>调用 Fire.define 时，第二个参数如果传入的是 FireClass，将从 FireClass 派生出一个子类。</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Node = Fire.define(<span class="string">'Node'</span>);</div><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Sprite'</span>, Node);    <span class="comment">// inherit</span></div><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> Sprite();    <span class="comment">// test</span></div><div class="line"><span class="built_in">console</span>.log(sprite <span class="keyword">instanceof</span> Node);    <span class="comment">// true</span></div></pre></figure>
+
+<ul>
+<li>还可以将构造函数作为第三个参数传入，此时第二个参数可以不必是 FireClass，只要是任意 JavaScript 构造函数。</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Sprite'</span>, Node, <span class="function"><span class="keyword">function</span> <span class="params">(url)</span> </span>{</div><div class="line">    <span class="keyword">this</span>.url = url;</div><div class="line">});</div></pre></figure>
+
+<ul>
+<li><p>调用父类的构造函数</p>
+<ul>
+<li>如果你省略了子类的构造函数，实例化时父类的构造函数将被自动调用。参数将自动传给父构造函数。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Node = Fire.define(<span class="string">'Node'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(name, id)</span> </span>{</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.id = id;</div><div class="line">});</div><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Sprite'</span>, Node);	<span class="comment">// 省略构造函数</span></div><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> Sprite(<span class="string">'player'</span>, <span class="number">250</span>);</div><div class="line"><span class="built_in">console</span>.log(obj.name);    <span class="comment">// player</span></div><div class="line"><span class="built_in">console</span>.log(obj.id);      <span class="comment">// 250</span></div></pre></figure>
+
+<ul>
+<li>如果子类有自己的构造函数，则父类的构造函数需要子类手动调用，调用方法和 JavaScript 一致。</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Sprite'</span>, Node, <span class="function"><span class="keyword">function</span> <span class="params">(id)</span> </span>{</div><div class="line">    Node.call(<span class="keyword">this</span>, <span class="string">'player'</span>, id);</div><div class="line">});</div><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> Sprite(<span class="number">250</span>);</div><div class="line"><span class="built_in">console</span>.log(obj.name);    <span class="comment">// player</span></div><div class="line"><span class="built_in">console</span>.log(obj.id);      <span class="comment">// 250</span></div></pre></figure>
+
+<ul>
+<li>FireClass 提供了 <code>$super</code> 这个静态变量，保存了对父类的引用。因此父类也可以用 $super 代替：</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Sprite'</span>, Node, <span class="function"><span class="keyword">function</span> <span class="params">(id)</span> </span>{</div><div class="line">    Sprite.$super.call(<span class="keyword">this</span>, <span class="string">'player'</span>, id);</div><div class="line">});</div><div class="line">Sprite.prototype.draw = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'before draw'</span>);</div><div class="line">    Sprite.$super.prototype.draw.call(<span class="keyword">this</span>);</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'after draw'</span>);</div><div class="line">};</div></pre></figure>
+
+<ul>
+<li>Fire 提供了 <code>isChildClassOf</code> 用于判断继承，例如：  </li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Texture = Fire.define(<span class="string">'Texture'</span>);</div><div class="line"><span class="keyword">var</span> Texture2D = Fire.define(<span class="string">'Texture2D'</span>, Texture);</div><div class="line"><span class="keyword">var</span> result = Fire.isChildClassOf(Texture2D, Texture);   <span class="comment">// 传入参数是类 constructor 本身而不是实例。</span></div></pre></figure>
+
+<pre><code><span class="keyword">*</span><span class="keyword">*</span>注意<span class="keyword">*</span><span class="keyword">*</span>: `isChildClassOf` 也包含两个类相等的情况，以下代码返回 true：
+</code></pre><figure class="highlight js"><pre><div class="line">Fire.isChildClassOf(Texture2D, Texture2D);</div></pre></figure>
+
+<pre><code>而它们的实例，可以用 <span class="escape">`i</span>nstanceof<span class="escape">` </span>来检查：
+</code></pre><figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> tex = <span class="keyword">new</span> Texture2D();</div><div class="line"><span class="keyword">var</span> result = tex <span class="keyword">instanceof</span> Texture;	<span class="comment">// true</span></div></pre></figure>
+
+<ul>
+<li>备注：<ul>
+<li>当省略第三个参数时，如果第二个参数传入的是一个普通的 JavaScript 构造函数，就是定义新类而不是继承。</li>
+<li>当你的基类不是 FireClass 时，如果你希望派生的子类是 FireClass，则必须提供第三个参数，如果你想省略构造函数，可以传入<code>null</code>。</li>
+<li>当你希望子类仅仅是原始的 JavaScript 构造函数，而不是 FireClass 时，你应该调用的是 Fire.extend 而不是 Fire.define。Fire.extend 更加底层，只是实现最基本的继承，详细用法请查看相关 api。</li>
+</ul>
+</li>
+</ul>
+<h2 id="属性(Property)"><a name="property"></a>属性(Property)</h2>
+<p>FireClass 提供了 <strong>prop</strong> 方法用于声明属性(property)。属性是特殊的成员变量，能够显示在 Inspector 中，也能被<a href="serialization.md#custom">序列化</a>。</p>
+<ul>
+<li>prop 需要两个参数，一是属性变量名，二是属性的默认值，默认值可以是任意类型。  </li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Sprite'</span>);</div><div class="line">Sprite.prop(<span class="string">'width'</span>, <span class="number">128</span>);</div></pre></figure>
+
+<p>以上代码定义了 width 属性，width 将显示在 Inspector，保存时也将被序列化。</p>
+<ul>
+<li>FireClass 在实例化前将自动添加属性到成员变量，可以在包括构造函数在内的代码里直接访问。</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Sprite'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.width);    <span class="comment">// 128</span></div><div class="line">});</div><div class="line">Sprite.prop(<span class="string">'width'</span>, <span class="number">128</span>);</div><div class="line">Sprite.prototype.getWidth = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.width;</div><div class="line">};</div></pre></figure>
+
+<ul>
+<li>每个属性可附带任意多个<strong>参数</strong>(Attribute)，用于指定在 Inspector 中的显示方式、序列化方式等。详细的属性列表，请查阅有关文档(TODO)。</li>
+</ul>
+<figure class="highlight js"><pre><div class="line">Sprite.prop(<span class="string">'width'</span>, <span class="number">128</span>, Fire.Integer, Fire.Tooltip(<span class="string">'The width of sprite'</span>));</div></pre></figure>
+
+<p>以上代码规定了 width 在 Inspector 里只能输入整数，并且当鼠标移到参数上时，显示对应说明。</p>
+<ul>
+<li><p>属性默认情况下都会被序列化，<strong>也会</strong>在 Inspector 中显示。</p>
+<ul>
+<li>如果只想序列化，但不想显示在 Inspector，可以添加 <code>Fire.HideInInspector</code> 参数。<br><code>Sprite.prop(&#39;id&#39;, 0, Fire.HideInInspector);</code></li>
+<li>如果不想序列化，只想显示在 Inspector，可以添加 <code>Fire.NonSerialized</code> 参数。<br><code>Sprite.prop(&#39;url&#39;, 0, Fire.NonSerialized);</code></li>
+<li>如果不想序列化，也不想显示在 Inspector，可以同时传入 Fire.NonSerialized 和 Fire.HideInInspector。也可以干脆不用属性，直接在构造函数里定义的变量即可。</li>
+</ul>
+</li>
+<li><p>属性都能被继承，但子类和父类的属性不能重名。</p>
+</li>
+<li><p>备注：</p>
+<ul>
+<li>如果属性的默认值需要调用其它方法才能获得，可以在构造函数里重新赋值。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Sprite'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">this</span>.img = LoadImage();</div><div class="line">});</div><div class="line">Sprite.prop(<span class="string">'img'</span>, <span class="literal">null</span>);</div></pre></figure>
+
+<ul>
+<li>FireClass 的所有接口都支持链式调用：</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Sprite'</span>, Component, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">                      <span class="keyword">this</span>.id = <span class="number">0</span>;</div><div class="line">                  })</div><div class="line">                 .prop(<span class="string">'width'</span>, <span class="number">128</span>, Fire.Integer, Fire.Tooltip(<span class="string">'The width of sprite'</span>))</div><div class="line">                 .prop(<span class="string">'img'</span>, <span class="literal">null</span>)</div><div class="line">                 .get(<span class="string">'color'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">                      <span class="keyword">return</span> <span class="keyword">this</span>._color;</div><div class="line">                  });</div></pre></figure>
+
+<ul>
+<li>实际上如果要显示在 Inspector，Sprite 还需要继承自 Component，并且添加到 Entity 上。</li>
+</ul>
+<h2 id="访问器"><a name="accessor"></a>访问器</h2>
+<p>访问器(Accessor)就是 <strong>getter</strong> 或 <strong>setter</strong>。在 JavaScript 中，可以用 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="external">Object.defineProperty</a> 声明访问器。  </p>
+<p>FireClass 另外封装了定义访问器的接口，这些接口和<code>prop</code>类似，用于在 Inspector 中显示指定值，但这些值不会被序列化。</p>
+<ul>
+<li>FireClass 提供了 <strong>get</strong> 方法用于声明一个 getter。<br>它的第一个参数是变量名，第二个是获取时调用的方法，该方法可以返回任意类型的值。  </li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Sprite'</span>);</div><div class="line">Sprite.get(<span class="string">'width'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">return</span> <span class="number">128</span>;</div><div class="line">});</div></pre></figure>
+
+
+<p>以上代码定义了 width 的 getter，getter 可以在包括构造函数在内的代码里直接访问：</p>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Sprite'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">this</span>._width = <span class="number">128</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.width);    <span class="comment">// 128</span></div><div class="line">});</div><div class="line">Sprite.get(<span class="string">'width'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._width;</div><div class="line">});</div><div class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> Sprite();</div><div class="line"><span class="built_in">console</span>.log(obj.width);    <span class="comment">// 128</span></div></pre></figure>
+
+<p>和 <code>prop</code> 一样，get 可附加任意多个参数，用于指定在 Inspector 中的显示方式。</p>
+<figure class="highlight js"><pre><div class="line">Sprite.get(<span class="string">'width'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._width;</div><div class="line">}, Fire.Integer, Fire.Tooltip(<span class="string">'The width of sprite'</span>));</div></pre></figure>
+
+<p>以上代码规定了 width 在 Inspector 里只能输入整数(如果有 setter 的话)，并且当鼠标移到参数上时，显示对应说明。  </p>
+<ul>
+<li><strong>set</strong><br>set 方法和 get 类似，它的第一个参数是变量名，第二个是设置时调用的方法，该方法可以传入一个任意类型的参数。<br>set 方法不能附加任何参数，如果需要，请把参数加到相应的 get 方法。如果没有对应的 get，则不在 Inspector 中显示。</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Sprite'</span>, ...);</div><div class="line">Sprite.get(<span class="string">'width'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._width;</div><div class="line">}, Fire.Integer);</div><div class="line">Sprite.set(<span class="string">'width'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(value)</span> </span>{</div><div class="line">    <span class="keyword">this</span>._width = value;</div><div class="line">});</div></pre></figure>
+
+<ul>
+<li><strong>getset</strong><br>可使用 getset 简化 get 和 set 调用</li>
+</ul>
+<figure class="highlight js"><pre><div class="line"><span class="keyword">var</span> Sprite = Fire.define(<span class="string">'Sprite'</span>, ...);</div><div class="line">Sprite.getset(<span class="string">'width'</span>,</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._width;</div><div class="line">    },</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="params">(value)</span> </span>{</div><div class="line">        <span class="keyword">this</span>._width = value;</div><div class="line">    },</div><div class="line">    Fire.Integer);</div></pre></figure>
+
+<ul>
+<li><p>访问器不能和属性(prop)重名。</p>
+</li>
+<li><p>访问器都能被继承，但子类和父类的访问器不能重名。</p>
+</li>
+<li><p>备注：</p>
+<ul>
+<li>如果访问器附带了<code>Fire.HideInInspector</code>参数，则不在 Inspector 中显示，但仍然能从代码访问。</li>
+<li>如果一个 getter 没有相应的 setter，则在 Inspector 中是只读的，但它如果是对象或数组，内部的字段仍然可修改。</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+      <footer id="page-footer">
+          <a href="http://prose.io/#fireball-x/docs/edit/master/source/en/dev/core/class.md" class="article-edit-link">Edit This Page</a>
+        <time id="page-footer-updated" datetime="2015-01-20T04:15:54.000Z" itemprop="dateModified">Last updated: Jan 20 2015</time>
+        <a href="http://fireball-x.com/docs/en/dev/setup" id="page-footer-prev" title="Setup">Prev</a><a href="http://fireball-x.com/docs/en/dev/core/script-building" id="page-footer-next" title="Script-Building">Next</a>
+      </footer>
+      
+    </div>
+    <aside id="sidebar">
+  
+    <strong class="sidebar-title">Getting Started</strong>
+    
+      
+      <a href="/docs/en/dev" class="sidebar-link">Overview</a>
+    
+      
+      <a href="/docs/en/dev/setup" class="sidebar-link">Setup</a>
+    
+  
+    <strong class="sidebar-title">Core</strong>
+    
+      
+      <a href="/docs/en/dev/core/class" class="sidebar-link current">Class</a>
+    
+      
+      <a href="/docs/en/dev/core/script-building" class="sidebar-link">Script-Building</a>
+    
+      
+      <a href="/docs/en/dev/core/serialization" class="sidebar-link">Serialization</a>
+    
+  
+    <strong class="sidebar-title">Editor</strong>
+    
+      
+      <a href="/docs/en/dev/editor/editor" class="sidebar-link">Editor Startup</a>
+    
+      
+      <a href="/docs/en/dev/editor/editor-arguments" class="sidebar-link">Editor Arguments</a>
+    
+      
+      <a href="/docs/en/dev/editor/editor-events" class="sidebar-link">Editor Events</a>
+    
+      
+      <a href="/docs/en/dev/editor/node-modules" class="sidebar-link">Node Modules</a>
+    
+      
+      <a href="/docs/en/dev/editor/asset-db" class="sidebar-link">AssetDatabase</a>
+    
+      
+      <a href="/docs/en/dev/editor/share" class="sidebar-link">Share Library</a>
+    
+      
+      <a href="/docs/en/dev/editor/init-quick-window" class="sidebar-link">Init Quick Window</a>
+    
+  
+  <a href="http://prose.io/#fireball-x/docs/edit/master/themes/hexo3/_config.yml" id="sidebar-edit">Edit Navigation</a>
+</aside>
+
+  </div>
+</article>
+
+        <footer id="footer">
+  <div class="outer">
+    <div class="inner">
+      <div id="footer-copyright">
+        &copy; 2015 <a href="http://firebox.im/">Firebox Technologies</a><br>
+        Background: <a href="http://subtlepatterns.com/shattered/" target="_blank">Shattered</a> by <a href="http://luukvanbaars.com/" target="_blank">Luuk van Baars</a>
+      </div>
+      <div id="footer-links">
+        <a href="https://twitter.com/fireballengine" id="footer-link-twitter" class="footer-link" target="_blank"><span>Twitter</span></a>
+        <a href="https://github.com/fireball-x/docs" id="footer-link-github" class="footer-link" target="_blank"><span>GitHub</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+        
+<!-- Swiftype -->
+<script>
+var Swiftype = window.Swiftype || {};
+(function() {
+  Swiftype.key = 'WM9aFPtvcpZwMuaRj9Yc';
+
+  /** DO NOT EDIT BELOW THIS LINE **/
+  var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+  script.src = "//s.swiftypecdn.com/embed.js";
+  var entry = document.getElementsByTagName('script')[0];
+  document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+}());
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/docs/js/retina.min.js" type="text/javascript"></script>
+
+<script src="/docs/js/script.js" type="text/javascript"></script>
+
+<!-- Google+ -->
+<!-- <script type="text/javascript" src="//apis.google.com/js/plusone.js"></script> -->
+<!-- Twitter -->
+<!-- <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
+
+    </div>
+    <div class="discuss-sidebar">
+        <a href="#disqus_thread" class="sidebar-toggle" onclick="toggle_sidebar();" data-disqus-identifier="en/dev/core/class/index.html"></a>
+<div class="sidebar-inner">
+    <!-- disqus embed -->
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'fireball-docs'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+
+<!-- disqus comments count -->
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'fireball-docs'; // required: replace example with your forum shortname
+var disqus_identifier = "en/dev/core/class/index.html";
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+    </div>
+</body>
+
+</html>

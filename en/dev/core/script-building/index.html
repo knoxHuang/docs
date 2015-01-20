@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Script Building | Fireball</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="http://fireball-x.com/docs/en/dev/core/script-building/index.html">
+  <link rel="apple-touch-icon" sizes="57x57" href="/docs/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/docs/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/docs/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/docs/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/docs/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/docs/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/docs/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/docs/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/docs/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/docs/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/docs/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/docs/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/docs/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/docs/mstile-144x144.png">
+  <link rel="stylesheet" href="/docs/css/style.css" type="text/css">
+
+<!--   <link href="//fonts.googleapis.com/css?family=Lato:300,700" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+ -->
+  <link rel="alternative" href="/docs/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <meta name="description" content="本文档相关代码是 main/tools/gulp-compile.js所有“备注”都属于进阶内容，初学者不需要了解。
+
+Fireball 的所有第三方代码，包括项目和插件代码，都会经过内部重新编译后才加载进来。这些操作由编辑器自动完成，本教程只谈一些注意事项。这部分内容的变更会比较频繁，将来会加入更多标准的支持。
+本文索引：
+
+脚本编译做了什么
+基本流程
+引用模块(require)
+
+脚本编译做了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Script Building">
+<meta property="og:url" content="http://fireball-x.com/docs/docs/en/dev/core/script-building/index.html">
+<meta property="og:site_name" content="Fireball Docs">
+<meta property="og:description" content="本文档相关代码是 main/tools/gulp-compile.js所有“备注”都属于进阶内容，初学者不需要了解。
+
+Fireball 的所有第三方代码，包括项目和插件代码，都会经过内部重新编译后才加载进来。这些操作由编辑器自动完成，本教程只谈一些注意事项。这部分内容的变更会比较频繁，将来会加入更多标准的支持。
+本文索引：
+
+脚本编译做了什么
+基本流程
+引用模块(require)
+
+脚本编译做了">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Script Building">
+<meta name="twitter:description" content="本文档相关代码是 main/tools/gulp-compile.js所有“备注”都属于进阶内容，初学者不需要了解。
+
+Fireball 的所有第三方代码，包括项目和插件代码，都会经过内部重新编译后才加载进来。这些操作由编辑器自动完成，本教程只谈一些注意事项。这部分内容的变更会比较频繁，将来会加入更多标准的支持。
+本文索引：
+
+脚本编译做了什么
+基本流程
+引用模块(require)
+
+脚本编译做了">
+<meta name="twitter:site" content="@fireballengine">
+
+  
+</head>
+
+
+<body>
+    <div class="main-layout">
+        <header id="header">
+  <div class="outer">
+    <div class="inner">
+      <h1 id="logo-wrap">
+        <a href="/docs/" id="logo">Hexo</a>
+        <a id="main-nav-toggle"></a>
+      </h1>
+      <nav id="main-nav">
+        <ul id="main-nav-list">
+          
+            <li class="main-nav-item">
+              <a href="http://fireball-x.com" class="main-nav-link">Home</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/" class="main-nav-link">Docs</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/en/dev" class="main-nav-link">Developer</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/docs/api" class="main-nav-link">API</a>
+            </li>
+          
+        </ul>
+        <a href="/docs//zh/dev/core/script-building/index.html" class="main-nav-lang">中文</a>
+        <a href="https://github.com/fireball-x/docs" id="github-btn" title="GitHub" target="_blank"></a>
+        <a id="search-btn" class="st-search-launcher" title="Search"></a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+        <article class="page" itemscope itemtype="http://schema.org/Article">
+  <header id="page-banner">
+    <div class="outer">
+      <div id="page-banner-inner" class="inner">
+        <h1 id="page-title" itemprop="name">Script Building</h1>
+        <a href="http://prose.io/#fireball-x/docs/edit/master/source/en/dev/core/script-building.md"  title="Improve this doc" id="page-edit-link"></a>
+      </div>
+    </div>
+  </header>
+  <div class="outer">
+    <div id="mobile-menu-wrap"></div>
+    <div class="page-content">
+      <div class="toc-wrap">
+        <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#脚本编译做了什么"><span class="toc-number">1.</span> <span class="toc-text">脚本编译做了什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本流程"><span class="toc-number">2.</span> <span class="toc-text">基本流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引用模块(require)"><span class="toc-number">3.</span> <span class="toc-text">引用模块(require)</span></a></li></ol>
+      </div>
+      <div class="page-entry" itemprop="articleBody">
+        <figure class="highlight plain"><pre><div class="line">本文档相关代码是 main/tools/gulp-compile.js</div><div class="line">所有“备注”都属于进阶内容，初学者不需要了解。</div></pre></figure>
+
+<p>Fireball 的所有第三方代码，包括项目和插件代码，都会经过内部重新编译后才加载进来。这些操作由编辑器自动完成，本教程只谈一些注意事项。这部分内容的变更会比较频繁，将来会加入更多标准的支持。</p>
+<p>本文索引：</p>
+<ul>
+<li><a href="#intro">脚本编译做了什么</a></li>
+<li><a href="#pipeline">基本流程</a></li>
+<li><a href="#require">引用模块(require)</a></li>
+</ul>
+<h2 id="脚本编译做了什么"><a name="intro"></a>脚本编译做了什么</h2>
+<p>脚本编译<strong>负责</strong>：</p>
+<ul>
+<li>将各类用户代码转换为 JavaScript</li>
+<li>编译期错误检查</li>
+<li>集成运行时所需的第三方库</li>
+<li>将代码合并为最终文件</li>
+<li>生成调试信息</li>
+</ul>
+<p>脚本编译<strong>不负责</strong>：</p>
+<ul>
+<li>监听用户代码修改</li>
+<li>构建项目需要的 Fireball 最小运行时</li>
+<li>将 Fireball 运行时和用户代码打包到一起</li>
+<li>重新加载用户代码</li>
+<li>导入导出用户代码</li>
+</ul>
+<h2 id="基本流程"><a name="pipeline"></a>基本流程</h2>
+<ol>
+<li>获取 <code>%project%/assets</code> 下所有脚本，如  JavaScript、TypeScript、CoffeeScript 等。</li>
+<li>将代码预编译为 JavaScript，放入<code>%project%/temp</code>，保留相对路径。</li>
+<li>生成<strong>主文件</strong>，用来 require 所有上个步骤生成的脚本。</li>
+<li>通过<strong>browserify</strong>，将主文件包含的所有脚本打包成为 <code>%project%/library/bundle.js</code>。</li>
+</ol>
+<h2 id="引用模块(require)"><a name="require"></a>引用模块(require)</h2>
+<p><a href="http://browserify.org/" target="_blank" rel="external">browserify</a> 在前端提供了 CommonJS 风格的模块编写方式，能够让你像 node.js 那样用同步的方式 require 模块。在打包过程中，我们使用 browserify 提供快捷方式，为所有模块都增加了别名，使得用户可以不用关心脚本在 assets 中存放的位置。只需直接使用文件名本身即可访问任意模块：<code>var Rotate = require(&#39;rotate&#39;);</code>，这也就要求了<strong>所有脚本不可重名</strong>。</p>
+
+      </div>
+      <footer id="page-footer">
+          <a href="http://prose.io/#fireball-x/docs/edit/master/source/en/dev/core/script-building.md" class="article-edit-link">Edit This Page</a>
+        <time id="page-footer-updated" datetime="2015-01-20T04:15:54.000Z" itemprop="dateModified">Last updated: Jan 20 2015</time>
+        <a href="http://fireball-x.com/docs/en/dev/core/class" id="page-footer-prev" title="Class">Prev</a><a href="http://fireball-x.com/docs/en/dev/core/serialization" id="page-footer-next" title="Serialization">Next</a>
+      </footer>
+      
+    </div>
+    <aside id="sidebar">
+  
+    <strong class="sidebar-title">Getting Started</strong>
+    
+      
+      <a href="/docs/en/dev" class="sidebar-link">Overview</a>
+    
+      
+      <a href="/docs/en/dev/setup" class="sidebar-link">Setup</a>
+    
+  
+    <strong class="sidebar-title">Core</strong>
+    
+      
+      <a href="/docs/en/dev/core/class" class="sidebar-link">Class</a>
+    
+      
+      <a href="/docs/en/dev/core/script-building" class="sidebar-link current">Script-Building</a>
+    
+      
+      <a href="/docs/en/dev/core/serialization" class="sidebar-link">Serialization</a>
+    
+  
+    <strong class="sidebar-title">Editor</strong>
+    
+      
+      <a href="/docs/en/dev/editor/editor" class="sidebar-link">Editor Startup</a>
+    
+      
+      <a href="/docs/en/dev/editor/editor-arguments" class="sidebar-link">Editor Arguments</a>
+    
+      
+      <a href="/docs/en/dev/editor/editor-events" class="sidebar-link">Editor Events</a>
+    
+      
+      <a href="/docs/en/dev/editor/node-modules" class="sidebar-link">Node Modules</a>
+    
+      
+      <a href="/docs/en/dev/editor/asset-db" class="sidebar-link">AssetDatabase</a>
+    
+      
+      <a href="/docs/en/dev/editor/share" class="sidebar-link">Share Library</a>
+    
+      
+      <a href="/docs/en/dev/editor/init-quick-window" class="sidebar-link">Init Quick Window</a>
+    
+  
+  <a href="http://prose.io/#fireball-x/docs/edit/master/themes/hexo3/_config.yml" id="sidebar-edit">Edit Navigation</a>
+</aside>
+
+  </div>
+</article>
+
+        <footer id="footer">
+  <div class="outer">
+    <div class="inner">
+      <div id="footer-copyright">
+        &copy; 2015 <a href="http://firebox.im/">Firebox Technologies</a><br>
+        Background: <a href="http://subtlepatterns.com/shattered/" target="_blank">Shattered</a> by <a href="http://luukvanbaars.com/" target="_blank">Luuk van Baars</a>
+      </div>
+      <div id="footer-links">
+        <a href="https://twitter.com/fireballengine" id="footer-link-twitter" class="footer-link" target="_blank"><span>Twitter</span></a>
+        <a href="https://github.com/fireball-x/docs" id="footer-link-github" class="footer-link" target="_blank"><span>GitHub</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+        
+<!-- Swiftype -->
+<script>
+var Swiftype = window.Swiftype || {};
+(function() {
+  Swiftype.key = 'WM9aFPtvcpZwMuaRj9Yc';
+
+  /** DO NOT EDIT BELOW THIS LINE **/
+  var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+  script.src = "//s.swiftypecdn.com/embed.js";
+  var entry = document.getElementsByTagName('script')[0];
+  document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+}());
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/docs/js/retina.min.js" type="text/javascript"></script>
+
+<script src="/docs/js/script.js" type="text/javascript"></script>
+
+<!-- Google+ -->
+<!-- <script type="text/javascript" src="//apis.google.com/js/plusone.js"></script> -->
+<!-- Twitter -->
+<!-- <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> -->
+
+    </div>
+    <div class="discuss-sidebar">
+        <a href="#disqus_thread" class="sidebar-toggle" onclick="toggle_sidebar();" data-disqus-identifier="en/dev/core/script-building/index.html"></a>
+<div class="sidebar-inner">
+    <!-- disqus embed -->
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'fireball-docs'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+
+<!-- disqus comments count -->
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'fireball-docs'; // required: replace example with your forum shortname
+var disqus_identifier = "en/dev/core/script-building/index.html";
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+    </div>
+</body>
+
+</html>
