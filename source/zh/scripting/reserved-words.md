@@ -15,7 +15,7 @@ permalink: /zh/scripting/reserved-words
 - `__id__`
 - `__type__`
 - `_iN$t`
-- `_hostext`
+- `_rawext`
 
 ### 可能定义在任意类型或 prototype 上的变量
 
