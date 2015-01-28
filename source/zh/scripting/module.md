@@ -33,9 +33,8 @@ Fireball-x 中的 JavaScript 使用和 node.js 相同的方式来实现模块化
 
 其实每一个单独的脚本文件就是一个模块，例如新建一个脚本 `rotate.js`，在里面定义一个 Component：
 ```js
-var Rotate = Fire.define('Rotate', Fire.Component);
+var Rotate = Fire.defineComponent();
 Rotate.prop('speed', 1);
-Fire.addComponentMenu(Rotate, 'Rotate');
 
 Rotate.prototype.update = function () {
     this.transform.rotation += this.speed;
@@ -59,7 +58,7 @@ var Rotate = require('rotate');
 ```js
 var Rotate = require('rotate');
 
-var SinRotate = Fire.define('SinRotate', Rotate);
+var SinRotate = Fire.defineComponent(Rotate);
 SinRotate.prototype.update = function () {
     this.transform.rotation += this.speed * Math.sin(Fire.Time.time);
 };
