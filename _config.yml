@@ -16,8 +16,8 @@ baidusitemap:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://fireball-x.com/docs
-root: /docs
+url: docs.fireball-x.com
+root: /
 permalink: :title/
 tag_dir: tags
 archive_dir: archives

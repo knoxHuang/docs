@@ -60,7 +60,7 @@ hexo.extend.helper.register('toggle_lang_url', function() {
     }
     //console.log("resultLink: " + resultLink);
     //console.log("replace / :" + resultLink.replace(/\/{2}/, '/'));
-    return (this.config.root + "/" + resultLink).replace(/\/+/, '/');
+    return (this.config.root + resultLink).replace(/\/+/g, '/');
 });
 
 hexo.extend.helper.register('toggle_lang_title', function() {
