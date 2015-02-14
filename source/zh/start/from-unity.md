@@ -8,6 +8,7 @@ permalink: zh/start/from-unity
 ## 命名上的区别 (Fireball-x // Unity)
 
 - Entity // GameObject
+- Scene // Level
 
 ## 设计上的区别
 
