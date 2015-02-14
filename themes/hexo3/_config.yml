@@ -2,13 +2,13 @@ menu:
   Home: http://fireball-x.com
   Docs: /
   Developer: /en/dev
-  API: /api
+  API: /api/modules/Fire.html
 
 menu_zh:
     首页: http://fireball-x.com
     用户文档: /zh
     开发者文档: /zh/dev
-    API: /api
+    API: /api/modules/Fire.html
 
 doc_sidebar:
   Getting Started:

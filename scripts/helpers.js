@@ -20,16 +20,17 @@ function get_sidebar(permalink) {
 }
 
 hexo.extend.helper.register('github_link', function(data){
-  var match = data.file.match(/(\w+)\/lib\/(.+)/),
-    name = match[1],
-    path = 'lib/' + match[2];
-
-  if (name === 'hexo') name = 'index';
-
-  var line = data.line,
-    version = this.site.yuidoc.findByName(name).project.version || 'master';
-
-  return '<a href="' + links[name] + '/blob/' + version + '/' + path + '#L' + line + '">' + path + ':' + line + '</a>';
+    //return console.log(data);
+  //var match = data.file.match(/(\w+)\/lib\/(.+)/),
+  //  name = match[1],
+  //  path = 'lib/' + match[2];
+  //
+  //if (name === 'hexo') name = 'index';
+  //
+  //var line = data.line,
+  //  version = this.site.yuidoc.findByName(name).project.version || 'master';
+  //return '<a href="' + links[name] + '/blob/' + version + '/' + path + '#L' + line + '">' + path + ':' + line + '</a>';
+    return '<a href="' + this.config.root + data.path + '">'+data.name + '</a>';
 });
 
 hexo.extend.helper.register('item_flags', function(data){

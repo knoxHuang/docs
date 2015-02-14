@@ -22,10 +22,15 @@ layout: api/layout
   <% if (page.classes.length){ %>
     <h2 class="api-section-title">Classes</h2>
     <ul>
+        <li>
+            <a href="<%- config.root%><%- _.find(page.classes, {'name': 'Fire'}).path %>"><%- _.find(page.classes, {'name': 'Fire'}).name %></a>
+        </li>
       <% page.classes.forEach(function(item){ %>
+        <% if (item.name !== 'Fire') { %>
         <li>
           <a href="<%- config.root %><%- item.path %>"><%= item.name %></a>
         </li>
+        <% } %>
       <% }) %>
     </ul>
   <% } %>

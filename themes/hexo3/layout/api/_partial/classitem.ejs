@@ -1,6 +1,9 @@
 <div id="<%- data.slug || 'constructor' %>" class="api-item <%= type %> <%= data.access || 'public' %><% if (data.deprecated){ %> deprecated<% } %>">
   <header class="api-item-header">
     <h3 class="api-item-title">
+        <% if (/^_|\._/g.test(data.name)) { %>
+            <span class="classitem-tag">internal</span>
+        <% } %>
       <a href="#<%- data.slug || 'constructor' %>"><%= data.name %></a>
     </h3>
     <% if (data.params && data.params.length){ %>
@@ -18,11 +21,11 @@
     <% if (data.overwritten_from){ %>
       Inherited from <a href="<%- url_for(data.overwritten_from.path) %>#<%= type %>_<%- data.name %>"><%= data.overwritten_from.name %></a> but overwritten in:
     <% } else if (data.extended_from){ %>
-      Inherited from <a href="<%- url_for(data.extended_from.path) %>#<%= type %>_<%- data.name %>"></a>:
+      Inherited from: <a href="<%- url_for(data.extended_from.path) %>#<%= type %>_<%- data.name %>"><%- data.extended_from.name + "." + data.name %></a>
     <% } else { %>
       Defined in
+      <%- github_link(data) %>
     <% } %>
-    <%- github_link(data) %>
   </div>
   <%- partial('deprecated', {data: data}) %>
   <div class="api-item-entry">
