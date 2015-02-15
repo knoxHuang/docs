@@ -45,22 +45,29 @@ hexo.extend.helper.register('item_flags', function(data){
 
 hexo.extend.helper.register('toggle_lang_url', function() {
     var resultLink;
-    //console.log("this.path: " + this.path);
-    if (/zh\//.test(this.path)) {
-        if (/zh\/+index.html/.test(this.path)) {
-            resultLink = this.path.replace(/zh\//, '/');
+    if (/[\b\/]zh\//.test(this.path)) {
+        if (/[\b\/]zh\/+index.html/.test(this.path) || /^api\/zh\//.test(this.path) ) {
+            var re = /[\b\/](zh\/)/ig;
+            var result = re.exec(this.path);
+            resultLink = this.path.replace(result[1], '/');
         } else {
-            resultLink = this.path.replace(/zh\//, 'en/');
+            var re = /[\b\/](zh\/)/ig;
+            var result = re.exec(this.path);
+            resultLink = this.path.replace(result[1], 'en/');
         }
     } else {
-        if (/en\//.test(this.path)) {
-            resultLink = this.path.replace(/en\//, 'zh/');
+        //console.log(this.path);
+        if (/^en\//.test(this.path)) {
+            resultLink = this.path.replace(/^en\//, 'zh/');
+        } else if (/^api\//.test(this.path)) {
+            var secArr = this.path.split('/');
+            var apiIdx = secArr.indexOf('api');
+            secArr.splice(apiIdx+1, 0, 'zh');
+            resultLink = secArr.join('/');
         } else {
             resultLink = 'zh/' + this.path;
         }
     }
-    //console.log("resultLink: " + resultLink);
-    //console.log("replace / :" + resultLink.replace(/\/{2}/, '/'));
     return (this.config.root + resultLink).replace(/\/+/g, '/');
 });
 
