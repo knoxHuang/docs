@@ -22,9 +22,11 @@ layout: api/layout
   <% if (page.classes.length){ %>
     <h2 class="api-section-title">Classes</h2>
     <ul>
+        <% if (_.find(page.classes, {'name': 'Fire'})) { %>
         <li>
             <a href="<%- config.root%><%- _.find(page.classes, {'name': 'Fire'}).path %>"><%- _.find(page.classes, {'name': 'Fire'}).name %></a>
         </li>
+        <% } %>
       <% page.classes.forEach(function(item){ %>
         <% if (item.name !== 'Fire') { %>
         <li>
@@ -34,4 +36,5 @@ layout: api/layout
       <% }) %>
     </ul>
   <% } %>
+
 </div>
