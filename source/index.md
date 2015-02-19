@@ -6,4 +6,12 @@ Welcome to Fireball-x Documentation. This will help you get started fast.
 
 ## User Manual
 
-Please add user guide and tutorial in this section.
+[User Manual](/)
+
+## Developer Manual
+
+[Developer Manual](/en/dev)
+
+## API Reference
+
+[API Reference](/api/modules/Fire.html)

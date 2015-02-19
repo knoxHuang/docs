@@ -9,7 +9,7 @@
     "hexo-renderer-ejs": "*",
     "hexo-renderer-marked": "*",
     "hexo-renderer-stylus": "*",
-    "hexo-yuidoc": "^0.2.2",
+    "hexo-yuidoc": "nantas/hexo-yuidoc",
     "gulp": "3.8.11",
     "gulp-sequence": ""
   }

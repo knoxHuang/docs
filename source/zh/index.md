@@ -6,4 +6,12 @@ permalink: zh/
 
 ## 用户文档
 
-在这里添加用户文档。
+[用户文档](/zh)
+
+## 开发者文档
+
+[开发者文档](/zh/dev)
+
+## API 文档
+
+[API 文档](/api/zh/modules/Fire.html)
