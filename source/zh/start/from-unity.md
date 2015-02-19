@@ -30,3 +30,4 @@ permalink: zh/start/from-unity
 - Fireball-x 的 **Transform.position** 是相对父物体的本地坐标，不是世界坐标。同理，rotation 和 scale 也均是本地坐标。
 - Fireball-x 的 Component 提供 onLoad 回调。（相当于 Unity 的 Awake。）
 - Fireball-x 的 Component 提供 onStart 回调。（相当于 Unity 的 Start。）
+- Fireball-x 的回调函数遵循 node.js 的风格，即回调的第一个参数是错误信息，第二个参数才是获取到的数据。
