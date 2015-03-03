@@ -7,7 +7,7 @@ permalink: zh/dev/core/class
 所有“备注”都属于进阶内容，初学者不需要了解。
 ```
 
-Fireball-x 的数据类型(Class)使用 **Fire.define** 进行定义，以便简化继承、支持[序列化](serialization.md)、定义属性等。为了方便区分，这些类叫做**FireClass**。  
+Fireball 的数据类型(Class)使用 **Fire.define** 进行定义，以便简化继承、支持[序列化](serialization.md)、定义属性等。为了方便区分，这些类叫做**FireClass**。  
 
 本文索引：
 - [定义FireClass](#define)
@@ -22,25 +22,40 @@ Fireball-x 的数据类型(Class)使用 **Fire.define** 进行定义，以便简
 ```js
     var Sprite = Fire.define('Sprite');
 ```
-以上代码定义了一个名为 'Sprite' 的 FireClass，并且赋给 Sprite 变量。'Sprite' 这个名字即是类名又是类型ID，将会用于[序列化](serialization.md#register)。
+以上代码定义了一个名为 'Sprite' 的 FireClass，并且赋给 Sprite 变量。'Sprite' 这个名字即是类名又是类型ID，将会用于[序列化](serialization.md#register)等场合。
 
 - **实例化**时采用
 ```js
     var obj = new Sprite();  // 和 JavaScript 一样
 ```
 
-## <a name="member"></a>成员
-
-- 如果要定义**成员变量**，请在 `define` 时传入一个构造函数，在构造函数中初始化成员。
+- Fire.define 的第二个参数是**构造函数**，构造函数将在每个实例 new 出来时调用，用于初始对象。构造函数**不允许定义构造参数**。
 ```js
-    var Sprite = Fire.define('Sprite', function (url) {
-        // 定义成员变量
-        this.url = url;
-        this.id = -1;
+    var Sprite = Fire.define('Sprite', function () {
+        console.log(this instanceof Sprite);
     });
     // 调用
-    var obj = new Sprite('img/fb.png');
-    obj.url = 'www/' + obj.url;
+    var obj = new Sprite();
+    // true
+```
+
+- 备注：
+  - 类名可以是任意字符串，不允许重复。可以使用 Fire.getClassName 来获得类名，使用 Fire.getClassByName 可用类名查找出对应的类。
+  - 进阶开发者如果确实需要使用构造参数，可以利用 arguments 获取。但如果这个类需要序列化，必须保证构造参数都缺省的情况下仍然能 new 出对象。
+
+## <a name="member"></a>成员
+
+- **成员变量**请统一在构造函数中定义。
+```js
+    var Sprite = Fire.define('Sprite', function () {
+        // 声明成员变量并赋初始值
+        this.url = "";
+        this.id = 0;
+    });
+    // 调用
+    var obj = new Sprite();
+    obj.url = 'img/fb.png';
+    obj.id = 1;
 ```
 
 - 和 JavaScript 一样，**实例方法**请在 prototype 上定义：
@@ -63,9 +78,9 @@ Fireball-x 的数据类型(Class)使用 **Fire.define** 进行定义，以便简
 
 - 完整代码如下
 ```js
-    var Sprite = Fire.define('Sprite', function (url) {
-        this.url = url;    // 声明成员变量
-        this.id = Sprite.count;    // 访问静态变量
+    var Sprite = Fire.define('Sprite', function () {
+        this.url = "";    // 声明成员变量
+        this.id = Sprite.count;      // 访问静态变量
         ++Sprite.count;
     });
 
@@ -83,7 +98,9 @@ Fireball-x 的数据类型(Class)使用 **Fire.define** 进行定义，以便简
     };
 
     // 实例化
-    var obj = new Sprite('img/fb.png');
+    var obj = new Sprite();
+    obj.url = 'img/fb.png';
+    
     // 访问成员变量
     obj.url = 'www/' + obj.url;
     // 调用实例方法
@@ -132,50 +149,43 @@ Fireball-x 的数据类型(Class)使用 **Fire.define** 进行定义，以便简
 
 ## <a name="inherit"></a>继承
 
-- 调用 Fire.define 时，第二个参数如果传入的是 FireClass，将从 FireClass 派生出一个子类。
+- 使用 **Fire.extend** 来进行继承，第一个参数是子类的类名，第二个参数是父类。
 ```js
     var Node = Fire.define('Node');
-    var Sprite = Fire.define('Sprite', Node);    // inherit
+    var Sprite = Fire.extend('Sprite', Node);    // inherit
     var obj = new Sprite();    // test
     console.log(sprite instanceof Node);    // true
 ```
 
-- 还可以将构造函数作为第三个参数传入，此时第二个参数可以不必是 FireClass，只要是任意 JavaScript 构造函数。
+- Fire.extend 允许传入第三个参数作为子类的构造函数。
 ```js
-    var Sprite = Fire.define('Sprite', Node, function (url) {
-        this.url = url;
+    var Sprite = Fire.define('Sprite', Node, function () {
+        this.url = "";
     });
 ```
 
-- 调用父类的构造函数
+- 父构造函数
 
-  - 如果你省略了子类的构造函数，实例化时父类的构造函数将被自动调用。参数将自动传给父构造函数。
+  - 不论子类的构造函数是否有提供，父类的构造函数都会被自动先调用。
   ```js
-    var Node = Fire.define('Node', function (name, id) {
-        this.name = name;
-        this.id = id;
+    var Node = Fire.define('Node', function () {
+        this.name = "a node";
+        this.id = 1;
     });
-    var Sprite = Fire.define('Sprite', Node);	// 省略构造函数
-    var obj = new Sprite('player', 250);
-    console.log(obj.name);    // player
-    console.log(obj.id);      // 250
-  ```
-
-  - 如果子类有自己的构造函数，则父类的构造函数需要子类手动调用，调用方法和 JavaScript 一致。
-  ```js
-    var Sprite = Fire.define('Sprite', Node, function (id) {
-        Node.call(this, 'player', id);
+    var Sprite = Fire.define('Sprite', Node, function () {
+	    console.log(this.name);    // "node"
+	    console.log(this.id);      // 1
+	    this.name = "a sprite";
     });
     var obj = new Sprite(250);
-    console.log(obj.name);    // player
-    console.log(obj.id);      // 250
+    console.log(obj.name === "a sprite");    // true
   ```
+
+- 重载 (TODO)
 
 - FireClass 提供了 `$super` 这个静态变量，保存了对父类的引用。因此父类也可以用 $super 代替：
 ```js
-    var Sprite = Fire.define('Sprite', Node, function (id) {
-        Sprite.$super.call(this, 'player', id);
-    });
+    var Sprite = Fire.extend('Sprite', Node);
     Sprite.prototype.draw = function () {
         console.log('before draw');
         Sprite.$super.prototype.draw.call(this);
@@ -186,23 +196,21 @@ Fireball-x 的数据类型(Class)使用 **Fire.define** 进行定义，以便简
 - Fire 提供了 `isChildClassOf` 用于判断继承，例如：  
 ```js
     var Texture = Fire.define('Texture');
-    var Texture2D = Fire.define('Texture2D', Texture);
+    var Texture2D = Fire.extend('Texture2D', Texture);
     var result = Fire.isChildClassOf(Texture2D, Texture);   // 传入参数是类 constructor 本身而不是实例。
 ```
     **注意**: `isChildClassOf` 也包含两个类相等的情况，以下代码返回 true：
 ```js
     Fire.isChildClassOf(Texture2D, Texture2D);
 ```
-    而它们的实例，可以用 `instanceof` 来检查：
+    而它们的实例，可以用 `instanceof` 来判断：
 ```js
     var tex = new Texture2D();
     var result = tex instanceof Texture;	// true
 ```
 
 - 备注：
-  - 当省略第三个参数时，如果第二个参数传入的是一个普通的 JavaScript 构造函数，就是定义新类而不是继承。
-  - 当你的基类不是 FireClass 时，如果你希望派生的子类是 FireClass，则必须提供第三个参数，如果你想省略构造函数，可以传入`null`。
-  - 当你希望子类仅仅是原始的 JavaScript 构造函数，而不是 FireClass 时，你应该调用的是 Fire.extend 而不是 Fire.define。Fire.extend 更加底层，只是实现最基本的继承，详细用法请查看相关 api。
+  - 当你希望子类仅仅是原始的 JavaScript 构造函数，而不是 FireClass 时，你应该调用的是 Fire.JS.extend 而不是 Fire.extend。Fire.JS.extend 更加底层，只是实现最基本的继承，详细用法请查看相关 api。
 
 ## <a name="property"></a>属性(Property)
 
@@ -250,7 +258,7 @@ FireClass 提供了 **prop** 方法用于声明属性(property)。属性是特�
   ```
   - FireClass 的所有接口都支持链式调用：
   ```js
-    var Sprite = Fire.define('Sprite', Component, function () {
+    var Sprite = Fire.extend('Sprite', Node, function () {
                           this.id = 0;
                       })
                      .prop('width', 128, Fire.Integer, Fire.Tooltip('The width of sprite'))
@@ -259,7 +267,7 @@ FireClass 提供了 **prop** 方法用于声明属性(property)。属性是特�
                           return this._color;
                       });
   ```
-  - 实际上如果要显示在 Inspector，Sprite 还需要继承自 Component，并且添加到 Entity 上。
+  - 实际上如果要显示在 Inspector，需要定义的是 Component，并且添加到 Entity 上。
 
 ## <a name="accessor"></a>访问器
 
@@ -329,3 +337,5 @@ set 方法不能附加任何参数，如果需要，请把参数加到相应的 
 - 备注：
   - 如果访问器附带了`Fire.HideInInspector`参数，则不在 Inspector 中显示，但仍然能从代码访问。
   - 如果一个 getter 没有相应的 setter，则在 Inspector 中是只读的，但它如果是对象或数组，内部的字段仍然可修改。
+
+
