@@ -54,6 +54,7 @@ user_sidebar:
         Asset Pipeline: en/manual/assets
     Scripting:
         Module: en/scripting/module
+        Creating Component
         Reserved Words: en/scripting/reserved-words
 
 user_sidebar_zh:
@@ -67,6 +68,7 @@ user_sidebar_zh:
         资源工作流程: zh/manual/assets
     脚本编写:
         模块化: zh/scripting/module
+        Component编写: zh/scripting/component
         附录：保留字: zh/scripting/reserved-words
 
 google_analytics:
