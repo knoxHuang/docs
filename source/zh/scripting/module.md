@@ -2,7 +2,7 @@ title: 模块化
 permalink: /zh/scripting/module
 ---
 
-本教程所说的模块化指的是将代码拆分成多个脚本文件，并且让它们能相互操作的过程。本文将介绍如何在 Fireball-x 中编写和调用模块，至于内部的原理可参考[脚本编译](core/script-building.md)。
+本教程所说的模块化指的是将代码拆分成多个脚本文件，并且让它们能相互操作的过程。本文将介绍如何在 Fireball-x 中编写和调用模块，至于内部的原理可参考[脚本编译](zh/dev/core/script-building)。
 ```
 所有“备注”都属于进阶内容，一开始不需要了解。
 ```
