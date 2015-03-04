@@ -54,7 +54,7 @@ user_sidebar:
         Asset Pipeline: en/manual/assets
     Scripting:
         Module: en/scripting/module
-        Creating Component
+        Creating Component: en/scripting/component
         Reserved Words: en/scripting/reserved-words
 
 user_sidebar_zh:
