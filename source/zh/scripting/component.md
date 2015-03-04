@@ -44,10 +44,10 @@ module.exports = Comp;
 `var Comp`定义了一个变量，我们将它赋值为 Fire.extend 返回的类。"Comp" 仅仅是这个类的一个引用，是一个普通的 JavaScript 局部变量，变量名可以是任意的，和真正的类名 "Player" 没有关联。  
 `Comp.prototype.update = function () {...};` 定义了 **update** 回调方法，update 方法将由 Fireball 在游戏的每一帧渲染之前调用。你可以在 update 中进行诸如触发行为、响应操作等持续性的游戏逻辑。  
 `Comp.prototype.onStart = function () {...};` 定义了 **onStart** 回调方法，onStart 将由 Fireball 在 update 第一次执行之前调用，你可以在 onStart 中编写任意的初始化代码。  
-`module.exports = Comp;`  用于导出这个 Component，这样其它脚本就能通过 require 的方式使用它。导出操作的详细内容可以查看[模块化](zh/scripting/module)。
+`module.exports = Comp;`  用于导出这个 Component，这样其它脚本就能通过 require 的方式使用它。导出操作的详细内容可以查看[模块化](/zh/scripting/module)。
 
 请注意：
-- 我们将使用 Fire.extend 声明的类型统称为 **FireClass**，Component 和普通的 FireClass 的区别仅仅在于它们的类名不用手工声明。请通过阅读[类型定义](zh/dev/core/class)来了解类的更多声明方式。
+- 我们将使用 Fire.extend 声明的类型统称为 **FireClass**，Component 和普通的 FireClass 的区别仅仅在于它们的类名不用手工声明。请通过阅读[类型定义](/zh/dev/core/class)来了解类的更多声明方式。
 - 对有经验的用户来说，Component 虽然可以定义构造函数，但我们建议将逻辑操作尽可能的放到 onStart 等 Fireball 的回调中进行，而构造函数仅仅用于声明成员变量。
 
 ### 控制Entity
