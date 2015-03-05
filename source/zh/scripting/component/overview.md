@@ -189,18 +189,47 @@ var Comp = Fire.extend(Fire.Component);
 Comp.prop('targetTransform', null, Fire.ObjectType(Fire.Transform));
 ```
 
-当你要设置一些对象的关联，使用属性是最方便的。你甚至可以将属性的默认值由 `null` 改为数组`[]`，这样你就能在 Inspector 中关联任意多个对象。可是当你需要在运行时动态获取其它对象，你就需要用到 Fireball 提供的下面两个方法。
+当你要设置一些对象的关联，使用属性是最方便的。你甚至可以将属性的默认值由 `null` 改为数组`[]`，这样你就能在 Inspector 中关联任意多个对象。如果需要在运行时动态获取其它对象，就需要用到下面介绍的查找方法。
 
 ### 查找子物体
 
-### 全局查找
+有时候，游戏场景中会有很多个相同类型的对象，像是炮塔、敌人和特效，它们通常都有一个全局的脚本来统一管理。如果用 Inspector 来一个一个将它们关联到这个脚本上，那么工作将很繁冗乏味。为了更好地统一管理这些对象，我们一般会把它们放到一个单独的父物体下，然后通过父物体来获得所有的子物体。
 
+```js
+// CannonManager.js
+var Comp = Fire.extend(Fire.Component, function () {
+    this.cannons = [];
+});
 
+Comp.prototype.onStart = function () {
+    this.cannons = this.entity.getChildren();
+};
+```
 
+**getChildren** 是 Entity 提供的一个方法，可以获得一个包含所有子 Entity 的数组。还可以使用 Entity 的名字来直接获取对应的子物体，只需要在 Entity 的实例上调用 **find** 方法：
 
+```js
+this.entity.find('Main Cannon');
+```
 
+### 全局名字查找
 
+通过 Fire.Entity.find 这个静态方法就能在整个场景中查找指定的 Entity：
 
+```js
+// CannonManager.js
+var Comp = Fire.extend(Fire.Component, function () {
+    this.player = null;
+});
+
+Comp.prototype.onStart = function () {
+    this.player = Fire.Entity.find('/Main Player');
+};
+```
+
+请注意：
+- find 既有对象上的实例方法又有类型上的静态方法，两者作用不同，实例方法用于查找子物体，静态方法用于从场景的最上层开始查找全局物体。  
+  查找子物体时路径不能以'/'开头，相反的查找全局物体时路径必须以'/'开头。
 
 
 
