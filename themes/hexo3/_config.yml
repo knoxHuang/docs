@@ -51,8 +51,8 @@ user_sidebar:
         Know the Editor: en/manual/editor
         Asset Pipeline: en/manual/assets
     Scripting:
-        Creating and Using Scripts
-        Accessing Objects
+        Creating and Using Scripts: #
+        Accessing Objects: #
         Class: en/dev/core/class
         Module: en/scripting/module
         Reserved Words: en/scripting/reserved-words
