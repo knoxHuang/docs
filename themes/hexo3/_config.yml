@@ -69,7 +69,7 @@ user_sidebar_zh:
     脚本编写:
         创建和使用脚本: zh/scripting/component
         对象访问: zh/scripting/component/access
-        类型定义: zh/dev/core/class
+        类型定义: zh/scripting/class
         模块化: zh/scripting/module
         附录：保留字: zh/scripting/reserved-words
 

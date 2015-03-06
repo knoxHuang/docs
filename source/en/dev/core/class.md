@@ -1,5 +1,5 @@
 title: Class Definition
-permalink: en/dev/core/class
+permalink: en/scripting/class
 ---
 
 ```
