@@ -2,7 +2,7 @@
 <aside id="sidebar">
   <strong class="sidebar-title">Modules</strong>
   <a href="<%- url_for('api/modules/Fire.html') %>" class="sidebar-link<% if (page.yuidoc_name === 'index'){ %> current<% } %>">Fire</a>
-  <a href="<%- url_for('api/modules/OtherModule.html') %>" class="sidebar-link<% if (page.yuidoc_name === 'warehouse'){ %> current<% } %>">Editor</a>
+  <a href="<%- url_for('api/modules/Reserved-Words.html') %>" class="sidebar-link<% if (page.yuidoc_name === 'warehouse'){ %> current<% } %>">Reserved Words</a>
   <strong class="sidebar-title">Classes</strong>
     <a href="<%- config.root%><%- _.find(yuidoc.classes, {'name': 'Fire'}).path %>" class="sidebar-link"><%- _.find(yuidoc.classes, {'name': 'Fire'}).name %></a>
   <% _.each(yuidoc.classes, function(obj){ %>

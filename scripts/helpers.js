@@ -47,7 +47,6 @@ hexo.extend.helper.register('toggle_lang_url', function() {
     var resultLink;
     if (/(^|[\b\/])zh\//.test(this.path)) {
         if (/(^|[\b\/])zh\/+index.html/.test(this.path) || /^api\/zh\//.test(this.path) ) {
-            console.log("removing zh from url: " + this.path);
             var re = /(?:^|[\b\/])(zh\/)/ig;
             var result = re.exec(this.path);
             resultLink = this.path.replace(result[1], '/');
