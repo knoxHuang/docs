@@ -13,7 +13,6 @@ doc_sidebar:
       Overview: en/dev
       Setup: en/dev/setup
   Core:
-      Class: en/dev/core/class
       Script-Building: en/dev/core/script-building
       Serialization: en/dev/core/serialization
   Editor:
@@ -28,9 +27,8 @@ doc_sidebar:
 doc_sidebar_zh:
     新手上路:
         简介: zh/dev
-        设置: zh/dev/setup
+        安装开发环境: zh/dev/setup
     核心:
-        类型定义: zh/dev/core/class
         脚本编译: zh/dev/core/script-building
         序列化: zh/dev/core/serialization
     Editor编辑器:
@@ -53,8 +51,10 @@ user_sidebar:
         Know the Editor: en/manual/editor
         Asset Pipeline: en/manual/assets
     Scripting:
+        Creating and Using Scripts
+        Accessing Objects
+        Class: en/dev/core/class
         Module: en/scripting/module
-        Creating Component: en/scripting/component
         Reserved Words: en/scripting/reserved-words
 
 user_sidebar_zh:
@@ -67,8 +67,10 @@ user_sidebar_zh:
         认识Editor: zh/manual/editor
         资源工作流程: zh/manual/assets
     脚本编写:
+        创建和使用脚本: zh/scripting/component
+        对象访问: zh/scripting/component/access
+        类型定义: zh/dev/core/class
         模块化: zh/scripting/module
-        Component编写: zh/scripting/component
         附录：保留字: zh/scripting/reserved-words
 
 google_analytics:
