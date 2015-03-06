@@ -53,8 +53,8 @@ user_sidebar:
     Scripting:
         Creating and Using Scripts: #
         Accessing Objects: #
-        Class: en/dev/core/class
-        Module: en/scripting/module
+        Class: #
+        Module: #
         Reserved Words: en/scripting/reserved-words
 
 user_sidebar_zh:

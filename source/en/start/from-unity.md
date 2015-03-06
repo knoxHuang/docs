@@ -22,4 +22,5 @@ permalink: en/start/from-unity
 - Fireball-x 的组件只有 Component <del>和 Behaviour</del>，没有 MonoBehaviour。
 - Fireball-x 如果要添加一个类型为 Camera 的 Component，用的是 entity.addComponent(Camera)。
 - Fireball-x 由 Entity 来维护父子关系，而 Unity 由 Transform 来维护。Fireball-x 直接通过 **Entity.parent** 来获得和修改父物体，并且 children 和 sibling 等有关接口也直接通过 Entity 来访问。
-- Fireball-x 的 **Transform.position** 是相对父物体的本地坐标，不是世界坐标。同理，rotation 和 scale 也均是本地坐
+- Fireball-x 的 **Transform.position** 是相对父物体的本地坐标，不是世界坐标。同理，**Transform.rotation** 和 **Transform.scale** 均是本地坐标系下的值。
+- Fireball-x 的 Transform 的全局缩放的近似值叫做 **Transform.worldScale**。(Unity 是 lossyScale)

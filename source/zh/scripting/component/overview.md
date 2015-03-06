@@ -51,7 +51,7 @@ module.exports = Comp;
 `module.exports = Comp;`  用于导出这个 Component，这样其它脚本就能通过 require 的方式使用它。导出操作的详细内容可以查看[模块化](/zh/scripting/module)。
 
 请注意：
-- 我们将使用 Fire.extend 声明的类型统称为 **FireClass**，Component 和普通的 FireClass 的区别仅仅在于它们的类名不用手工声明。你可以通过阅读[类型定义](/zh/scripting/class)来进一步了解 FireClass。
+- 我们将使用 Fire.extend 声明的类型统称为 **FireClass**，Component 和普通的 FireClass 的区别仅仅在于 Component 的类名会自动从脚本获取。你可以通过阅读[类型定义](/zh/scripting/class)来进一步了解 FireClass。
 - 对有经验的用户来说，Component 虽然可以定义构造函数，但我们建议将逻辑操作尽可能的放到 onStart 等 Fireball 的回调中进行，而构造函数仅仅用于声明成员变量。
 
 ## 添加到Entity
