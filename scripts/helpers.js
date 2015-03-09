@@ -115,6 +115,7 @@ hexo.extend.helper.register('page_nav', function(){
     var path = this.path.replace(/\/index\.html/, ''),
     list = {};
     var sidebar = this.theme[get_sidebar(path)];
+    //console.log(JSON.stringify(sidebar));
 
   for (var i in sidebar){
     for (var j in sidebar[i]){
@@ -123,17 +124,22 @@ hexo.extend.helper.register('page_nav', function(){
     }
   }
 
-  var keys = Object.keys(list),
-    index = keys.indexOf(path),
-    result = [];
+    var rePath = /^\//i;
+    var keys = Object.keys(list),
+        index = keys.indexOf(path.replace(rePath, '')),
+        result = [];
 
-  if (index > 0){
-    result.push('<a href="' + this.config.url + '/' + keys[index - 1] + '" id="page-footer-prev" title="' + list[keys[index - 1]] + '">Prev</a>');
-  }
+    //console.log(keys);
+    //console.log(path);
+    //console.log(index);
+    if (index > 0){
+        result.push('<a href="' + /*this.config.url +*/ '/' + keys[index - 1] + '" id="page-footer-prev" title="' + list[keys[index - 1]] + '">Prev</a>');
+    }
 
-  if (index < keys.length - 1){
-    result.push('<a href="' + this.config.url + '/' + keys[index + 1] + '" id="page-footer-next" title="' + list[keys[index + 1]] + '">Next</a>');
-  }
+    if (index < keys.length - 1){
+        result.push('<a href="' + /*this.config.url +*/ '/' + keys[index + 1] + '" id="page-footer-next" title="' + list[keys[index + 1]] + '">Next</a>');
+    }
 
-  return result.join('');
+    //console.log(result.join(""));
+    return result.join('');
 });
