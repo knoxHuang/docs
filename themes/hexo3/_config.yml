@@ -54,6 +54,8 @@ user_sidebar:
         Creating and Using Scripts: #
         Accessing Objects: #
         Component Callbacks: #
+        Creating and Destroying Objects: #
+        Time and Framerate: #
         Class: #
         Module: #
         Reserved Words: en/scripting/reserved-words
@@ -71,7 +73,8 @@ user_sidebar_zh:
         创建和使用脚本: zh/scripting/component
         对象访问: zh/scripting/component/access
         Component回调: zh/scripting/component/callbacks
-        计时和帧率: zh/scripting/timer
+        创建和销毁对象: zh/scripting/create-destroy-entities
+        计时和帧率: zh/scripting/time
         类型定义: zh/scripting/class
         模块化: zh/scripting/module
         附录：保留字: zh/scripting/reserved-words
