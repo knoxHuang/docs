@@ -7,9 +7,20 @@ prev_link: /zh/scripting/component
 
 在 Inspector 面板，你可以对各个 Component 进行修改。当你修改了 Transform 的 Position，就等于设置了 Entity 的 Position。你也可以通过修改 SpriteRenderer 的 Color，来改变 Entity 的渲染颜色。但更多的，Component 的属性也能用脚本进行修改，两者区别在于，脚本能够在一段时间内连续地修改属性、过渡属性，实现渐变效果。脚本也能够响应玩家输入，能够修改、创建和销毁 Component 或 Entity，来实现各种各样的游戏逻辑。为此需要能够访问各个 Component 和 Entity。
 
+## 访问所在的Entity
+
+获取 Component 所在的 Entity 是很常见的操作，只要在 Component 方法里访问 this.entity 变量：
+
+```js
+Comp.prototype.onStart = function () {
+    var myName = this.entity.name;
+    Fire.log('starting', myName);
+};
+```
+
 ## 访问Component
 
-访问同一个 Entity 上的其它 Component 是最简单最常用的操作。如前面所说，一个 Component 只是类的一个实例对象，因此你要做的第一件事就是获得这个对象的引用。你要调用的接口是 Entity 的 **getComponent** ，它会返回当前 Entity 的指定类型的 Component 实例，通常你会定义一个变量来保存这个引用。然后你就能通过这个变量直接访问 Component 里的任何属性了。
+访问同一个 Entity 上的其它 Component 是最简单最常用的操作。如前面所说，一个 Component 只是类的一个实例对象，因此你要做的第一件事就是获得这个对象的引用。你要调用的接口是 Component 上的 **getComponent** ，它会返回 Component 所在的 Entity 的指定类型的 Component 实例，通常你会定义一个变量来保存这个引用。然后你就能通过这个变量直接访问 Component 里的任何属性了。
 
 ```js
 Comp.prototype.onStart = function () {
@@ -30,11 +41,11 @@ Comp.prototype.onStart = function () {
 };
 ```
 
-你还能调用 Component 的方法：
+你还能调用任意 Entity 上的 getComponent 的方法：
 
 ```js
 Comp.prototype.onStart = function () {
-    var transform = this.getComponent(Fire.Transform);
+    var transform = playerEntity.getComponent(Fire.Transform);
 
     // Rotate the transform around world position (10, 10)
     transform.rotateAround(Fire.v2(10, 10), 90);
@@ -45,7 +56,7 @@ Transform 用来控制一个 Entity 在游戏场景中的方位和缩放，是�
 
 ```js
 Comp.prototype.onStart = function () {
-    this.transform.rotateAround(Fire.v2(10, 10), 90);
+    playerEntity.transform.rotateAround(Fire.v2(10, 10), 90);
 };
 ```
 
