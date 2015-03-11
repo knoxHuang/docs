@@ -9,6 +9,7 @@ permalink: zh/start/from-unity
 
 - Entity // GameObject
 - Scene // Level
+- Assets // Project
 
 ## 设计上的区别
 
@@ -25,10 +26,14 @@ permalink: zh/start/from-unity
 - Fireball 判断物体是否已被destroy，不能直接写 if (obj) ...，而要写 if (obj.isValid) 或 **Fire.isValid(obj)**。obj.isValid 只适用于 obj 的引用不为空的情况。
 - Fireball 使用 **Entity.active** 来读取和设置 entity 自己的激活状态。（Unity使用activeSelf）
 - Fireball 的组件只有 Component <del>和 Behaviour</del>，没有 MonoBehaviour。
-- Fireball 添加组件用的是 entity.addComponent(Camera)。
-- Fireball 直接通过 **Entity.parent** 来获得和修改父物体，并且 children 和 sibling 等有关接口也直接通过 Entity 来访问。
+- Fireball 添加组件用的是 **entity.addComponent(MyComponent)** 或 entity.addComponent("MyComponent")。
+- Fireball 获取组件用的是 **entity.getComponent(MyComponent)** 或 entity.getComponent("MyComponent")。
+- Fireball 使用 **component.entity** 来从组件获得 Entity。(Unity 使用 **component.gameObject**)
+- Fireball 直接通过 **Entity.parent** 来获得和修改父物体，并且 **children**、sibling 和 find 等有关接口也直接通过 Entity 来访问。
 - Fireball 的 **Transform.position** 是相对父物体的本地坐标，不是世界坐标。同理，rotation 和 scale 也均是本地坐标。
 - Fireball 的 Transform 直接提供了 **transform.x**, transform.y 等属性，方便用户访问。
-- Fireball 的 Component 提供 onLoad 回调。（相当于 Unity 的 **Awake**。）
-- Fireball 的 Component 提供 onStart 回调。（相当于 Unity 的 **Start**。）
+- Fireball 的 Component 提供 **onLoad** 回调。（相当于 Unity 的 **Awake**。）
+- Fireball 的 Component 提供 **onStart** 回调。（相当于 Unity 的 **Start**。）
 - Fireball 的回调函数遵循 node.js 的风格，即回调的第一个参数是错误信息，第二个参数才是获取到的数据。
+- Fireball 的 Entity 可设置属性 dontDestroyOnLoad = true。（相当于 Unity 的 **DontDestroyOnLoad()**。）
+

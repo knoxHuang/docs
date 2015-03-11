@@ -23,12 +23,12 @@ Fireball 运行于 JavaScript 之上，Component 也不例外，JavaScript 入�
 
 var Comp = Fire.extend(Fire.Component);
 
-// use onStart for initialiization
+// use this for initialization
 Comp.prototype.onStart = function () {
     // ...
 };
 
-// update is called once per frame
+// called every frame
 Comp.prototype.update = function () {
     // ...
 };
@@ -60,7 +60,7 @@ module.exports = Comp;
 
 接着当你点击 Play 运行游戏，这个 Component 的脚本就会开始执行了。你可以在上面的 onStart 中加入代码来验证这点：
 ```js
-// use onStart for initialiization
+// use this for initialization
 Comp.prototype.onStart = function () {
     Fire.log('Hello Fireball!');
 };
@@ -78,12 +78,12 @@ var Comp = Fire.extend(Fire.Component);
 
 Comp.prop('playerName', '');
 
-// use onStart for initialiization
+// use this for initialization
 Comp.prototype.onStart = function () {
     Fire.log("My name is", this.playerName);
 };
 
-// update is called once per frame
+// called every frame
 Comp.prototype.update = function () {
     // ...
 };
