@@ -22,7 +22,8 @@
         <time id="page-footer-updated" datetime="<%= date_xml(page.updated) %>" itemprop="dateModified">Last updated: <%= date(page.updated) %></time>
         <%- page_nav() %>
       </footer>
-      <%- partial('_partial/comment') %>
+      <!--<%- partial('_partial/comment') %>-->
+        <div id="discourse-comments"></div>
     </div>
     <%- partial('_partial/sidebar') %>
   </div>
