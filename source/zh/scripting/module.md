@@ -2,7 +2,7 @@ title: 模块化
 permalink: /zh/scripting/module
 ---
 
-本教程所说的模块化指的是将代码拆分成多个脚本文件，并且让它们能相互操作的过程。本文将介绍如何在 Fireball 中编写和调用模块，至于内部的原理可参考[脚本编译](/zh/dev/core/script-building)。
+Fireball 允许你将代码拆分成多个脚本文件，并且让它们相互引用。要实现这点，你需要了解如何在 Fireball 中定义和使用模块，这个步骤简称为**模块化**。
 
 ```
 在本文中，“模块”和“脚本”这两个术语通常是等价的。所有“备注”都属于进阶内容，一开始不需要了解。
@@ -10,7 +10,7 @@ permalink: /zh/scripting/module
 
 ## 概述
 
-如果你还不确定**模块化**究竟能做什么，模块化相当于：  
+如果你还不确定模块化究竟能做什么，模块化相当于：
 - C/C++ 中的 include
 - C# 中的 using
 - Java 和 Python 中的 import
@@ -22,7 +22,7 @@ permalink: /zh/scripting/module
 - 使用其它文件公开的类型
 - 使用或继承其它文件公开的Component
 
-Fireball 中的 JavaScript 使用和 node.js 相同的方式来实现模块化：  
+Fireball 中的 JavaScript 使用和 node.js 几乎相同的方式来实现模块化：
 - 每一个单独的脚本文件就构成一个模块。
 - 每个模块都是一个单独的作用域（在该模块内使用`var`定义的局部变量，无法被其它模块读取）。
 - 以**同步**的 `require` 方法来引用其它模块。
