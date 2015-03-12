@@ -1,10 +1,8 @@
 {
-  "name": "hexo-site",
+  "name": "fireball-docs-site",
   "version": "2.8.3",
   "private": true,
   "dependencies": {
-    "gulp": "3.8.11",
-    "gulp-sequence": "",
     "hexo-generator-baidu-sitemap": "0.0.8",
     "hexo-generator-feed": "nantas/hexo-generator-feed",
     "hexo-generator-minify": "^0.1.0",
@@ -14,5 +12,9 @@
     "hexo-renderer-stylus": "0.1",
     "hexo-util": "0.1.4",
     "hexo-yuidoc": "nantas/hexo-yuidoc"
+  },
+  "devDependencies": {
+    "gulp": "3.8.11",
+    "gulp-sequence": ""
   }
 }
