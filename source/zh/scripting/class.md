@@ -7,14 +7,7 @@ permalink: zh/scripting/class
 所有“备注”都属于进阶内容，初学者不需要了解。
 ```
 
-Fireball 的数据类型(Class)使用 **Fire.define** 进行定义，以便简化继承、支持[序列化](zh/dev/core/serialization)、定义属性等。为了方便区分，这些类叫做**FireClass**。  
-
-本文索引：
-- [定义FireClass](#define)
-- [成员](#member)
-- [继承](#inherit)
-- [属性(Property)](#property)
-- [访问器](#accessor)
+Fireball 的数据类型(Class)使用 **Fire.define** 进行定义，以便简化继承、支持[序列化](zh/dev/core/serialization)、定义属性等。为了方便区分，这些类叫做 **FireClass**。
 
 ## <a name="define"></a>定义FireClass
 

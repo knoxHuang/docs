@@ -32,8 +32,6 @@ Comp.prototype.onStart = function () {
 Comp.prototype.update = function () {
     // ...
 };
-
-module.exports = Comp;
 ```
 
 脚本和 Fireball 关联的方式是通过继承 **Fire.Component** 实现的，Fire.Component 是所有 Component 的基类。当你定义了继承自 Fire.Component 的新类时，你就相当于创建了一个新的 Component 模板。每当你将脚本附加到 Entity 上，这份模板就会用于创建新的 Component 实例。
@@ -48,15 +46,13 @@ module.exports = Comp;
 
 `Comp.prototype.onStart = function () {...};` 定义了 **onStart** 回调方法，onStart 将由 Fireball 在 update 第一次执行之前调用，你可以在 onStart 中编写任意的初始化代码。
 
-`module.exports = Comp;`  用于导出这个 Component，这样其它脚本就能通过 require 的方式使用它。导出操作的详细内容可以查看[模块化](/zh/scripting/module)。
-
 请注意：
 - 我们将使用 Fire.extend 声明的类型统称为 **FireClass**，Component 和普通的 FireClass 的区别仅仅在于 Component 的类名会自动从脚本获取。你可以通过阅读[类型定义](/zh/scripting/class)来进一步了解 FireClass。
 - 对有经验的用户来说，Component 虽然可以定义构造函数，但我们建议将逻辑操作尽可能的放到 onStart 等 Fireball 的回调中进行，而构造函数仅仅用于声明成员变量。
 
 ## 添加到Entity
 
-就像上面提到的，脚本只是用于定义 Component 的模板，所以 Component 内的任何代码都不会被执行，除非你在某个 Entity 上创建了模板的实例对象。要完成这个操作，你可以将脚本从 Assets 中拖动到 Hierarchy 上的某个 Entity，或者拖动到 Entity 的 Inspector 上。同时在 Inspector 上还有一个下拉子菜单，里面的 `Scripts` 子菜单就包含了项目里的所有已经创建的 Component 脚本。你的 Component 添加到 Entity 上之后，看起来和 Fireball 内置的其它 Component 是一样的。 
+就像上面提到的，脚本只是用于定义 Component 的模板，所以 Component 内的任何代码都不会被执行，除非你在某个 Entity 上创建了模板的实例对象。要完成这个操作，你可以将脚本从 Assets 中拖动到 Entity 的 Inspector 上。或者点击 Inspector 中的添加 Component 按钮，在弹出的 `Scripts` 子菜单中选取你的脚本。你的 Component 添加到 Entity 上之后，看起来和 Fireball 内置的其它 Component 是一样的。
 
 接着当你点击 Play 运行游戏，这个 Component 的脚本就会开始执行了。你可以在上面的 onStart 中加入代码来验证这点：
 ```js
@@ -87,8 +83,6 @@ Comp.prototype.onStart = function () {
 Comp.prototype.update = function () {
     // ...
 };
-
-module.exports = Comp;
 ```
 
 这个脚本将会在 Inspector 中显示一个输入控件，控件标题是 "Player Name"。  
