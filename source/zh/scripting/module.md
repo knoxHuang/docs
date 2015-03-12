@@ -2,7 +2,7 @@ title: 模块化
 permalink: /zh/scripting/module
 ---
 
-本教程所说的模块化指的是将代码拆分成多个脚本文件，并且让它们能相互操作的过程。本文将介绍如何在 Fireball 中编写和调用模块，至于内部的原理可参考[脚本编译](zh/dev/core/script-building)。
+本教程所说的模块化指的是将代码拆分成多个脚本文件，并且让它们能相互操作的过程。本文将介绍如何在 Fireball 中编写和调用模块，至于内部的原理可参考[脚本编译](/zh/dev/core/script-building)。
 
 ```
 在本文中，“模块”和“脚本”这两个术语通常是等价的。所有“备注”都属于进阶内容，一开始不需要了解。
@@ -113,7 +113,8 @@ module.exports = config;
 
 这样做的原因是只要有其它脚本 require 它，获得的实际上就是这里的 module.exports 对象。
 
-> 那为什么定义 Component 时可以不用设置 exports ？因为 Component 是 Fireball 中的特殊类型，如果一个脚本定义了 Component 却没有声明 exports，Fireball 会自动将它设置为对应的 Component。
+> 那为什么定义 Component 时可以不用设置 exports ？
+  因为 Component 是 Fireball 中的特殊类型，如果一个脚本定义了 Component 却没有声明 exports，Fireball 会自动将它设置为对应的 Component。
 
 完整代码如下：
 
