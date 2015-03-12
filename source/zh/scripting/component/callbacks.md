@@ -27,7 +27,7 @@ Comp.prototype.lateUpdate = function () {
 
 ## 初始化回调
 
-在游戏运行中，很多数据是不需要每一帧重复计算的，那么我们就可以在 Component 第一次执行的时候把结果预先算好，并且保存到当前 Component 中。这类初始化的操作，我们通常在 onLoad 和 onStart 中进行。onLoad 回调会在这个 Component 所在的场景被载入的时候触发，onStart 则会在这个 Component 被第一次激活前，也就是第一次执行 update 之前触发。因此从执行顺序上看，所有的 Component 的 onStart 都会在其它 Component 的 onLoad 全都执行完后才被调用。
+在游戏运行中，很多数据是不需要每一帧重复计算的，那么我们就可以在 Component 第一次执行的时候把结果预先算好，并且保存到当前 Component 中。这类初始化的操作，我们通常在 **onLoad** 或 **onStart** 中进行。onLoad 回调会在这个 Component 所在的场景被载入的时候触发，onStart 则会在这个 Component 被第一次激活前，也就是第一次执行 update 之前触发。因此从执行顺序上看，所有的 Component 的 onStart 都会在其它 Component 的 onLoad 全都执行完后才被调用。
 
 ```js
 var Comp = Fire.extend(Fire.Component);

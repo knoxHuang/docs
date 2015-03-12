@@ -2,12 +2,13 @@ title: 模块化
 permalink: /zh/scripting/module
 ---
 
-本教程所说的模块化指的是将代码拆分成多个脚本文件，并且让它们能相互操作的过程。本文将介绍如何在 Fireball-x 中编写和调用模块，至于内部的原理可参考[脚本编译](zh/dev/core/script-building)。
+本教程所说的模块化指的是将代码拆分成多个脚本文件，并且让它们能相互操作的过程。本文将介绍如何在 Fireball 中编写和调用模块，至于内部的原理可参考[脚本编译](zh/dev/core/script-building)。
+
 ```
-所有“备注”都属于进阶内容，一开始不需要了解。
+在本文中，“模块”和“脚本”这两个术语通常是等价的。所有“备注”都属于进阶内容，一开始不需要了解。
 ```
 
-## <a name="intro"></a>概述
+## 概述
 
 如果你还不确定**模块化**究竟能做什么，模块化相当于：  
 - C/C++ 中的 include
@@ -15,68 +16,135 @@ permalink: /zh/scripting/module
 - Java 和 Python 中的 import
 - HTML 中的 link
 
-模块化使你可以在 Fireball-x 中引用其它脚本文件：  
+模块化使你可以在 Fireball 中引用其它脚本文件：  
 - 访问其它文件公开的参数
 - 调用其它文件公开的方法
 - 使用其它文件公开的类型
 - 使用或继承其它文件公开的Component
 
-Fireball-x 中的 JavaScript 使用和 node.js 相同的方式来实现模块化：  
-- 每一个单独的脚本文件就是一个模块。
+Fireball 中的 JavaScript 使用和 node.js 相同的方式来实现模块化：  
+- 每一个单独的脚本文件就构成一个模块。
 - 每个模块都是一个单独的作用域（在该模块内使用`var`定义的局部变量，无法被其它模块读取）。
-- 以同步的 `require` 方法来引用其它模块。
-- 使用 `module.exports` 对象输出变量。
+- 以**同步**的 `require` 方法来引用其它模块。
+- 设置 `module.exports` 为导出的变量。
 
-不论模块如何定义，所有用户代码最终会由 Fireball-x 编译为原生的 JavaScript，可直接在手机浏览器中运行。
+不论模块如何定义，所有用户代码最终会由 Fireball 编译为原生的 JavaScript，可直接在手机浏览器中运行。
+
+## 引用模块
+
+### require
+
+除了 Fireball 提供的接口，所有用户定义的模块都需要使用 **require** 来访问。假设我们要访问的是其它脚本里定义的 Component，叫做 Rotate：
+
+```js
+var Rotate = require('rotate');
+```
+
+require 返回的就是被模块导出的对象，通常我们都会将结果存到一个变量。传进 require 的字符串就是模块的**文件名**，这个名字不包含路径也不包含后缀，而且大小写敏感。
+
+### require完整范例
+
+接着我们就可以使用 Rotate 派生一个子类，新建一个脚本 `sinRotate.js`：
+
+```js
+var Rotate = require('rotate');
+
+var SinRotate = Fire.extend(Rotate);
+
+SinRotate.prototype.update = function () {
+    this.transform.rotation += this.speed * Math.sin(Fire.Time.time);
+};
+```
+
+这里我们定义了一个新的 Component 叫 SinRotate，它继承自 Rotate，并对 update 方法进行了重写。当然这个 Component 也可以被其它脚本接着访问，只要用 require('sinRotate')。
+
+备注：
+  - require 可以在脚本的任何地方任意时刻进行调用。
+  - 每个脚本只有第一次在项目里被 require 时，它内部定义的代码才会被执行，所以之后无论又被 require 几次，始终返回的都是同一份实例。
+  - 调试时，可以随时在 Developer Tools 中 require 项目里的任意模块。
 
 ## <a name="define"></a>定义模块
 
+### 定义Component
+
 其实每一个单独的脚本文件就是一个模块，例如新建一个脚本 `rotate.js`，在里面定义一个 Component：
+
 ```js
-var Rotate = Fire.defineComponent();
+var Rotate = Fire.extend(Fire.Component);
 Rotate.prop('speed', 1);
 
 Rotate.prototype.update = function () {
     this.transform.rotation += this.speed;
 };
 ```
-我们定义了 Rotate 这个 Component，但只有从菜单里才能添加，从别的脚本文件是获取不到 Rotate 的。为了可以在外部访问到 Rotate，我们还需要在 `rotate.js` 最后加上一行代码：
+
+当你在脚本中定义了一个 Component，Fireball 会自动将它设置为导出模块，其它脚本直接 require 这个模块就能使用这个 Component。
+
+### 定义普通JavaScript模块
+
+模块里不单单能定义 Component，实际上你可以定义任意 JavaScript 对象。假设有个脚本 `config.js`
+
 ```js
-module.exports = Rotate;
-```
-当我们把 **module.exports** 赋值为 Rotate 之后，只要有人引用这个模块，就将获得 Rotate 指向的这个 Component。
+var config = {
+    moveSpeed: 10,
+    version: '0.15',
+    showTutorial: true,
 
-## <a name="import"></a>引用模块
-
-除了 Fireball-x 提供的接口，所有用户定义的模块都需要使用 **require** 来访问。
-```js
-var Rotate = require('rotate');
-```
-调用 require 时传入的字符串就是模块的**文件名**，这个名字不包含路径也不包含后缀，而且大小写敏感。require 返回的就是模块内定义的 module.exports 对象。
-
-我们可以使用 Rotate 派生一个子类，新建一个脚本 `sinRotate.js`：
-```js
-var Rotate = require('rotate');
-
-var SinRotate = Fire.defineComponent(Rotate);
-SinRotate.prototype.update = function () {
-    this.transform.rotation += this.speed * Math.sin(Fire.Time.time);
+    load: function () {
+        // ...
+    }
 };
-
-module.exports = SinRotate;
+config.load();
 ```
-这里我们定义了一个新的 Component 叫 SinRotate，它继承自 Rotate，并对 update 方法进行了重写。当然，最后我们还是可以通过 `module.exports` 将 SinRotate 再次导出给其它模块使用。
 
-备注：
-  - require 可以在脚本的任何地方任意时刻进行调用。
-  - 单个模块不论被 require 几次，始终都只有一份。也就是说多个脚本不论调用多少次 require，同个模块名总是返回相同模块。
-  - 可以随时在 Developer Tools 中 require 任意模块。
+现在如果我们要在其它脚本中访问 config 对象：
 
-## <a name="example"></a>示例
+```js
+// player.js
+var config = require('config');
+Fire.log('speed is', config.moveSpeed);
+```
 
-### <a name="exports"></a>导出变量
+结果会有报错：`TypeError: Cannot read property 'moveSpeed' of null`，这是因为 config 没有设置为导出对象。我们还需要在 `config.js` 的最后把 **module.exports** 设置成 config：
 
-- module.exports 可以直接用来增加新的字段，不一定要提前赋值。
+```js
+module.exports = config;
+```
+
+这样做的原因是只要有其它脚本 require 它，获得的实际上就是这里的 module.exports 对象。
+
+> 那为什么定义 Component 时可以不用设置 exports ？因为 Component 是 Fireball 中的特殊类型，如果一个脚本定义了 Component 却没有声明 exports，Fireball 会自动将它设置为对应的 Component。
+
+完整代码如下：
+
+```js
+// config.js
+var config = {
+    moveSpeed: 10,
+    version: '0.15',
+    showTutorial: true,
+
+    load: function () {
+        // ...
+    }
+};
+config.load();
+
+module.exports = config;
+```
+```js
+// player.js
+var config = require('config');
+Fire.log('speed is', config.moveSpeed);
+```
+
+这样便能正确输出：`speed is 10`。
+
+## 更多示例
+
+### 导出变量
+
+- module.exports 默认就是 {}，可以直接往里面增加新的字段。
 
     ```js
     // foobar.js:
@@ -91,7 +159,7 @@ module.exports = SinRotate;
     foobar.foo();    // "foo"
     foobar.bar();    // "bar"
     ```
-- module.exports 能直接导出任意 JavaScript 对象。
+- module.exports 导出的对象的值可以是任意 JavaScript 类型。
 
     ```js
     // foobar.js:
@@ -108,9 +176,10 @@ module.exports = SinRotate;
     Fire.log(foobar.bar);    // "bar"
     ```
 
-### <a name="private"></a>封装私有变量
+### 封装私有变量
 
-由于每个模块都是一个单独的作用域，在模块内使用 **var** 定义的局部变量，将无法被模块外部访问。我们就可以这样来封装模块内的私有变量。
+每个脚本都是一个单独的作用域，在脚本内使用 **var** 定义的局部变量，将无法被模块外部访问。我们可以这样来封装模块内的私有变量：
+
 ```js
 // foobar.js:
 var dirty = false;
@@ -118,13 +187,22 @@ module.exports = {
     setDirty: function () {
         dirty = true;
     },
+    isDirty: function () {
+        return dirty;
+    },
 };
-// test.js:
+
+// test1.js:
 var foo = require("foobar");
 Fire.log(typeof foo.dirty);        // "undefined"
+foo.setDirty();
+
+// test2.js:
+var foo = require("foobar");
+Fire.log(foo.isDirty());           // true
 ```
 
-**警告：定义变量前一定要在前面加上 var**，否则将会变成全局变量！在 Fireball-x 中禁止使用全局变量。
+**警告：定义变量前一定要在前面加上 var**，否则将会变成全局变量！在 Fireball 中禁止使用全局变量。
 
 ```js
 // foobar.js:
@@ -135,3 +213,7 @@ module.exports = {
     },
 };
 ```
+
+## 循环引用
+
+(TODO)
