@@ -5,9 +5,9 @@
 # Site
 title: Fireball Docs
 subtitle:
-description:
+description: Html5 Game Editor for the Future.
 author: Firebox Team
-email: team@firebox.im
+email: team@fireball-x.com
 language:
 sitemap:
     path: sitemap.xml
@@ -32,7 +32,7 @@ yuidoc_dir: api
 
 # Writing
 new_post_name: :title.md # File name of new posts
-default_layout: page
+default_layout: post
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
@@ -87,12 +87,10 @@ disqus_shortname:
 theme: hexo3
 exclude_generator: archive, category, post, home
 
-srss:
-    type: rss2
-    path: rss.xml
+feed:
+    type: atom
+    path: atom.xml
     limit: 200
-    style: rss_style.xml
-    dateFormat: yyyy MM dd hh:mm:ss
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
