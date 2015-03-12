@@ -18,21 +18,21 @@ Simply click the link "Edit This Page" on the bottom of each article to jump to 
 
 To create a file. Open up [project page in Prose.io](http://prose.io/#fireball-x/docs) and click `New File` button in the right folder.
 
-![Prose add new file](/source/media/prose_new_file.png)
+<img src="/source/media/prose_new_file.png" alt="Prose add new file" width="300">
 
 Edit the path field of the file so it presents the destination of the file on this repo exactly:
 
-![prose_set_path_and_front_matter](/source/media/prose_set_path_and_front_matter.png)
+<img src="/source/media/prose_set_path_and_front_matter.png" alt="prose_set_path_and_front_matter" width="300">
 
 To add file link to navigation sidebar, simple click the "Edit Navigation" link at the bottom of the sidebar. This will open up `themes/hexo/_config.yml`. See section **Menu And Sidebar** below for more details.
 
-![prose_edit_navigation](/source/media/prose_edit_navigation.png)
+<img src="/source/media/prose_edit_navigation.png" alt="prose_edit_navigation" width="150">
 
 ### Add Image File
 
 Click the "Insert Image" button in Prose.io editor. You will see a dialog like this:
 
-![Insert Image in Prose.io](/source/media/insert_image_in_prose.png)
+<img src="/source/media/insert_image_in_prose.png" alt="Insert Image in Prose.io" width="300">
 
 You can browse image files from your local folder. Once you select an image to upload, make sure you change the "Image URL" text field so it saves image to `/source/media` folder. You can also specify subfolder if you have a lot image to upload.
 
