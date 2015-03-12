@@ -5,9 +5,9 @@
 <!--Discourse-->
 <script type="text/javascript">
     var discourseUrl = "http://forum-test.fireball-x.com/";
-    var re = /\/$|\/index\.html$/ig;
-    var discourseEmbedUrl = window.location.href.replace(re, '');
-    console.log(discourseEmbedUrl);
+//    var re = /\/$|\/index\.html$/ig;
+    var discourseEmbedUrl =  "<%- url %>";
+//    console.log(discourseEmbedUrl);
 
     if (/\/zh\/|\/en\//.test(discourseEmbedUrl)) {
         (function() {
