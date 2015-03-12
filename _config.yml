@@ -87,6 +87,13 @@ disqus_shortname:
 theme: hexo3
 exclude_generator: archive, category, post, home
 
+srss:
+    type: rss2
+    path: rss.xml
+    limit: 200
+    style: rss_style.xml
+    dateFormat: yyyy MM dd hh:mm:ss
+
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
