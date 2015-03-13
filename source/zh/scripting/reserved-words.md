@@ -1,5 +1,5 @@
 title: 附录：保留字
-permalink: /zh/scripting/reserved-words
+permalink: zh/scripting/reserved-words
 ---
 
 除了类已经定义的变量外，以下是其它 Fireball-x 中已经使用的变量名，请避免冲突。这些变量有一些是保留用途，只有特殊情况才会声明。

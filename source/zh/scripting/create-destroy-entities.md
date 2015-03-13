@@ -1,5 +1,5 @@
 title: 创建和销毁对象
-permalink: /zh/scripting/create-destroy-entities
+permalink: zh/scripting/create-destroy-entities
 ---
 
 如果你需要创建一个动态的游戏场景，那么通过脚本创建和销毁 Entity 是必不可少的。

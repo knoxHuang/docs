@@ -1,6 +1,6 @@
 title: 对象访问
-permalink: /zh/scripting/component/access
-prev_link: /zh/scripting/component
+permalink: zh/scripting/component/access
+prev_link: zh/scripting/component
 ---
 
 ## 用脚本控制

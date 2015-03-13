@@ -1,6 +1,6 @@
 title: 创建和使用脚本
-permalink: /zh/scripting/component
-next_link: /zh/scripting/component/access
+permalink: zh/scripting/component
+next_link: zh/scripting/component/access
 ---
 Fireball 的很多功能都是以 Component(组件) 的形式提供的，Component 就是 Fireball 调用脚本的入口。Component 可以用来实现各类游戏逻辑(gameplay)，像是控制 Entity(实体)、发送事件、修改属性、响应玩家输入等。
 

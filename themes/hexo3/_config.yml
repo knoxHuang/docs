@@ -6,7 +6,7 @@ menu:
 menu_zh:
     首页: http://fireball-x.com
     用户文档: /zh
-    API: /api/modules/Fire.html
+    API: /api/zh/modules/Fire.html
 
 doc_sidebar:
   Getting Started:
@@ -43,13 +43,13 @@ doc_sidebar_zh:
 
 user_sidebar:
     Getting Started:
-        Get Fireball: en/start/install
-        Create a Project: en/start/new-project
+        Get Fireball: #
+        Create a Project: #
         From Unity: en/start/from-unity
         Help: en/help
     User Manual:
-        Know the Editor: en/manual/editor
-        Asset Pipeline: en/manual/assets
+        Know the Editor: #
+        Asset Pipeline: #
     Scripting:
         Creating and Using Scripts: #
         Accessing Objects: #
@@ -62,13 +62,13 @@ user_sidebar:
 
 user_sidebar_zh:
     新手上路:
-        获取Fireball: zh/start/install
-        新建项目: zh/start/new-project
+        获取Fireball: #
+        新建项目: #
         Unity开发者上手: zh/start/from-unity
         帮助: zh/help
     用户手册:
-        认识Editor: zh/manual/editor
-        资源工作流程: zh/manual/assets
+        认识Editor: #
+        资源工作流程: #
     脚本编写:
         创建和使用脚本: zh/scripting/component
         对象访问: zh/scripting/component/access

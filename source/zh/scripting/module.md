@@ -1,5 +1,5 @@
 title: 模块化
-permalink: /zh/scripting/module
+permalink: zh/scripting/module
 ---
 
 Fireball 允许你将代码拆分成多个脚本文件，并且让它们相互引用。要实现这点，你需要了解如何在 Fireball 中定义和使用模块，这个步骤简称为**模块化**。

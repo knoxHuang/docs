@@ -1,5 +1,5 @@
 title: 计时和帧率
-permalink: /zh/scripting/time
+permalink: zh/scripting/time
 ---
 
 假设你需要以恒定速度持续移动角色，或许你会设定一个每一帧固定移动的值(distancePerFrame)：

@@ -1,5 +1,5 @@
 title: Component回调
-permalink: /zh/scripting/component/callbacks
+permalink: zh/scripting/component/callbacks
 ---
 
 Fireball 会周期性地调用 Component 的一些特定方法，如果 Component 实现了这些方法，就相当于跟 Fireball 注册了对应的回调。这些回调仅仅在 Fireball 的特定时间段，或者特定游戏事件发生时才会调用。除了前面介绍的 onStart(在对象的第一次 update 之前调用) 和 update(每一帧刷新前调用)，Fireball 还有很多其它回调，本文将介绍其中常用的部分，完整回调列表请查看 Component 的 API 文档。
