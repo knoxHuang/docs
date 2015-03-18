@@ -21,6 +21,6 @@ permalink: zh/plugin/config-package-json
        * `min-height` Integer - Panel 的最小高度
        * `max-width` Integer - Panel 的最小宽度
        * `max-height` Integer - Panel 的最小高度
-       * `messages` Object - Panel 消息和 DOM 消息的绑定列表, `{ key: "ipc 消息", value: "DOM 消息"}
+       * `messages` Object - Panel 消息和 DOM 消息的绑定列表, `{ key: "ipc 消息", value: "DOM 消息"}`
 
 
