@@ -78,6 +78,8 @@ user_sidebar_zh:
         类型定义: zh/scripting/class
         模块化: zh/scripting/module
         附录：保留字: zh/scripting/reserved-words
+    插件开发:
+        配置Package.json: zh/plugin/config-package-json
 
 google_analytics:
 fb_admins:
