@@ -9,8 +9,8 @@ permalink: zh/plugin/config-package-json
    * `menus` Array - 菜单列表
      * `path` String - 菜单路径
      * `message` String - 触发消息
-   * `windows` Object - 窗体信息列表
-     * `window` Object - key 表示 Panel ID
+   * `panels` Object - Panel 信息列表
+     * `panel` Object - key 表示 Panel 别名
        * `type` String - 窗体类型, 可选项 `float`, `dockable`, `fixed-size`
        * `page` String - 入口页面, 如果设置了 ppage, 那么 view 将被忽略
        * `view` String - Panel 内容元素
@@ -22,5 +22,3 @@ permalink: zh/plugin/config-package-json
        * `max-width` Integer - Panel 的最小宽度
        * `max-height` Integer - Panel 的最小高度
        * `messages` Object - Panel 消息和 DOM 消息的绑定列表, `{ key: "ipc 消息", value: "DOM 消息"}`
-
-
