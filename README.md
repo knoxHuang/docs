@@ -59,7 +59,7 @@ If build or deployment failed. You will see a red badge on top of this readme fi
 
 ### Install Hexo
 
-`npm install -g hexo`
+`npm install -g hexo@2.8.3`
 
 **For Mac users**
 
