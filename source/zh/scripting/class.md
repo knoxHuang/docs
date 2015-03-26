@@ -6,13 +6,13 @@ permalink: zh/scripting/class
 所有“备注”都属于进阶内容，初学者不需要了解。
 ```
 
-**Fire.Class** 是一个很常用的 API，它用来声明 Fireball 中的类，为了方便区分，我们把使用 Fire.Class 声明的类叫做 **FireClass**。想比其它 JavaScript 的类型系统，FireClass 的特别之处在于扩展性强，能够定义丰富的元数据。
+`Fire.Class` 是一个很常用的 API，用于声明 Fireball 中的类，为了方便区分，我们把使用 Fire.Class 声明的类叫做 **FireClass**。想比其它 JavaScript 的类型系统，FireClass 的特别之处在于扩展性强，能够定义丰富的元数据。
 
 ## 概述
 
 - 创建Fire.Class
 
-调用 **Fire.Class** 方法，传入一个包含类型定义的字面量对象，就能创建出所需的类。
+调用 **Fire.Class** 方法，传入一个原型对象，在原型对象中以键值对的形式设定所需的类型参数，就能创建出所需要的类。
 
 ```js
     var Sprite = Fire.Class({
@@ -20,7 +20,8 @@ permalink: zh/scripting/class
     });
 ```
 
-这里将创建好的类赋值给了 Sprite 变量。另外可以提供 `name` 参数来作为类名，类名将会用于[序列化](zh/dev/core/serialization#register)。
+这段代码将创建好的类赋值给了 Sprite 变量，另外还提供了 `name` 参数来作为类名，类名用于[序列化](zh/dev/core/serialization#register)，一般可以省略。
+为了论述方便，本文将这里传入的这个 `{ name: 'Sprite' }` 对象统称为**原型对象**，本文重点介绍如何定义原型对象。
 
 - 创建对象
 
@@ -32,7 +33,7 @@ permalink: zh/scripting/class
 
 - 构造函数
 
-FireClass 还允许你提供 `constructor` 参数来定制你的**构造函数**，构造函数将在每个实例的创建过程中调用，FireClass 的构造函数**不允许定义构造参数**。
+如果在原型对象中声明了 `constructor`，指定的构造函数就将在每个实例的创建过程中调用，FireClass 的构造函数**不允许**定义**构造参数**。
 
 ```js
     var Sprite = Fire.Class({
@@ -73,29 +74,31 @@ FireClass 还允许你提供 `constructor` 参数来定制你的**构造函数**
     obj.id = 1;
 ```
 
-- **实例方法**直接像构造函数那样设置：
+- **实例方法**请在原型对象中声明：
 
 ```js
     var Sprite = Fire.Class({
         constructor: function () {
             // ...
         },
+        // 声明一个名叫"load"的实例方法
         load: function () {
             // load this.url
         };
     });
     var obj = new Sprite();
-    // 调用
+    // 调用实例方法
     obj.load();
 ```
 
-- **类变量**或**类方法**请直接添加到 FireClass：
+- 静态的**类变量**或**类方法**请直接添加到定义好的 Class：
 
 ```js
-    var Sprite = Fire.Class({...});
-    // 类变量
+    var Sprite = Fire.Class({ ... });
+
+    // 声明类变量
     Sprite.count = 0;
-    // 类方法
+    // 声明类方法
     Sprite.getBounds = function (spriteList) {
         // ...
     };
@@ -110,7 +113,7 @@ FireClass 还允许你提供 `constructor` 参数来定制你的**构造函数**
             this.url = "";
             this.id = 0;
         },
-        // 实例方法
+        // 声明一个名叫"load"的实例方法
         load: function () {
             // load this.url
         };
@@ -134,17 +137,7 @@ FireClass 还允许你提供 `constructor` 参数来定制你的**构造函数**
 ```
 
 - 备注：
-  - 所有实例和类成员都将被子类继承。
-  - 如果不希望类成员被子类继承，可以用 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 声明：
-  ```js
-    Object.defineProperty(Sprite, 'getBounds', {
-        value: function (spriteList) {
-            // do get bounds ...
-        },
-        enumerable: false
-    });
-  ```
-  - 如果是**私有**成员，建议在成员命名前面加上下划线"_"。
+  - 如果是**私有**成员，建议在成员命名前面加上下划线"_"以示区分。
   ```js
     var Sprite = Fire.Class({
         name: 'Sprite',
@@ -157,7 +150,7 @@ FireClass 还允许你提供 `constructor` 参数来定制你的**构造函数**
             // ...
         };
     });
-    // 私有静态变量
+    // 私有类变量
     Sprite._list = [];
   ```
   - 如果是**私有**静态成员，也可以用闭包(Closure)实现。
@@ -176,12 +169,12 @@ FireClass 还允许你提供 `constructor` 参数来定制你的**构造函数**
         };
     });
   ```
-  - 这里所说的`实例成员`(instance member)包含了`实例变量`(member variable)和`实例方法`(instance method)。
-  - 这里所说的`类成员`(static member)包含了`类变量`(static variable)和`类方法`(static method)。
+  - 这里所说的“实例成员”(instance member)包含了“实例变量”(member variable)和“实例方法”(instance method)。
+  - 这里所说的“类成员”(static member)包含了“类变量”(static variable)和“类方法”(static method)。
 
 ## 继承
 
-- 继承时请将 **extends** 参数设置为父类：
+- 继承时请在原型对象里设置 **extends** 为父类：
 
 ```js
     // define base class
@@ -279,64 +272,182 @@ FireClass 还允许你提供 `constructor` 参数来定制你的**构造函数**
 
 - 备注：
   - 可以通过子类的静态变量 `$super` 来访问父类。
+  - 所有实例成员和类成员都将被子类继承。
+  - 如果不希望类成员被子类继承，可以用 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 声明：
+    ```js
+      Object.defineProperty(Sprite, 'getBounds', {
+          value: function (spriteList) {
+              // do get bounds ...
+          },
+          enumerable: false
+      });
+    ```
   - 如果你想实现原生的 JavaScript 继承，也就是说你的父类和子类都不是 FireClass，那你可以通过 Fire.JS.extend 方法来继承。
 
-## 属性(Property)
+## 属性
 
-FireClass 提供了 **prop** 方法用于声明属性(property)。属性是特殊的成员变量，能够显示在 Inspector 中，也能被[序列化](serialization.md#custom)。
-- prop 需要两个参数，一是属性变量名，二是属性的默认值，默认值可以是任意类型。  
-```js
-    var Sprite = Fire.define('Sprite');
-    Sprite.prop('width', 128);
-```
-以上代码定义了 width 属性，width 将显示在 Inspector，保存时也将被序列化。
+属性(Property)是特殊的实例变量，能够显示在 Inspector 中，也能被[序列化](zh/dev/core/serialization#custom)。属性不在构造函数里定义，而是声明在原型对象的 `properties` 字典里。
 
-- FireClass 在实例化前将自动添加属性到成员变量，可以在包括构造函数在内的代码里直接访问。
+- 下面在 Player 类定义一个 playerName 属性：
+
 ```js
-    var Sprite = Fire.define('Sprite', function () {
-        console.log(this.width);    // 128
+    var Player = Fire.Class({
+        extends: Fire.Component,
+
+        properties {
+            playerName: {
+                default: 'Jare'
+            }
+        }
     });
-    Sprite.prop('width', 128);
-    Sprite.prototype.getWidth = function () {
-        return this.width;
-    };
 ```
 
-- 每个属性可附带任意多个**参数**(Attribute)，用于指定在 Inspector 中的显示方式、序列化方式等。详细的属性列表，请查阅有关文档(TODO)。
+这个示例也可在教程[创建和使用脚本](zh/scripting/component#show-in-inspector)中看到，这样定义后，playerName 就能显示在 Inspector 面板里，并且在场景里保留用户输入的值。
+
+这里的 `default` 用来声明属性的默认值，同时也定义了值类型是字符串。default 可以接受任意类型的参数，但默认值只有在第一次创建对象的时候才会用到，如果是反序列化出来的对象，属性值将会还原为上次序列化前设置的值。
+
+- 属性本身也是实例变量，可以直接访问
+
 ```js
-    Sprite.prop('width', 128, Fire.Integer, Fire.Tooltip('The width of sprite'));
+    var Sprite = Fire.Class({
+        constructor: function () {
+            console.log(this.width);    // 读取默认 width
+        },
+
+        properties: {
+            width: {
+                default: 128
+            },
+        },
+
+        getWidth: function () {
+            return this.width;
+        }
+    });
 ```
-以上代码规定了 width 在 Inspector 里只能输入整数，并且当鼠标移到参数上时，显示对应说明。
 
-- 属性默认情况下都会被序列化，**也会**在 Inspector 中显示。
-  - 如果只想序列化，但不想显示在 Inspector，可以添加 `Fire.HideInInspector` 参数。  
-    `Sprite.prop('id', 0, Fire.HideInInspector);`
-  - 如果不想序列化，只想显示在 Inspector，可以添加 `Fire.NonSerialized` 参数。  
-    `Sprite.prop('url', 0, Fire.NonSerialized);`
-  - 如果不想序列化，也不想显示在 Inspector，可以同时传入 Fire.NonSerialized 和 Fire.HideInInspector。也可以干脆不用属性，直接在构造函数里定义的变量即可。
+在构造函数被调用前，属性已经被定义好了，可以在构造函数内访问或者重新给属性赋值。
 
-- 属性都能被继承，但子类和父类的属性不能重名。
+- 每个属性可附带任意多个**参数**(Attribute)
+
+参数用于指定在 Inspector 中的显示方式、序列化方式等。
+
+```js
+    properties {
+        score: {
+            default: 0,
+            type: 'Integer',
+            tooltip: 'The score of player'
+        }
+    }
+```
+
+以上代码规定了 score 在 Inspector 里只能输入整数，并且当鼠标移到参数上时，显示对应说明。
+
+下面是常用属性列表，详细用法请参阅(TODO)。
+
+  - type: 限定属性的数据类型
+  - hideInInspector: 不在 Inspector 面板中显示该属性
+  - serializable: 不序列化该属性
+  - displayName: 在 Inspector 面板中显示为另一个名字
+  - tooltip: 在 Inspector 面板中添加属性的 Tooltip
+  - multiline: 在 Inspector 面板中使用多行文本框
+
+- hideInInspector 和 serializable
+
+  - 属性默认情况下都会被序列化，也会在 Inspector 中显示。
+
+  - 如果只想序列化，但不想显示在 Inspector，可以设置 `hideInInspector: false`。
+```js
+    properties {
+        id: {
+            default: 0,
+            hideInInspector: false
+        }
+    }
+```
+  - 如果不想序列化，只想显示在 Inspector，可以添加 `serializable: false`。
+```js
+        url: {
+            default: '',
+            serializable: false
+        }
+```
+  - 如果不想序列化，也不想显示在 Inspector，可以同时设置 serializable 和 hideInInspector 为 false。也可以干脆不用属性，改成在构造函数里定义实例变量。
+
+- type参数
+
+当`default`不能提供足够详细的类型信息时，如果想要在 Inspector 里编辑属性，则需要用`type`显式声明具体的类型：
+
+  - 当默认值为 null 时，将 type 设置为指定类型，这样才能在 Inspector 中给属性正确赋值。
+    ```js
+        enemy: {
+            default: null,
+            type: Fire.Entity
+        }
+    ```
+  - 当默认值为数值(Number)类型时，将 type 设置为字符串`"Integer"`，用来表示这是一个整数，这样属性在 Inspector 里就不能输入小数点。
+    ```js
+        score: {
+            default: 0,
+            type: 'Integer'
+        }
+    ```
+  - 将 type 设置为枚举类型，就能在 Inspector 中显示枚举选项框。
+    ```js
+        wrap: {
+            default: Fire.Texture.WrapMode.Clamp,
+            type: Fire.Texture.WrapMode
+        }
+    ```
+  - 当默认值为数组时，设置 type 为以上几种类型，或者设置成字符串`"Float"`, '"Boolean"', '"String"'的其中一个，才能在 Inspector 中正确编辑数组元素。
+    ```js
+        nameList: {
+            default: [],
+            type: "String"      // 指定数组的每个元素都是字符串类型
+        },
+        enemyList: {
+            default: [],
+            type: Fire.Entity   // 指定数组的每个元素都是 Entity 类型
+        }
+    ```
+
+- 属性快捷定义
+
+如果属性不带任何参数，则可以直接写成：
+
+```js
+    // 完整形式
+    properties: {                   // 快捷形式
+        width: {            =>      properties: {
+            default: 128    =>          width: 128
+        }                   =>      }
+    }
+```
+
+但**默认值不能是对象类型**，如果默认值是对象，还是只能用完整的写法：
+
+```js
+    properties: {
+        position: {
+            default: new Fire.Vec2()
+        }
+    }
+```
 
 - 备注：
+  - 属性都能被子类继承，但子类和父类的属性不能重名。
   - 如果属性的默认值需要调用其它方法才能获得，可以在构造函数里重新赋值。
   ```js
-    var Sprite = Fire.define('Sprite', function () {
-        this.img = LoadImage();
+    var Sprite = Fire.Class({
+        constructor: function () {
+            this.img = LoadImage();
+        },
+        properties: {
+            img: null
+        }
     });
-    Sprite.prop('img', null);
   ```
-  - FireClass 的所有接口都支持链式调用：
-  ```js
-    var Sprite = Fire.extend('Sprite', Node, function () {
-                          this.id = 0;
-                      })
-                     .prop('width', 128, Fire.Integer, Fire.Tooltip('The width of sprite'))
-                     .prop('img', null)
-                     .get('color', function () {
-                          return this._color;
-                      });
-  ```
-  - 实际上如果要显示在 Inspector，需要定义的是 Component，并且添加到 Entity 上。
 
 ## <a name="accessor"></a>访问器
 
