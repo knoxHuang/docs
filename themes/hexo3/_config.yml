@@ -57,6 +57,7 @@ user_sidebar:
         Creating and Destroying Objects: #
         Time and Framerate: #
         Class: #
+        Attributes: #
         Module: #
         Reserved Words: en/scripting/reserved-words
 
@@ -76,6 +77,7 @@ user_sidebar_zh:
         创建和销毁对象: zh/scripting/create-destroy-entities
         计时和帧率: zh/scripting/time
         类型定义: zh/scripting/class
+        属性参数: zh/scripting/attributes
         模块化: zh/scripting/module
         附录：保留字: zh/scripting/reserved-words
     插件开发:

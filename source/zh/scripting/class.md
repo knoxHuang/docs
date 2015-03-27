@@ -344,7 +344,7 @@ permalink: zh/scripting/class
     
     以上代码规定了 score 在 Inspector 里只能输入整数，并且当鼠标移到参数上时，显示对应说明。
     
-    下面是常用属性列表，详细用法请参阅(TODO)。  
+    下面是常用参数，详细用法请参阅[属性参数](zh/scripting/attributes)。
 
     - type: 限定属性的数据类型
     - hideInInspector: 不在 Inspector 面板中显示该属性
@@ -375,7 +375,7 @@ permalink: zh/scripting/class
     ```
     - 如果不想序列化，也不想显示在 Inspector，可以同时设置 serializable 和 hideInInspector 为 false。也可以干脆不用属性，改成在构造函数里定义实例变量。
 
-- type参数
+- <a name="type"></a>type参数
 
     当`default`不能提供足够详细的类型信息时，如果想要在 Inspector 里编辑属性，则需要用`type`显式声明具体的类型：
 
