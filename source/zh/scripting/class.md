@@ -355,52 +355,51 @@ permalink: zh/scripting/class
 
 - hideInInspector 和 serializable
 
-  - 属性默认情况下都会被序列化，也会在 Inspector 中显示。
+    - 属性默认情况下都会被序列化，也会在 Inspector 中显示。
 
-  - 如果只想序列化，但不想显示在 Inspector，可以设置 `hideInInspector: false`。
-```js
-    properties {
-        id: {
-            default: 0,
-            hideInInspector: false
+    - 如果只想序列化，但不想显示在 Inspector，可以设置 `hideInInspector: false`。
+    ```js
+        properties {
+            id: {
+                default: 0,
+                hideInInspector: false
+            }
         }
-    }
-```
-  - 如果不想序列化，只想显示在 Inspector，可以添加 `serializable: false`。
-```js
+    ```
+    - 如果不想序列化，只想显示在 Inspector，可以添加 `serializable: false`。
+    ```js
         url: {
             default: '',
             serializable: false
         }
-```
-  - 如果不想序列化，也不想显示在 Inspector，可以同时设置 serializable 和 hideInInspector 为 false。也可以干脆不用属性，改成在构造函数里定义实例变量。
+    ```
+    - 如果不想序列化，也不想显示在 Inspector，可以同时设置 serializable 和 hideInInspector 为 false。也可以干脆不用属性，改成在构造函数里定义实例变量。
 
-- type参数
-
+- type参数  
 当`default`不能提供足够详细的类型信息时，如果想要在 Inspector 里编辑属性，则需要用`type`显式声明具体的类型：
 
-  - 当默认值为 null 时，将 type 设置为指定类型，这样才能在 Inspector 中给属性正确赋值。
+    - 当默认值为 null 时，将 type 设置为指定类型，这样才能在 Inspector 中给属性正确赋值。
     ```js
         enemy: {
             default: null,
             type: Fire.Entity
         }
     ```
-  - 当默认值为数值(Number)类型时，将 type 设置为字符串`"Integer"`，用来表示这是一个整数，这样属性在 Inspector 里就不能输入小数点。
+    - 当默认值为数值(Number)类型时，将 type 设置为字符串`"Integer"`，用来表示这是一个整数，这样属性在 Inspector 里就不能输入小数点。
     ```js
         score: {
             default: 0,
             type: 'Integer'
         }
     ```
-  - 将 type 设置为枚举类型，就能在 Inspector 中显示枚举选项框。
+    - 将 type 设置为枚举类型，就能在 Inspector 中显示枚举选项框。
     ```js
         wrap: {
             default: Fire.Texture.WrapMode.Clamp,
             type: Fire.Texture.WrapMode
         }
     ```
-  - 当默认值为数组时，设置 type 为以上几种类型，或者设置成字符串`"Float"`, '"Boolean"', '"String"'的其中一个，才能在 Inspector 中正确编辑数组元素。
+    - 当默认值为数组时，设置 type 为以上几种类型，或者设置成字符串`"Float"`, '"Boolean"', '"String"'的其中一个，才能在 Inspector 中正确编辑数组元素。
     ```js
         nameList: {
             default: [],
@@ -449,7 +448,7 @@ permalink: zh/scripting/class
     });
   ```
 
-## <a name="accessor"></a>访问器
+## <a name="accessor"></a>访问器(TODO)
 
 访问器(Accessor)就是 **getter** 或 **setter**。在 JavaScript 中，可以用 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 声明访问器。  
 
