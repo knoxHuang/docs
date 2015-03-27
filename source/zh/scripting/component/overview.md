@@ -63,26 +63,30 @@ Comp.prototype.onStart = function () {
 ```
 Fire.log 是一个很常用的方法，用于将调试信息显示到 Fireball 的 Console(控制台) 面板。现在你再运行游戏的话，就会在 Console 中看到`Hello Fireball!`了。
 
-## 在Inspector中显示属性
+## <a name="show-in-inspector"></a>在Inspector中显示属性
 
 Fireball 能够在 Inspector 面板中实时查看和编辑 Component 的属性，包括你新建的 Component。
 
 ```js
 // Player.js
 
-var Comp = Fire.extend(Fire.Component);
+var Player = Fire.Class({
+    extends: Fire.Component,
 
-Comp.prop('playerName', '');
+    properties {
+        playerName: '',
+    },
 
-// use this for initialization
-Comp.prototype.onStart = function () {
-    Fire.log("My name is", this.playerName);
-};
+    // use this for initialization
+    onStart: function () {
+        Fire.log("My name is", this.playerName);
+    },
 
-// called every frame
-Comp.prototype.update = function () {
-    // ...
-};
+    // called every frame
+    update: function () {
+        // ...
+    };
+});
 ```
 
 这个脚本将会在 Inspector 中显示一个输入控件，控件标题是 "Player Name"。  
