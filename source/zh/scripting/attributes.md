@@ -4,11 +4,11 @@ permalink: zh/scripting/attributes
 
 ## Inspector 相关属性
 
-    这些属性允许用于 get 方法
+这些属性允许用于 get 方法
 
 参数名 | 说明 | 类型 | 默认值
 --- | --- |:---:|:---:
-[type](zh/scripting/class#type) | 限定属性的数据类型 | (Any) | undefined
+[type](/zh/scripting/class#type) | 限定属性的数据类型 | (Any) | undefined
 hideInInspector  | 不在 Inspector 面板中显示该属性 | boolean | false
 displayName  | 在 Inspector 面板中显示为另一个名字 | string | undefined
 tooltip | 在 Inspector 面板中添加属性的 Tooltip | string | undefined
@@ -20,7 +20,7 @@ range | 以滑动条的形式限定数值的最大最小值 | [min, max] | undef
 
 ## 序列化相关属性
 
-    这些属性不能用于 get 方法
+这些属性不能用于 get 方法
 
 参数名 | 说明 | 类型 | 默认值
 --- | --- |:---:|:---:
