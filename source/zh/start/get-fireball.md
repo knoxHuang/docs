@@ -40,8 +40,11 @@ permalink: zh/start/get-fireball
 ```
 
 ##运行Fireball
-
-将下载到的压缩包解压后，Windows用户运行`fireball.exe`，Mac用户运行`Fireball.app`即可启动Fireball引擎。
+- **Windows用户**
+  将压缩包解压到任意目录后（如`D:\Fireball`），运行`fireball.exe`即可启动客户端。
+- **Mac用户**
+  打开压缩包，将`Fireball.app`拖拽到`应用程序`中并运行，即可启动客户端。
 
 ---
+###接下来...
 - 阅读[「新建项目」](/zh/start/new-project/)以使用Fireball引擎构建您的游戏。

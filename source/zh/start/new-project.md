@@ -12,8 +12,10 @@ permalink: zh/start/new-project
 
 ###Recent Projects
 您可以通过**Rencent Projects**列表快速访问最近打开过的项目。
+将鼠标悬停到项目列表的条目上，会在条目右下角显示操作按钮，您可以：
 - 单击条目上的`Open`打开一个项目，或
 - 单击条目上的`Close`将项目从列表中移除（不会删除项目文件夹）。
+![new-project-02](https://cloud.githubusercontent.com/assets/2867434/6866397/b26ccc38-d4b2-11e4-89b0-91bc1d3f6d09.png)
 
 ###New Project
 您可以通过**New Project**来新建一个游戏项目。
@@ -81,4 +83,5 @@ ProjectName
 
 
 ---
+###接下来...
 - 阅读[「认识Editor」](/zh/start/editor-overview)以了解项目开发环境的更多信息。
