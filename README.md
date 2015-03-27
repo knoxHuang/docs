@@ -54,7 +54,7 @@ If build or deployment failed. You will see a red badge on top of this readme fi
 
 ### Requirements
 
-- [Node.js](http://nodejs.org/)
+- [Node.js](http://nodejs.org/) 0.10.*
 - [Git](http://git-scm.com/)
 
 ### Install Hexo
