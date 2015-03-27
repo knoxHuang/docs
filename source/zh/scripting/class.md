@@ -137,8 +137,8 @@ permalink: zh/scripting/class
 ```
 
 - 备注：
-  - 如果是**私有**成员，建议在成员命名前面加上下划线"_"以示区分。
-  ```js
+    - 如果是**私有**成员，建议在成员命名前面加上下划线"_"以示区分。
+    ```js
     var Sprite = Fire.Class({
         name: 'Sprite',
         constructor: function () {
@@ -152,9 +152,9 @@ permalink: zh/scripting/class
     });
     // 私有类变量
     Sprite._list = [];
-  ```
-  - 如果是**私有**静态成员，也可以用闭包(Closure)实现。
-  ```js
+    ```
+    - 如果是**私有**静态成员，也可以用闭包(Closure)实现。
+    ```js
     // 私有静态方法
     var doLoad = function (sprite) {
         // do load ...
@@ -168,9 +168,9 @@ permalink: zh/scripting/class
             doLoad(this, url);
         };
     });
-  ```
-  - 这里所说的“实例成员”(instance member)包含了“实例变量”(member variable)和“实例方法”(instance method)。
-  - 这里所说的“类成员”(static member)包含了“类变量”(static variable)和“类方法”(static method)。
+    ```
+    - 这里所说的“实例成员”(instance member)包含了“实例变量”(member variable)和“实例方法”(instance method)。
+    - 这里所说的“类成员”(static member)包含了“类变量”(static variable)和“类方法”(static method)。
 
 ## 继承
 
@@ -223,7 +223,7 @@ permalink: zh/scripting/class
 
 - 重载
 
-  - 所有实例方法都是虚方法，子类方法可以直接重载父类方法：
+    - 所有实例方法都是虚方法，子类方法可以直接重载父类方法：
 
     ```js
         var Node = Fire.Class({
@@ -240,7 +240,7 @@ permalink: zh/scripting/class
         console.log(obj.getName());    // "sprite"
     ```
 
-  - 如果想要调用父类方法，必须直接通过父类的 prototype，并且以 call 或 apply 的形式调用：
+    - 如果想要调用父类方法，必须直接通过父类的 prototype，并且以 call 或 apply 的形式调用：
 
     ```js
         var Node = Fire.Class({
@@ -271,9 +271,9 @@ permalink: zh/scripting/class
 请注意，两个传入参数都必须是类的构造函数，而不是类的对象实例。如果传入的两个类相等，`isChildClassOf` 也会返回 true。
 
 - 备注：
-  - 可以通过子类的静态变量 `$super` 来访问父类。
-  - 所有实例成员和类成员都将被子类继承。
-  - 如果不希望类成员被子类继承，可以用 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 声明：
+    - 可以通过子类的静态变量 `$super` 来访问父类。
+    - 所有实例成员和类成员都将被子类继承。
+    - 如果不希望类成员被子类继承，可以用 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 声明：
     ```js
       Object.defineProperty(Sprite, 'getBounds', {
           value: function (spriteList) {
@@ -282,7 +282,7 @@ permalink: zh/scripting/class
           enumerable: false
       });
     ```
-  - 如果你想实现原生的 JavaScript 继承，也就是说你的父类和子类都不是 FireClass，那你可以通过 Fire.JS.extend 方法来继承。
+    - 如果你想实现原生的 JavaScript 继承，也就是说你的父类和子类都不是 FireClass，那你可以通过 Fire.JS.extend 方法来继承。
 
 ## 属性
 
@@ -346,12 +346,12 @@ permalink: zh/scripting/class
 
 下面是常用属性列表，详细用法请参阅(TODO)。
 
-  - type: 限定属性的数据类型
-  - hideInInspector: 不在 Inspector 面板中显示该属性
-  - serializable: 不序列化该属性
-  - displayName: 在 Inspector 面板中显示为另一个名字
-  - tooltip: 在 Inspector 面板中添加属性的 Tooltip
-  - multiline: 在 Inspector 面板中使用多行文本框
+    - type: 限定属性的数据类型
+    - hideInInspector: 不在 Inspector 面板中显示该属性
+    - serializable: 不序列化该属性
+    - displayName: 在 Inspector 面板中显示为另一个名字
+    - tooltip: 在 Inspector 面板中添加属性的 Tooltip
+    - multiline: 在 Inspector 面板中使用多行文本框
 
 - hideInInspector 和 serializable
 
@@ -378,7 +378,7 @@ permalink: zh/scripting/class
 - type参数  
 当`default`不能提供足够详细的类型信息时，如果想要在 Inspector 里编辑属性，则需要用`type`显式声明具体的类型：
 
-    - 当默认值为 null 时，将 type 设置为指定类型，这样才能在 Inspector 中给属性正确赋值。
+    - 当默认值为 null 时，将 type 设置为指定类型(构造函数)，这样才能在 Inspector 中给属性正确赋值。
     ```js
         enemy: {
             default: null,
@@ -389,7 +389,7 @@ permalink: zh/scripting/class
     ```js
         score: {
             default: 0,
-            type: 'Integer'
+            type: "Integer"
         }
     ```
     - 将 type 设置为枚举类型，就能在 Inspector 中显示枚举选项框。
@@ -399,7 +399,7 @@ permalink: zh/scripting/class
             type: Fire.Texture.WrapMode
         }
     ```
-    - 当默认值为数组时，设置 type 为以上几种类型，或者设置成字符串`"Float"`, '"Boolean"', '"String"'的其中一个，才能在 Inspector 中正确编辑数组元素。
+    - 当 default 设置为**数组**`[]`时，如果要在 Inspector 中编辑数组元素，可以设置 type 为以上提到的构造函数、`"Integer"`、枚举，或者设置成字符串`"Float"`, `"Boolean"`, `"String"`的其中一个，。
     ```js
         nameList: {
             default: [],
@@ -435,9 +435,9 @@ permalink: zh/scripting/class
 ```
 
 - 备注：
-  - 属性都能被子类继承，但子类和父类的属性不能重名。
-  - 如果属性的默认值需要调用其它方法才能获得，可以在构造函数里重新赋值。
-  ```js
+    - 属性都能被子类继承，但子类和父类的属性不能重名。
+    - 如果属性的默认值需要调用其它方法才能获得，可以在构造函数里重新赋值。
+    ```js
     var Sprite = Fire.Class({
         constructor: function () {
             this.img = LoadImage();
@@ -446,75 +446,102 @@ permalink: zh/scripting/class
             img: null
         }
     });
-  ```
+    ```
 
-## <a name="accessor"></a>访问器(TODO)
+## GetSet方法
 
-访问器(Accessor)就是 **getter** 或 **setter**。在 JavaScript 中，可以用 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 声明访问器。  
+在属性中设置了 get 或 set 以后，访问属性的时候，就能触发预定义的 get 或 set 方法。
 
-FireClass 另外封装了定义访问器的接口，这些接口和`prop`类似，用于在 Inspector 中显示指定值，但这些值不会被序列化。
+- 在属性中设置 get 方法：
 
-- FireClass 提供了 **get** 方法用于声明一个 getter。  
-它的第一个参数是变量名，第二个是获取时调用的方法，该方法可以返回任意类型的值。  
 ```js
-    var Sprite = Fire.define('Sprite');
-    Sprite.get('width', function () {
-        return 128;
-    });
-```  
-以上代码定义了 width 的 getter，getter 可以在包括构造函数在内的代码里直接访问：
+    properties: {
+        width: {
+            get: function () {
+                return this.__width;
+            }
+        }
+    }
+```
+
+get 方法可以返回任意类型的值。
+这个属性同样能显示在 Inspector 中，并且可以在包括构造函数内的所有代码里直接访问。
+
 ```js
-    var Sprite = Fire.define('Sprite', function () {
-        this._width = 128;
-        console.log(this.width);    // 128
+    var Sprite = Fire.Class({
+        constructor: function () {
+            this.__width = 128;
+            console.log(this.width);    // 128
+        },
+        properties: {
+            width: {
+                get: function () {
+                    return this.__width;
+                }
+            }
+        }
     });
-    Sprite.get('width', function () {
-        return this._width;
+```
+
+请注意：
+
+    - 设定了 get 以后，这个属性就不能被序列化，也不能指定默认值，但仍然可附带除了 "default", "serializable" 以外的任意参数。
+
+    ```js
+        width: {
+            get: function () {
+                return this.__width;
+            },
+            type: "Integer",
+            tooltip: "The width of sprite"
+        }
+    ```
+
+    - get 属性本身是只读的，但返回的对象并不是只读的。用户使用代码依然可以修改对象内部的属性，例如：
+
+    ```js
+    var Sprite = Fire.Class({
+        ...
+        position: {
+            get: function () {
+                return this.__position;
+            },
+        }
+        ...
     });
     var obj = new Sprite();
-    console.log(obj.width);    // 128
-```
-和 `prop` 一样，get 可附加任意多个参数，用于指定在 Inspector 中的显示方式。
-```js
-    Sprite.get('width', function () {
-        return this._width;
-    }, Fire.Integer, Fire.Tooltip('The width of sprite'));
-```
-以上代码规定了 width 在 Inspector 里只能输入整数(如果有 setter 的话)，并且当鼠标移到参数上时，显示对应说明。  
+    obj.position = new Fire.Vec2(10, 20);   // 错误！position 是只读的！
+    obj.position.x = 100;                   // 允许！position 对象本身可以修改！
+    //
+    ```
 
-- **set**  
-set 方法和 get 类似，它的第一个参数是变量名，第二个是设置时调用的方法，该方法可以传入一个任意类型的参数。  
-set 方法不能附加任何参数，如果需要，请把参数加到相应的 get 方法。如果没有对应的 get，则不在 Inspector 中显示。
+- 在属性中设置 set 方法
+
 ```js
-    var Sprite = Fire.define('Sprite', ...);
-    Sprite.get('width', function () {
-        return this._width;
-    }, Fire.Integer);
-    Sprite.set('width', function (value) {
-        this._width = value;
-    });
+    width: {
+        set: function (value) {
+            this.__width = value;
+        }
+    }
 ```
 
-- **getset**  
-可使用 getset 简化 get 和 set 调用
+set 方法接收一个传入参数，这个参数可以是任意类型。
+
+set 可以和 get 一起使用：
+
 ```js
-    var Sprite = Fire.define('Sprite', ...);
-    Sprite.getset('width',
-        function () {
-            return this._width;
+    width: {
+        get: function () {
+            return this.__width;
         },
-        function (value) {
-            this._width = value;
+        set: function (value) {
+            this.__width = value;
         },
-        Fire.Integer);
+        type: "Integer",
+        tooltip: "The width of sprite"
+    }
 ```
 
-- 访问器不能和属性(prop)重名。
-
-- 访问器都能被继承，但子类和父类的访问器不能重名。
-
-- 备注：
-  - 如果访问器附带了`Fire.HideInInspector`参数，则不在 Inspector 中显示，但仍然能从代码访问。
-  - 如果一个 getter 没有相应的 setter，则在 Inspector 中是只读的，但它如果是对象或数组，内部的字段仍然可修改。
-
-
+请注意：
+    - 如果没有和 get 一起定义，则 set 自身不能附带任何参数。
+    - 和 get 一样，设定了 set 以后，这个属性就不能被序列化，也不能指定默认值。
