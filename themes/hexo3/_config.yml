@@ -68,7 +68,7 @@ user_sidebar_zh:
         Unity开发者上手: zh/start/from-unity
         帮助: zh/help
     用户手册:
-        认识Editor: #
+        认识Editor: zh/start/editor-overview
         资源工作流程: #
     脚本编写:
         创建和使用脚本: zh/scripting/component
