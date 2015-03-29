@@ -6,7 +6,7 @@ permalink: zh/scripting/class
 所有“备注”都属于进阶内容，初学者不需要了解。
 ```
 
-`Fire.Class` 是一个很常用的 API，用于声明 Fireball 中的类，为了方便区分，我们把使用 Fire.Class 声明的类叫做 **FireClass**。想比其它 JavaScript 的类型系统，FireClass 的特别之处在于扩展性强，能够定义丰富的元数据。
+`Fire.Class` 是一个很常用的 API，用于声明 Fireball 中的类，为了方便区分，我们把使用 Fire.Class 声明的类叫做 **FireClass**。相比其它 JavaScript 的类型系统，FireClass 的特别之处在于扩展性强，能够定义丰富的元数据。
 
 ## 概述
 
@@ -347,33 +347,33 @@ permalink: zh/scripting/class
     下面是常用参数，详细用法请参阅[属性参数](/zh/scripting/attributes)。
 
     - type: 限定属性的数据类型
-    - hideInInspector: 不在 Inspector 面板中显示该属性
-    - serializable: 不序列化该属性
-    - displayName: 在 Inspector 面板中显示为另一个名字
+    - visible: 设为 false 则不在 Inspector 面板中显示该属性
+    - serializable: 设为 false 则不序列化该属性
+    - displayName: 在 Inspector 面板中显示成指定名字
     - tooltip: 在 Inspector 面板中添加属性的 Tooltip
     - multiline: 在 Inspector 面板中使用多行文本框
 
-- hideInInspector 和 serializable
+- visible 和 serializable
 
     - 属性默认情况下都会被序列化，也会在 Inspector 中显示。
 
-    - 如果只想序列化，但不想显示在 Inspector，可以设置 `hideInInspector: false`。
+    - 如果只想序列化，但不想显示在 Inspector，可以设置 `visible: false`。
     ```js
         properties {
             id: {
                 default: 0,
-                hideInInspector: false
+                visible: false
             }
         }
     ```
-    - 如果不想序列化，只想显示在 Inspector，可以添加 `serializable: false`。
+    - 如果不想序列化，只想显示在 Inspector，可以设置 `serializable: false`。
     ```js
         url: {
             default: '',
             serializable: false
         }
     ```
-    - 如果不想序列化，也不想显示在 Inspector，可以同时设置 serializable 和 hideInInspector 为 false。也可以干脆不用属性，改成在构造函数里定义实例变量。
+    - 如果不想序列化，也不想显示在 Inspector，可以同时设置 serializable 和 visible 为 false。也可以干脆不用属性，改成在构造函数里定义实例变量。
 
 - <a name="type"></a>type参数
 
