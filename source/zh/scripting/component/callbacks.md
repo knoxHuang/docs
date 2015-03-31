@@ -12,17 +12,17 @@ Fireball 会周期性地调用 Component 的一些特定方法，如果 Componen
 游戏开发的一个关键点是在每一帧渲染前更新物体的行为、状态和方位，这些更新操作通常都放在 update 回调中。
 
 ```js
-Comp.prototype.update = function () {
-    this.transform.translate(new Fire.Vec2(0, Fire.Time.deltaTime * 40));
-};
+    update: function () {
+        this.transform.translate(new Fire.Vec2(0, Fire.Time.deltaTime * 40));
+    }
 ```
 
 update 会在所有动画更新前执行，但如果我们要在动画更新之后才进行一些额外操作，或者希望在所有 Component 的 update 都执行完之后才进行其它操作，那就需要用到 lateUpdate 回调。
 
 ```js
-Comp.prototype.lateUpdate = function () {
-    this.transform.worldPosition = this.target.transform.worldPosition;
-};
+    lateUpdate: function () {
+        this.transform.worldPosition = this.target.transform.worldPosition;
+    }
 ```
 
 ## 初始化回调
@@ -30,14 +30,22 @@ Comp.prototype.lateUpdate = function () {
 在游戏运行中，很多数据是不需要每一帧重复计算的，那么我们就可以在 Component 第一次执行的时候把结果预先算好，并且保存到当前 Component 中。这类初始化的操作，我们通常在 **onLoad** 或 **onStart** 中进行。onLoad 回调会在这个 Component 所在的场景被载入的时候触发，onStart 则会在这个 Component 被第一次激活前，也就是第一次执行 update 之前触发。因此从执行顺序上看，所有的 Component 的 onStart 都会在其它 Component 的 onLoad 全都执行完后才被调用。
 
 ```js
-var Comp = Fire.extend(Fire.Component);
-Comp.prop('target', null);
+var Comp = Fire.Class({
+    extends: Fire.Component,
 
-Comp.prototype.onStart = function () {
-    this.target = Fire.Entity.find('/Main Player/Bip/Head');
-};
-Comp.prototype.update = function () {
-    this.transform.worldPosition = this.target.transform.worldPosition;
-};
+    properties: {
+        target: {
+            default: null,
+            type: Fire.Entity
+        }
+    },
+
+    onStart: function () {
+        this.target = Fire.Entity.find('/Main Player/Bip/Head');
+    },
+
+    update: function () {
+        this.transform.worldPosition = this.target.transform.worldPosition;
+    }
+});
 ```
-

@@ -21,34 +21,36 @@ Fireball 运行于 JavaScript 之上，Component 也不例外，JavaScript 入�
 ```js
 // Player.js
 
-var Comp = Fire.extend(Fire.Component);
+var Comp = Fire.Class({
+    extends: Fire.Component,
 
-// use this for initialization
-Comp.prototype.onStart = function () {
-    // ...
-};
+    // use this for initialization
+    onStart: function () {
 
-// called every frame
-Comp.prototype.update = function () {
-    // ...
-};
+    },
+
+    // called every frame
+    update: function () {
+
+    }
+});
 ```
 
 脚本和 Fireball 关联的方式是通过继承 **Fire.Component** 实现的，Fire.Component 是所有 Component 的基类。当你定义了继承自 Fire.Component 的新类时，你就相当于创建了一个新的 Component 模板。每当你将脚本附加到 Entity 上，这份模板就会用于创建新的 Component 实例。
 
 ## Component简介
 
-`Fire.extend(Fire.Component)`用于声明一个继承自 Fire.Component 的类。由于 Component 的类名获取自所在的脚本文件名，这里脚本是 Player.js，所以类名是 "Player"。
+`Fire.Class({...})`用于声明一个类，传入的 `extends: Fire.Component` 用来声明继承自 Fire.Component 的类。由于 Component 的类名获取自所在的脚本文件名，这里脚本是 Player.js，所以 Fireball 会自动设置类名为 "Player"。
 
-`var Comp`定义了一个变量，我们将它赋值为 Fire.extend 返回的类。"Comp" 仅仅是这个类的一个引用，是一个普通的 JavaScript 局部变量，变量名可以是任意的，和真正的类名 "Player" 没有关联。
+`var Comp` 定义了一个变量，我们将它赋值为 Fire.Class 返回的类。这个变量仅仅是这个类的一个引用，是一个普通的 JavaScript 局部变量，变量名可以是任意的，和真正的类名 "Player" 没有关联。如果这个脚本的代码不需要访问这个类，也可以不定义这个变量。
 
-`Comp.prototype.update = function () {...};` 定义了 **update** 回调方法，update 方法将由 Fireball 在游戏的每一帧渲染之前调用。你可以在 update 中进行诸如触发行为、响应操作等持续性的游戏逻辑。
+传入的 `update: function () {...};` 用于定义 **update** 回调方法，update 方法将由 Fireball 在游戏的每一帧渲染之前调用。你可以在 update 中进行诸如触发行为、响应操作等持续性的游戏逻辑。
 
-`Comp.prototype.onStart = function () {...};` 定义了 **onStart** 回调方法，onStart 将由 Fireball 在 update 第一次执行之前调用，你可以在 onStart 中编写任意的初始化代码。
+传入的 `onStart: function () {...};` 用于定义 **onStart** 回调方法，onStart 将由 Fireball 在 update 第一次执行之前调用，你可以在 onStart 中编写任意的初始化代码。
 
 请注意：
-- 我们将使用 Fire.extend 声明的类型统称为 **FireClass**，Component 和普通的 FireClass 的区别仅仅在于 Component 的类名会自动从脚本获取。你可以通过阅读[类型定义](/zh/scripting/class)来进一步了解 FireClass。
-- 对有经验的用户来说，Component 虽然可以定义构造函数，但我们建议将逻辑操作尽可能的放到 onStart 等 Fireball 的回调中进行，而构造函数仅仅用于声明成员变量。
+- 我们将使用 Fire.Class 声明的类型统称为 **FireClass**，Component 和普通的 FireClass 的区别仅仅在于 Component 的类名会自动从脚本获取。你可以通过阅读[类型定义](/zh/scripting/class)来进一步了解 FireClass。
+- 对有经验的用户来说，Component 虽然可以定义构造函数，但我们建议将逻辑操作尽可能的放到 onStart 等 Fireball 的回调中进行，而构造函数仅仅用于声明实例变量。
 
 ## 添加到Entity
 
@@ -57,9 +59,9 @@ Comp.prototype.update = function () {
 接着当你点击 Play 运行游戏，这个 Component 的脚本就会开始执行了。你可以在上面的 onStart 中加入代码来验证这点：
 ```js
 // use this for initialization
-Comp.prototype.onStart = function () {
+onStart: function () {
     Fire.log('Hello Fireball!');
-};
+}
 ```
 Fire.log 是一个很常用的方法，用于将调试信息显示到 Fireball 的 Console(控制台) 面板。现在你再运行游戏的话，就会在 Console 中看到`Hello Fireball!`了。
 

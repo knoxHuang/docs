@@ -12,10 +12,10 @@ prev_link: zh/scripting/component
 获取 Component 所在的 Entity 是很常见的操作，只要在 Component 方法里访问 this.entity 变量：
 
 ```js
-Comp.prototype.onStart = function () {
-    var myName = this.entity.name;
-    Fire.log('starting', myName);
-};
+    onStart: function () {
+        var myName = this.entity.name;
+        Fire.log('starting', myName);
+    }
 ```
 
 ## 访问Component
@@ -23,41 +23,41 @@ Comp.prototype.onStart = function () {
 访问同一个 Entity 上的其它 Component 是最简单最常用的操作。如前面所说，一个 Component 只是类的一个实例对象，因此你要做的第一件事就是获得这个对象的引用。你要调用的接口是 Component上的 **getComponent** ，它会返回 Component 所在的 Entity 的指定类型的 Component 实例，通常你会定义一个变量来保存这个引用。然后你就能通过这个变量直接访问 Component 里的任何属性了。
 
 ```js
-Comp.prototype.onStart = function () {
-    var sr = this.getComponent(Fire.SpriteRenderer);
+    onStart: function () {
+        var sr = this.getComponent(Fire.SpriteRenderer);
 
-    // Change the color of the sprite's renderer
-    sr.color = Fire.Color.red;
-};
+        // Change the color of the sprite's renderer
+        sr.color = Fire.Color.red;
+    }
 ```
 
 Fire.SpriteRenderer 是 Fireball 内置的 Component，你也可以为 getComponent 传入一个字符串形式的类名。
 
 ```js
-Comp.prototype.onStart = function () {
-    var sr = this.getComponent("Fire.SpriteRenderer");
+    onStart: function () {
+        var sr = this.getComponent("Fire.SpriteRenderer");
 
-    // ...
-};
+        // ...
+    }
 ```
 
 你还能调用任意 Entity 上的 getComponent 的方法：
 
 ```js
-Comp.prototype.onStart = function () {
-    var transform = playerEntity.getComponent(Fire.Transform);
+    onStart: function () {
+        var transform = playerEntity.getComponent(Fire.Transform);
 
-    // Rotate the transform around world position (10, 10)
-    transform.rotateAround(Fire.v2(10, 10), 90);
-};
+        // Rotate the transform around world position (10, 10)
+        transform.rotateAround(Fire.v2(10, 10), 90);
+    }
 ```
 
 Transform 用来控制一个 Entity 在游戏场景中的方位和缩放，是最常用的一个 Component。你可以使用 Entity.transform 或 Component.transform 来快速获取 Transform。于是上面的代码还可以优化成：
 
 ```js
-Comp.prototype.onStart = function () {
-    playerEntity.transform.rotateAround(Fire.v2(10, 10), 90);
-};
+    onStart: function () {
+        playerEntity.transform.rotateAround(Fire.v2(10, 10), 90);
+    }
 ```
 
 如果在 Entity 上并没有你要的 Component，getComponent 将返回 null，如果你尝试访问 null 的值，将会在运行时抛出 'TypeError' 这个错误。
@@ -73,12 +73,19 @@ Comp.prototype.onStart = function () {
 ```js
 // Cannon.js
 
-var Comp = Fire.extend(Fire.Component);
-
-Comp.prop('player', null, Fire.ObjectType(Fire.Entity));
+var Comp = Fire.Class({
+    extends: Fire.Component,
+    properties: {
+        // 声明一个 player 属性，类型为 Entity
+        player: {
+            default: null,
+            type: Fire.Entity
+        }
+    }
+});
 ```
 
-这段代码使用 **prop** 声明一个 "player" 属性，默认值为 null，并且指定它的对象类型为 Entity。就像是其它语言里面的 `public Fire.Entity player = null;`。属性在 Inspector 中看起来是这样的：
+这段代码在 **properties** 里面声明了一个 "player" 属性，默认值为 null，并且指定它的对象类型为 Entity。就像是其它语言里面的 `public Fire.Entity player = null;`。属性在 Inspector 中看起来是这样的：
 
 ![player-in-inspector-null](../img/player-in-inspector-null.png)
 
@@ -86,28 +93,39 @@ Comp.prop('player', null, Fire.ObjectType(Fire.Entity));
 
 ![player-in-inspector](../img/player-in-inspector.png)
 
-你的代码可以写成这样：
+你可以直接访问 player：
 
 ```js
-var Comp = Fire.extend(Fire.Component);
-
-Comp.prop('player', null, Fire.ObjectType(Fire.Entity));
-
-Comp.prototype.onStart = function () {
-    Fire.log(this.player.name);
-    // ...
-};
+var Comp = Fire.Class({
+    extends: Fire.Component,
+    properties: {
+        player: {
+            default: null,
+            type: Fire.Entity
+        }
+    },
+    onStart: function () {
+        // 显示 player 的名字
+        Fire.log(this.player.name);
+    }
+});
 ```
 
-更棒的是，如果你将属性声明为 Component 类型，当你拖动 Entity 到 Inspector，Entity 上指定类型的 Component 将会被设置给属性。这样就能直接获得你需要的  Component 而不仅仅是 Entity。
+更棒的是，如果你将属性声明为 Component 类型，当你拖动 Entity 到 Inspector，Entity 上指定类型的 Component 将会被设置给属性。这样就能直接获得你需要的 Component 而不仅仅是 Entity。
 
 ```js
-var Comp = Fire.extend(Fire.Component);
-
-Comp.prop('targetTransform', null, Fire.ObjectType(Fire.Transform));
+var Comp = Fire.Class({
+    extends: Fire.Component,
+    properties: {
+        targetTransform: {
+            default: null,
+            type: Fire.Transform
+        }
+    },
+});
 ```
 
-当你要设置一些对象的关联，使用属性是最方便的。你甚至可以将属性的默认值由 `null` 改为数组`[]`，这样你就能在 Inspector 中关联任意多个对象。如果需要在运行时动态获取其它对象，就需要用到下面介绍的查找方法。
+当你要设置一些对象的关联，使用属性是最方便的。你甚至可以将属性的默认值由 `null` 改为数组`[]`，这样你就能在 Inspector 中关联任意多个对象。不过如果需要在运行时动态获取其它对象，还需要用到下面介绍的查找方法。
 
 ### 查找子物体
 
@@ -115,13 +133,24 @@ Comp.prop('targetTransform', null, Fire.ObjectType(Fire.Transform));
 
 ```js
 // CannonManager.js
-var Comp = Fire.extend(Fire.Component, function () {
-    this.cannons = [];
-});
+var Comp = Fire.Class({
+    extends: Fire.Component,
 
-Comp.prototype.onStart = function () {
-    this.cannons = this.entity.getChildren();
-};
+    constructor: function () {
+        this.cannons = [];
+    },
+
+    properties: {
+        targetTransform: {
+            default: null,
+            type: Fire.Transform
+        }
+    },
+
+    onStart: function () {
+        this.cannons = this.entity.getChildren();
+    }
+});
 ```
 
 **getChildren** 是 Entity 提供的一个方法，可以获得一个包含所有子 Entity 的数组。还可以使用 Entity 的名字来直接获取对应的子物体，只需要在 Entity 的实例上调用 **find** 方法：
@@ -136,13 +165,17 @@ this.entity.find('Main Cannon');
 
 ```js
 // CannonManager.js
-var Comp = Fire.extend(Fire.Component, function () {
-    this.player = null;
-});
+var Comp = Fire.Class({
+    extends: Fire.Component,
 
-Comp.prototype.onStart = function () {
-    this.player = Fire.Entity.find('/Main Player');
-};
+    constructor: function () {
+        this.player = null;
+    },
+
+    onStart: function () {
+        this.player = Fire.Entity.find('/Main Player');
+    }
+});
 ```
 
 请注意：
