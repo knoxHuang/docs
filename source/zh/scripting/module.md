@@ -49,11 +49,12 @@ require 返回的就是被模块导出的对象，通常我们都会将结果存
 ```js
 var Rotate = require('rotate');
 
-var SinRotate = Fire.extend(Rotate);
-
-SinRotate.prototype.update = function () {
-    this.transform.rotation += this.speed * Math.sin(Fire.Time.time);
-};
+var SinRotate = Fire.Class({
+    extends: Rotate,
+    update: function () {
+        this.transform.rotation += this.speed * Math.sin(Fire.Time.time);
+    }
+});
 ```
 
 这里我们定义了一个新的 Component 叫 SinRotate，它继承自 Rotate，并对 update 方法进行了重写。当然这个 Component 也可以被其它脚本接着访问，只要用 require('sinRotate')。
@@ -70,12 +71,15 @@ SinRotate.prototype.update = function () {
 其实每一个单独的脚本文件就是一个模块，例如新建一个脚本 `rotate.js`，在里面定义一个 Component：
 
 ```js
-var Rotate = Fire.extend(Fire.Component);
-Rotate.prop('speed', 1);
-
-Rotate.prototype.update = function () {
-    this.transform.rotation += this.speed;
-};
+var Rotate = Fire.Class({
+    extends: Fire.Component,
+    properties: {
+        speed: 1
+    },
+    update: function () {
+        this.transform.rotation += this.speed;
+    }
+});
 ```
 
 当你在脚本中定义了一个 Component，Fireball 会自动将它设置为导出模块，其它脚本直接 require 这个模块就能使用这个 Component。
