@@ -17,7 +17,7 @@ Comp.prototype.onStart = function () {
 };
 ```
 
-## 复制已有Entity
+## <a name="instantiate"></a>复制已有Entity
 
 使用 Fire.instantiate 来复制指定的 Entity，该 Entity 所有的子物体及 Component 都会被一起复制：
 

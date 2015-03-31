@@ -2,11 +2,13 @@ title: 附录：保留字
 permalink: zh/scripting/reserved-words
 ---
 
-除了类已经定义的变量外，以下是其它 Fireball-x 中已经使用的变量名，请避免冲突。这些变量有一些是保留用途，只有特殊情况才会声明。
+除了类已经定义的变量外，以下是其它 Fireball-x 中已经内部占用的变量名，请避免冲突。这些变量有一些只有特殊情况才会用到，有一些是将来可能会用到。
 
 ### 全局变量
 
 - `Fire`
+- `Editor`
+- `FireEditor`
 - `PIXI`
 - `require`
 
@@ -32,7 +34,11 @@ permalink: zh/scripting/reserved-words
 - `$super`
 - `__props__`
 
-### FireClass 上的成员变量
+### FireClass 上的实例变量
 
 - `_observing`
 - `_$erialized`
+
+### 枚举定义上的变量
+
+- `__enums__`
