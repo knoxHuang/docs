@@ -336,7 +336,7 @@ permalink: zh/scripting/class
         properties {
             score: {
                 default: 0,
-                type: 'Integer',
+                type: Fire.Integer,
                 tooltip: 'The score of player'
             }
         }
@@ -353,11 +353,23 @@ permalink: zh/scripting/class
     - tooltip: 在 Inspector 面板中添加属性的 Tooltip
     - multiline: 在 Inspector 面板中使用多行文本框
 
-- visible 和 serializable
+- <a name="visible参数"></a>visible参数
 
-    - 属性默认情况下都会被序列化，也会在 Inspector 中显示。
+    默认情况下，是否显示在 Inspector 取决于属性名是否以下划线"_"开头。如果以下划线开头，则默认不显示在 Inspector，否则默认显示。
 
-    - 如果只想序列化，但不想显示在 Inspector，可以设置 `visible: false`。
+    如果要显示在 Inspector，可以设置`visible`参数为 true:
+
+    ```js
+        properties {
+            _id: {
+                default: 0,
+                visible: true
+            }
+        }
+    ```
+
+    如果要在 Inspector 中隐藏，可以设置`visible`参数为 false:
+
     ```js
         properties {
             id: {
@@ -366,14 +378,17 @@ permalink: zh/scripting/class
             }
         }
     ```
-    - 如果不想序列化，只想显示在 Inspector，可以设置 `serializable: false`。
+
+- <a name="serializable"></a>serializable参数
+
+    属性默认情况下都会被序列化，如果不想序列化，可以设置`serializable: false`。
+
     ```js
-        url: {
+        temp_url: {
             default: '',
             serializable: false
         }
     ```
-    - 如果不想序列化，也不想显示在 Inspector，可以同时设置 serializable 和 visible 为 false。也可以干脆不用属性，改成在构造函数里定义实例变量。
 
 - <a name="type"></a>type参数
 
@@ -386,11 +401,11 @@ permalink: zh/scripting/class
             type: Fire.Entity
         }
     ```
-    - 当默认值为数值(Number)类型时，将 type 设置为字符串`"Integer"`，用来表示这是一个整数，这样属性在 Inspector 里就不能输入小数点。
+    - 当默认值为数值(Number)类型时，将 type 设置为 `Fire.Integer`，用来表示这是一个整数，这样属性在 Inspector 里就不能输入小数点。
     ```js
         score: {
             default: 0,
-            type: "Integer"
+            type: Fire.Integer
         }
     ```
     - 将 type 设置为枚举类型，就能在 Inspector 中显示枚举选项框。
@@ -400,11 +415,11 @@ permalink: zh/scripting/class
             type: Fire.Texture.WrapMode
         }
     ```
-    - 当 default 设置为**数组**`[]`时，如果要在 Inspector 中编辑数组元素，可以设置 type 为以上提到的构造函数、`"Integer"`、枚举，或者设置成字符串`"Float"`, `"Boolean"`, `"String"`的其中一个，。
+    - 当 default 设置为**数组**`[]`时，如果要在 Inspector 中编辑数组元素，可以设置 type 为以上提到的构造函数、`Fire.Integer`、枚举，或者设置成字符串`Fire.Float`, `Fire.Boolean`, `Fire.String`的其中一个，。
     ```js
         nameList: {
             default: [],
-            type: "String"      // 指定数组的每个元素都是字符串类型
+            type: Fire.String      // 指定数组的每个元素都是字符串类型
         },
         enemyList: {
             default: [],
@@ -493,7 +508,7 @@ permalink: zh/scripting/class
             get: function () {
                 return this.__width;
             },
-            type: "Integer",
+            type: Fire.Integer,
             tooltip: "The width of sprite"
         }
     ```
@@ -538,7 +553,7 @@ permalink: zh/scripting/class
             set: function (value) {
                 this.__width = value;
             },
-            type: "Integer",
+            type: Fire.Integer,
             tooltip: "The width of sprite"
         }
     ```
