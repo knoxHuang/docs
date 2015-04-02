@@ -58,7 +58,9 @@ user_sidebar:
         Time and Framerate: #
         Class: #
         Attributes: #
+        Input: #
         Module: #
+        Input Events: #
         Reserved Words: en/scripting/reserved-words
 
 user_sidebar_zh:
@@ -78,7 +80,9 @@ user_sidebar_zh:
         计时和帧率: zh/scripting/time
         类型定义: zh/scripting/class
         属性参数: zh/scripting/attributes
+        玩家输入: zh/scripting/input
         模块化: zh/scripting/module
+        附录：输入事件: zh/scripting/input-events
         附录：保留字: zh/scripting/reserved-words
     插件开发:
         配置Package.json: zh/plugin/config-package-json

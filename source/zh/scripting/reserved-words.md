@@ -33,6 +33,7 @@ permalink: zh/scripting/reserved-words
 - `prop`
 - `$super`
 - `__props__`
+- `__ctors__`
 
 ### FireClass 上的实例变量
 
