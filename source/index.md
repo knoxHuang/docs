@@ -1,9 +1,7 @@
 title: Documentation
 ---
 
-```
-英文文档有待更新，请先查阅[中文版](http://docs.fireball-x.com/zh/index.html)。
-```
+> 英文文档有待更新，请先查阅[中文版](http://docs.fireball-x.com/zh/index.html)。
 
 Welcome to Fireball Documentation. This will help you get started fast.
 
