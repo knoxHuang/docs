@@ -9,12 +9,12 @@ Welcome to Fireball Documentation. This will help you get started fast.
 
 ## User Manual
 
-请点击左侧导航栏。
-
-## Developer Manual
-
-[Developer Manual](/en/dev)
+Please click the links on the left.
 
 ## API Reference
 
 [API Reference](/api/modules/Fire.html)
+
+## Internal Developer Manual
+
+[Developer Manual](/en/dev)
