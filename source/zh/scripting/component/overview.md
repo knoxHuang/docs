@@ -4,7 +4,7 @@ next_link: zh/scripting/component/access
 ---
 Fireball 的很多功能都是以 Component(组件) 的形式提供的，Component 就是 Fireball 调用脚本的入口。Component 可以用来实现各类游戏逻辑(gameplay)，像是控制 Entity(实体)、发送事件、修改属性、响应玩家输入等。
 
-Fireball 运行于 JavaScript 之上，Component 也不例外，JavaScript 入门非常简单，你可以在(TODO)获得帮助。此外，很多其它语言像是 CoffeeScript 和 TypeScript 都能很好的编译为 JavaScript，Fireball 默许你在内部使用任何语言。
+Fireball 运行于 JavaScript 之上，Component 也不例外，JavaScript 入门非常简单，你可以浏览[JavaScript入门指南](/zh/scripting/javascript-primer)。此外，很多其它语言像是 CoffeeScript 和 TypeScript 都能很好的编译为 JavaScript，Fireball 默许你在内部使用任何语言。
 
 ## 新建脚本
 

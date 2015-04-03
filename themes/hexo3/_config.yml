@@ -51,6 +51,7 @@ user_sidebar:
         Know the Editor: #
         Asset Pipeline: #
     Scripting:
+        JavaScript Primer: en/scripting/javascript-primer
         Creating and Using Scripts: #
         Accessing Objects: #
         Component Callbacks: #
@@ -73,6 +74,7 @@ user_sidebar_zh:
         认识Editor: zh/start/editor-overview
         资源工作流程: #
     脚本编写:
+        JavaScript入门指南: zh/scripting/javascript-primer
         创建和使用脚本: zh/scripting/component
         对象访问: zh/scripting/component/access
         Component回调: zh/scripting/component/callbacks
