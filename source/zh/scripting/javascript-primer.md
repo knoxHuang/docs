@@ -2,9 +2,7 @@ title: JavaScript入门指南
 permalink: /zh/scripting/javascript-primer
 ---
 
-```
-本文改编自[A JavaScript Primer For Meteor](https://www.discovermeteor.com/blog/javascript-for-meteor/)
-```
+> 本文改编自[A JavaScript Primer For Meteor](https://www.discovermeteor.com/blog/javascript-for-meteor/)
 
 ## 概述
 
