@@ -16,7 +16,7 @@
             </div>
             <div class="col-lg-4">
                 <h2>API文档</h2>
-                <a href="/docs-zh/api">API文档</a>
+                <a href="/api">API文档</a>
             </div>
         </div>
     </div>

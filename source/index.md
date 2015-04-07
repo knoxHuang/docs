@@ -1,5 +1,5 @@
 title: Home
-permalinks: /docs-zh
+permalinks: /
 layout: index
 ---
 # 欢迎来到Fireball学习中心

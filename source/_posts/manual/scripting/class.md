@@ -21,7 +21,7 @@ permalinks: manual/scripting/class
     });
 ```
 
-这段代码将创建好的类赋值给了 Sprite 变量，另外还提供了 `name` 参数来作为类名，类名用于[序列化](/docs-zh/dev/core/serialization#register)，一般可以省略。
+这段代码将创建好的类赋值给了 Sprite 变量，另外还提供了 `name` 参数来作为类名，类名用于[序列化](/dev/core/serialization#register)，一般可以省略。
 为了论述方便，本文将这里传入的这个 `{ name: 'Sprite' }` 对象统称为**原型对象**，本文重点介绍如何定义原型对象。
 
 ### 创建对象
@@ -295,7 +295,7 @@ var Sprite = Fire.Class({
 
 ## 属性
 
-属性(Property)是特殊的实例变量，能够显示在 Inspector 中，也能被[序列化](/docs-zh/dev/core/serialization#custom)。属性不在构造函数里定义，而是声明在原型对象的 `properties` 字典里。
+属性(Property)是特殊的实例变量，能够显示在 Inspector 中，也能被[序列化](/dev/core/serialization#custom)。属性不在构造函数里定义，而是声明在原型对象的 `properties` 字典里。
 
 ### 下面在 Player 类定义一个 playerName 属性：
 
@@ -311,7 +311,7 @@ var Sprite = Fire.Class({
     });
 ```
 
-这个示例也可在教程[创建和使用脚本](/docs-zh/scripting/component#show-in-inspector)中看到，这样定义后，playerName 就能显示在 Inspector 面板里，并且在场景里保留用户输入的值。
+这个示例也可在教程[创建和使用脚本](/scripting/component#show-in-inspector)中看到，这样定义后，playerName 就能显示在 Inspector 面板里，并且在场景里保留用户输入的值。
 
 这里的 `default` 用来声明属性的默认值，同时也定义了值类型是字符串。default 可以接受任意类型的参数，但默认值只有在第一次创建对象的时候才会用到，如果是反序列化出来的对象，属性值将会还原为上次序列化前设置的值。
 
@@ -353,7 +353,7 @@ var Sprite = Fire.Class({
 
 以上代码规定了 score 在 Inspector 里只能输入整数，并且当鼠标移到参数上时，显示对应说明。
 
-下面是常用参数，详细用法请参阅[属性参数](/docs-zh/scripting/attributes)。
+下面是常用参数，详细用法请参阅[属性参数](/scripting/attributes)。
 
 - type: 限定属性的数据类型
 - visible: 设为 false 则不在 Inspector 面板中显示该属性

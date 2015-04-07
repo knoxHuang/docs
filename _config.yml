@@ -12,8 +12,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://fireball-x.com/docs-zh
-root: /docs-zh
+url: http://docs-zh.fireball-x.com
+root: /
 permalink: :permalinks/
 permalink_defaults:
 
