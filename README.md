@@ -4,6 +4,9 @@
 
 ## Requirements
 
+建议使用 node 0.12.0 以上版本，并卸载之前旧版的 hexo
+`npm rm -g hexo`
+
 ```
 npm install -g gulp
 npm install -g hexo-cli
