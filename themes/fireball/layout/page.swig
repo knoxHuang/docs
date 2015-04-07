@@ -8,7 +8,7 @@
         </div>
         <div>
             <ol class="breadcrumb">
-                <li><a href="/docs-/zh">Home</a></li>
+                <li><a href="/docs-zh">Home</a></li>
                 <li><a href="{{ url_for(category_link()) }}">{{ category_name() }}</a></li>
                 <li class="active">{{ page.title }}</li>
             </ol>
@@ -16,7 +16,7 @@
         {{ page.content }}
         <div>
             <hr>
-            <a href="https://github.com/fireball-x/docs/edit/master/source/{{ page.source }}">Edit This Page</a>
+            <a href="https://github.com/fireball-x/docs-zh/edit/master/source/{{ page.source }}">Edit This Page</a>
         </div>
     </div>
     <div class="col-lg-2 hidden-md hidden-sm hidden-xs">

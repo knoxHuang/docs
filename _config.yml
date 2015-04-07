@@ -75,6 +75,6 @@ feed:
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:fireball-x/docs.git
+  repo: git@github.com:fireball-x/docs-zh.git
   branch: gh-pages
   message: "Updated site [ci skip]"
