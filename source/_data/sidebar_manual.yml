@@ -1,0 +1,10 @@
+开始使用:
+  获取Fireball: manual/start/get-fireball
+  新建项目: manual/start/new-project
+  认识Editor: manual/start/editor-overview
+  Unity开发者上手: manual/start/from-unity
+脚本编写:
+  JavaScript入门指南: manual/scripting/javascript-primer
+  类型定义: manual/scripting/class
+插件开发:
+  插件设置: manual/plugin/config-package-json

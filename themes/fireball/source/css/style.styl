@@ -1,0 +1,132 @@
+@import "bootstrap.min.css"
+sidebar-width = 200px
+header-height = 82px
+// Media queries
+mq-mobile = "screen and (max-width: 768px)"
+mq-normal = "screen and (min-width: 769px)"
+mq-tablet = "screen and (min-width: 480px)"
+
+html, body
+  /*height 100%*/
+  overflow-x hidden
+
+.navbar-brand
+  padding-top 10px
+
+.navbar
+  border-radius 0
+
+.navbar-inverse
+  background-color #24272D
+
+.container-fluid
+  padding 0
+
+.container
+  margin-right auto
+  margin-left 20px
+  padding-left 20px
+  padding-right 20px
+  @media screen and (min-width: 1100px)
+    width 1096px
+  @media screen and (max-width: 768px)
+    width 740px
+  @media screen and (max-width: 640px)
+    width 600px
+
+.navbar-nav li a
+  line-height 50px
+
+#full-wrap
+  position relative
+  min-height 640px
+  overflow-y auto
+
+.container.content-wrap
+  padding-bottom 60px
+
+.container-fluid.footer
+  margin-top 40px
+
+#footer
+  position absolute
+  bottom 0px
+  width 100%
+  height 60px
+  margin-top 50px
+  background-color #24272D
+  color #FFF
+  .container
+    padding-top 10px
+    padding-bottom 10px
+
+.nav-stacked li.sidebar-title
+  margin-top 15px
+
+#article-toc
+  display: block
+  float: right
+  width: 100%
+  /*margin-right: sidebar-width * -1*/
+  opacity: 0.8
+  &.fixed
+    position: absolute
+    top: 20
+    bottom: 0
+    /*right: sidebar-width + 95*/
+
+#article-toc-inner
+  /*@extend .inner*/
+  overflow-x: hidden
+  overflow-y: auto
+  width: sidebar-width
+  .fixed &
+    margin-top 20px
+    position: fixed
+    top: 0
+    bottom: 0
+
+.toc-link
+  display: block;
+  color: #444;
+  padding: 7px 0;
+  line-height: 1;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+.toc-child
+  padding-left: 1em
+  font-size: 0.9em
+
+#article-toc-top
+  margin-top: 2em
+  font-size: 0.9em
+  text-decoration: none
+  color: color-default
+  display: block
+  margin-bottom: 40px
+  font-family: font-title
+  &:hover
+    color: color-link-hover
+
+ol, ul
+  &.toc
+    list-style: none
+    padding-left 0
+
+.content-wrap img
+  max-width 100%
+
+#sidebar
+  &.fixed
+    position: absolute
+    top: 20
+    bottom: 0
+    .inner
+      margin-top 20px
+      position: fixed
+      top: 0
+      bottom: 0
+  .inner
+    overflow-y: auto

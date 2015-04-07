@@ -1,3 +1,3 @@
 title: {{ title }}
-permalink: {{page.url}}
+date: {{ date }}
 ---

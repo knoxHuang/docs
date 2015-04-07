@@ -1,18 +1,10 @@
-title: Documentation
+title: Home
+permalinks: /zh
+layout: index
 ---
+# 欢迎来到Fireball学习中心
 
-> 英文文档有待更新，请先查阅[中文版](http://docs.fireball-x.com/zh/index.html)。
+Fireball是使用 Javascript + Html 开发的全功能游戏引擎和编辑器。用户将使用 Javascript 书写脚本，配合编辑器里提供的全套设计和资源生产工具链，来创造可以在所有平台上运行的Html5游戏。
 
-Welcome to Fireball Documentation. This will help you get started fast.
+请选择一个区域开始学习：
 
-## User Manual
-
-Please click the links on the left.
-
-## API Reference
-
-[API Reference](/api/modules/Fire.html)
-
-## Internal Developer Manual
-
-[Developer Manual](/en/dev)
