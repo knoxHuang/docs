@@ -48,4 +48,4 @@ permalinks: manual/start/get-fireball
 
 ---
 ###接下来...
-- 阅读[「新建项目」](/zh/start/new-project/)以使用Fireball引擎构建您的游戏。
+- 阅读[「新建项目」](/docs-zh/start/new-project/)以使用Fireball引擎构建您的游戏。

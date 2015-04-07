@@ -9,8 +9,8 @@ permalinks: manual/scripting/attributes
 
 参数名 | 说明 | 类型 | 默认值
 --- | --- |:---:|:---:
-[type](/zh/scripting/class#type) | 限定属性的数据类型（[点击范例](/zh/scripting/class#type)） | (Any) | undefined
-[visible](/zh/scripting/class#visible) | 在 Inspector 面板中显示或隐藏 | boolean | (注1)
+[type](/docs-zh/scripting/class#type) | 限定属性的数据类型（[点击范例](/docs-zh/scripting/class#type)） | (Any) | undefined
+[visible](/docs-zh/scripting/class#visible) | 在 Inspector 面板中显示或隐藏 | boolean | (注1)
 displayName  | 在 Inspector 面板中显示为另一个名字 | string | undefined
 tooltip | 在 Inspector 面板中添加属性的 Tooltip | string | undefined
 multiline | 在 Inspector 面板中使用多行文本框 | boolean | false

@@ -36,7 +36,7 @@ var Sheep = Fire.Class({
 });
 ```
 
-注册时使用 `Fire.Input.on`，传入的第一个参数用来指定事件类型，更多类型请查阅[输入事件列表](/zh/scripting/input-events)。第二个参数是对应的回调函数，这里一般需要通过 bind 方法来绑定 this 对象，否则在回调函数触发时 this 将为 null。
+注册时使用 `Fire.Input.on`，传入的第一个参数用来指定事件类型，更多类型请查阅[输入事件列表](/docs-zh/scripting/input-events)。第二个参数是对应的回调函数，这里一般需要通过 bind 方法来绑定 this 对象，否则在回调函数触发时 this 将为 null。
 
 反注册时传入的事件类型和回调函数必须和注册时一致。
 

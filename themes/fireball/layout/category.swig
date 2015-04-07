@@ -3,7 +3,7 @@
 </div>
 <div>
     <ol class="breadcrumb">
-        <li><a href="/zh">Home</a></li>
+        <li><a href="/docs-zh">Home</a></li>
         {#<li><a href="#">Library</a></li>#}
         <li class="active">{{ category_name() }}</li>
     </ol>

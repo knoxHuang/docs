@@ -67,7 +67,7 @@ ProjectName
     - 贴图
     - 音频
     ...
-    简单来说，该目录对应[Editor]（/zh/start/editor-overview)中Assets面板下加载的项目资源。
+    简单来说，该目录对应[Editor]（/docs-zh/start/editor-overview)中Assets面板下加载的项目资源。
   - **settings**
     项目的全局设置，这些设置为项目级参数，为项目的所有参与者所共有，例如：
     - 插件设置
@@ -76,7 +76,7 @@ ProjectName
     ...
 - 客户端私有目录（不应纳入版本管理）
   - **library**
-    客户端资源库管理目录，用于[Editor](/zh/start/editor-overview)资源库的数据记录及资源展示。
+    客户端资源库管理目录，用于[Editor](/docs-zh/start/editor-overview)资源库的数据记录及资源展示。
   - **local**
     项目的本地设置，存储当前用户不适用于项目全局范围的个性化设置，如客户端界面布局。
   - **temp**
@@ -85,4 +85,4 @@ ProjectName
 
 ---
 ###接下来...
-- 阅读[「认识Editor」](/zh/start/editor-overview)以了解项目开发环境的更多信息。
+- 阅读[「认识Editor」](/docs-zh/start/editor-overview)以了解项目开发环境的更多信息。

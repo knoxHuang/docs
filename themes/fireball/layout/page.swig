@@ -8,7 +8,7 @@
         </div>
         <div>
             <ol class="breadcrumb">
-                <li><a href="/zh">Home</a></li>
+                <li><a href="/docs-/zh">Home</a></li>
                 <li><a href="{{ url_for(category_link()) }}">{{ category_name() }}</a></li>
                 <li class="active">{{ page.title }}</li>
             </ol>

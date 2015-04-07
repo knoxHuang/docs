@@ -14,20 +14,20 @@ permalinks: manual/scripting/class
 ### 创建Fire.Class
 
 调用 **Fire.Class** 方法，传入一个原型对象，在原型对象中以键值对的形式设定所需的类型参数，就能创建出所需要的类。
-    
+
 ```js
     var Sprite = Fire.Class({
         name: 'Sprite'
     });
 ```
-    
-这段代码将创建好的类赋值给了 Sprite 变量，另外还提供了 `name` 参数来作为类名，类名用于[序列化](/zh/dev/core/serialization#register)，一般可以省略。
+
+这段代码将创建好的类赋值给了 Sprite 变量，另外还提供了 `name` 参数来作为类名，类名用于[序列化](/docs-zh/dev/core/serialization#register)，一般可以省略。
 为了论述方便，本文将这里传入的这个 `{ name: 'Sprite' }` 对象统称为**原型对象**，本文重点介绍如何定义原型对象。
 
 ### 创建对象
 
 由于 FireClass 本身就是一个 JavaScript 构造函数，使用 new 就可以创建对象：
-    
+
 ```js
     var obj = new Sprite();
 ```
@@ -35,7 +35,7 @@ permalinks: manual/scripting/class
 ### 构造函数
 
 如果在原型对象中声明了 `constructor`，指定的构造函数就将在每个实例的创建过程中调用，FireClass 的构造函数**不允许**定义**构造参数**。
-    
+
 ```js
     var Sprite = Fire.Class({
         constructor: function () {
@@ -48,7 +48,7 @@ permalinks: manual/scripting/class
 ### 判断类型
 
 `instanceof` 可以用来判断对象的类型：
-    
+
 ```js
     console.log(obj instanceof Sprite);     // true
 ```
@@ -195,9 +195,9 @@ var Sprite = Fire.Class({
     // test
     var obj = new Sprite();
 ```
-    
+
 `instanceof` 也可以用来判断对象所在的类型是否继承自某个父类：
-    
+
 ```js
     var sub = new Sprite();
     console.log(sub instanceof Node);       // true
@@ -208,7 +208,7 @@ var Sprite = Fire.Class({
 ### 父构造函数
 
 请注意，不论子类的构造函数是否提供，子类实例化前父类的构造函数都会先被自动调用。
-    
+
 ```js
     var Node = Fire.Class({
         constructor: function () {
@@ -274,7 +274,7 @@ var Sprite = Fire.Class({
     });
     console.log(Fire.isChildClassOf(Texture2D, Texture));   // true
 ```
-    
+
 请注意，两个传入参数都必须是类的构造函数，而不是类的对象实例。如果传入的两个类相等，`isChildClassOf` 也会返回 true。
 
 备注：
@@ -295,7 +295,7 @@ var Sprite = Fire.Class({
 
 ## 属性
 
-属性(Property)是特殊的实例变量，能够显示在 Inspector 中，也能被[序列化](/zh/dev/core/serialization#custom)。属性不在构造函数里定义，而是声明在原型对象的 `properties` 字典里。
+属性(Property)是特殊的实例变量，能够显示在 Inspector 中，也能被[序列化](/docs-zh/dev/core/serialization#custom)。属性不在构造函数里定义，而是声明在原型对象的 `properties` 字典里。
 
 ### 下面在 Player 类定义一个 playerName 属性：
 
@@ -310,9 +310,9 @@ var Sprite = Fire.Class({
         }
     });
 ```
-    
-这个示例也可在教程[创建和使用脚本](/zh/scripting/component#show-in-inspector)中看到，这样定义后，playerName 就能显示在 Inspector 面板里，并且在场景里保留用户输入的值。
-    
+
+这个示例也可在教程[创建和使用脚本](/docs-zh/scripting/component#show-in-inspector)中看到，这样定义后，playerName 就能显示在 Inspector 面板里，并且在场景里保留用户输入的值。
+
 这里的 `default` 用来声明属性的默认值，同时也定义了值类型是字符串。default 可以接受任意类型的参数，但默认值只有在第一次创建对象的时候才会用到，如果是反序列化出来的对象，属性值将会还原为上次序列化前设置的值。
 
 ### 属性本身也是实例变量，可以直接访问
@@ -334,13 +334,13 @@ var Sprite = Fire.Class({
         }
     });
 ```
-    
+
 在构造函数被调用前，属性已经被定义好了，可以在构造函数内访问或者重新给属性赋值。
 
 ### 每个属性可附带任意多个**参数**(Attribute)
 
 参数用于指定在 Inspector 中的显示方式、序列化方式等。
-    
+
 ```js
     properties {
         score: {
@@ -350,10 +350,10 @@ var Sprite = Fire.Class({
         }
     }
 ```
-    
+
 以上代码规定了 score 在 Inspector 里只能输入整数，并且当鼠标移到参数上时，显示对应说明。
-    
-下面是常用参数，详细用法请参阅[属性参数](/zh/scripting/attributes)。
+
+下面是常用参数，详细用法请参阅[属性参数](/docs-zh/scripting/attributes)。
 
 - type: 限定属性的数据类型
 - visible: 设为 false 则不在 Inspector 面板中显示该属性
@@ -440,7 +440,7 @@ var Sprite = Fire.Class({
 ### 属性快捷定义
 
 如果属性不带任何参数，则可以直接写成：
-    
+
 ```js
     // 完整形式
     properties: {                   // 快捷形式
@@ -449,9 +449,9 @@ var Sprite = Fire.Class({
         }                   =>      }
     }
 ```
-    
+
 但**默认值不能是对象类型**，如果默认值是对象，还是只能用完整的写法：
-    
+
 ```js
     properties: {
         position: {
@@ -491,10 +491,10 @@ var Sprite = Fire.Class({
         }
     }
 ```
-    
+
 get 方法可以返回任意类型的值。
 这个属性同样能显示在 Inspector 中，并且可以在包括构造函数内的所有代码里直接访问。
-    
+
 ```js
     var Sprite = Fire.Class({
         constructor: function () {
@@ -510,9 +510,9 @@ get 方法可以返回任意类型的值。
         }
     });
 ```
-    
+
 请注意：
-    
+
 - 设定了 get 以后，这个属性就不能被序列化，也不能指定默认值，但仍然可附带除了 "default", "serializable" 以外的任意参数。
 
 ```js
@@ -552,11 +552,11 @@ obj.position.x = 100;                   // 允许！position 对象本身可以�
         }
     }
 ```
-    
+
 set 方法接收一个传入参数，这个参数可以是任意类型。
 
 set 可以和 get 一起使用：
-    
+
 ```js
     width: {
         get: function () {
@@ -569,7 +569,7 @@ set 可以和 get 一起使用：
         tooltip: "The width of sprite"
     }
 ```
-    
+
 请注意：
 - 如果没有和 get 一起定义，则 set 自身不能附带任何参数。
 - 和 get 一样，设定了 set 以后，这个属性就不能被序列化，也不能指定默认值。
