@@ -15,15 +15,20 @@
         var scrollTop = $('body').scrollTop();
         if (scrollTop > headerHeight){
             toc.classList.add('fixed');
-            sidebar.classList.add('fixed');
+            if (!window.matchMedia("(max-width: 768px)").matches) {
+                sidebar.classList.add('fixed');
+                /* the viewport is at most 768 pixels wide */
+            }
         } else {
             toc.classList.remove('fixed');
-            sidebar.classList.remove('fixed');
+            if (!window.matchMedia("(max-width: 768px)").matches) {
+                sidebar.classList.remove('fixed');
+            }
         }
     }
 
     $(window).scroll( function(){
-        console.log('updating position');
+        //console.log('updating position');
         window.requestAnimationFrame(updateSidebarPosition);
     });
 

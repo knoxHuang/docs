@@ -2,9 +2,9 @@
 sidebar-width = 200px
 header-height = 82px
 // Media queries
-mq-mobile = "screen and (max-width: 768px)"
-mq-normal = "screen and (min-width: 769px)"
-mq-tablet = "screen and (min-width: 480px)"
+/*mq-mobile = "screen and (max-width: 768px)"*/
+/*mq-normal = "screen and (min-width: 769px)"*/
+/*mq-tablet = "screen and (min-width: 480px)"*/
 
 html, body
   /*height 100%*/
@@ -12,6 +12,13 @@ html, body
 
 .navbar-brand
   padding-top 10px
+  img
+    height: 50px
+
+.navbar-header
+  height 82px
+
+
 
 .navbar
   border-radius 0
@@ -22,17 +29,17 @@ html, body
 .container-fluid
   padding 0
 
-.container
-  margin-right auto
-  margin-left 20px
-  padding-left 20px
-  padding-right 20px
-  @media screen and (min-width: 1100px)
-    width 1096px
-  @media screen and (max-width: 768px)
-    width 740px
-  @media screen and (max-width: 640px)
-    width 600px
+/*.container*/
+  /*margin-right auto*/
+  /*margin-left 20px*/
+  /*padding-left 20px*/
+  /*padding-right 20px*/
+  /*@media screen and (min-width: 1100px)*/
+    /*width 1096px*/
+  /*@media screen and (max-width: 768px)*/
+    /*width 740px*/
+  /*@media screen and (max-width: 640px)*/
+    /*width 600px*/
 
 .navbar-nav li a
   line-height 50px
@@ -130,3 +137,6 @@ ol, ul
       bottom: 0
   .inner
     overflow-y: auto
+
+button.navbar-toggle.collapsed
+  margin-top 25px

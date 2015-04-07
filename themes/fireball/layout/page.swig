@@ -1,8 +1,8 @@
 <div class="row">
-    <div class="col-lg-3 col-md-4">
+    <div class="col-lg-3 col-md-3 col-sm-4">
         {{ partial('partial/sidebar') }}
     </div>
-    <div class="col-lg-7 col-md-8">
+    <div class="col-lg-7 col-md-7 col-sm-8">
         <div class="title-header">
             {% if not is_home() %}<h1>{{ page.title }}</h1>{% endif %}
         </div>
@@ -19,7 +19,7 @@
             <a href="https://github.com/fireball-x/docs-zh/edit/master/source/{{ page.source }}">Edit This Page</a>
         </div>
     </div>
-    <div class="col-lg-2 hidden-md hidden-sm hidden-xs">
+    <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
         <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
                 <strong class="sidebar-title">内容索引</strong>

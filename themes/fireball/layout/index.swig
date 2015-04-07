@@ -3,7 +3,7 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-10">
+    <div class="col-lg-12">
         {{ page.content }}
         <div class="row">
             <div class="col-lg-4">
