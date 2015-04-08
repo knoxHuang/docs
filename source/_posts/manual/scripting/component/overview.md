@@ -4,7 +4,7 @@ permalinks: manual/scripting/component
 ---
 Fireball 的很多功能都是以 Component(组件) 的形式提供的，Component 就是 Fireball 调用脚本的入口。Component 可以用来实现各类游戏逻辑(gameplay)，像是控制 Entity(实体)、发送事件、修改属性、响应玩家输入等。
 
-Fireball 运行于 JavaScript 之上，Component 也不例外，JavaScript 入门非常简单，你可以浏览[JavaScript入门指南](/scripting/javascript-primer)。此外，很多其它语言像是 CoffeeScript 和 TypeScript 都能很好的编译为 JavaScript，Fireball 默许你在内部使用任何语言。
+Fireball 运行于 JavaScript 之上，Component 也不例外，JavaScript 入门非常简单，你可以浏览[JavaScript入门指南](/manual/scripting/javascript-primer)。此外，很多其它语言像是 CoffeeScript 和 TypeScript 都能很好的编译为 JavaScript，Fireball 默许你在内部使用任何语言。
 
 ## 新建脚本
 
@@ -49,7 +49,7 @@ var Comp = Fire.Class({
 传入的 `onStart: function () {...};` 用于定义 **onStart** 回调方法，onStart 将由 Fireball 在 update 第一次执行之前调用，你可以在 onStart 中编写任意的初始化代码。
 
 请注意：
-- 我们将使用 Fire.Class 声明的类型统称为 **FireClass**，Component 和普通的 FireClass 的区别仅仅在于 Component 的类名会自动从脚本获取。你可以通过阅读[类型定义](/scripting/class)来进一步了解 FireClass。
+- 我们将使用 Fire.Class 声明的类型统称为 **FireClass**，Component 和普通的 FireClass 的区别仅仅在于 Component 的类名会自动从脚本获取。你可以通过阅读[类型定义](/manual/scripting/class)来进一步了解 FireClass。
 - 对有经验的用户来说，Component 虽然可以定义构造函数，但我们建议将逻辑操作尽可能的放到 onStart 等 Fireball 的回调中进行，而构造函数仅仅用于声明实例变量。
 
 ## 添加到Entity

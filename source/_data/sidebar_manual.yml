@@ -5,6 +5,16 @@
   Unity开发者上手: manual/start/from-unity
 脚本编写:
   JavaScript入门指南: manual/scripting/javascript-primer
+  创建和使用脚本: manual/scripting/component
+  对象访问: manual/scripting/component/access
+  Component回调: manual/scripting/component/callbacks
+  创建和销毁对象: manual/scripting/create-destroy-entities
+  计时和帧率: manual/scripting/time
   类型定义: manual/scripting/class
+  属性参数: manual/scripting/attributes
+  玩家输入: manual/scripting/input
+  模块化: manual/scripting/module
+  附录：输入事件: manual/scripting/input-events
+  附录：保留字: manual/scripting/reserved-words
 插件开发:
   插件设置: manual/plugin/config-package-json

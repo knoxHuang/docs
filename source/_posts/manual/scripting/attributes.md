@@ -9,8 +9,8 @@ permalinks: manual/scripting/attributes
 
 参数名 | 说明 | 类型 | 默认值
 --- | --- |:---:|:---:
-[type](/scripting/class#type) | 限定属性的数据类型（[点击范例](/scripting/class#type)） | (Any) | undefined
-[visible](/scripting/class#visible) | 在 Inspector 面板中显示或隐藏 | boolean | (注1)
+[type](/manual/scripting/class#type) | 限定属性的数据类型（[点击范例](/manual/scripting/class#type)） | (Any) | undefined
+[visible](/manual/scripting/class#visible) | 在 Inspector 面板中显示或隐藏 | boolean | (注1)
 displayName  | 在 Inspector 面板中显示为另一个名字 | string | undefined
 tooltip | 在 Inspector 面板中添加属性的 Tooltip | string | undefined
 multiline | 在 Inspector 面板中使用多行文本框 | boolean | false
@@ -28,6 +28,6 @@ range | 以滑动条的形式限定数值的最大最小值 | [min, max] | undef
 
 参数名 | 说明 | 类型 | 默认值
 --- | --- |:---:|:---:
-[serializable](/zh/scripting/class#serializable) | 序列化该属性 | boolean | true
+[serializable](/manual/scripting/class#serializable) | 序列化该属性 | boolean | true
 editorOnly | 在导出项目前剔除该属性 | boolean | false
 rawType | 该属性的类型是宿主平台上的原生对象 | string | undefined

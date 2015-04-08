@@ -6,7 +6,7 @@ title: 类型定义
 所有“备注”都属于进阶内容，初学者不需要了解。
 ```
 
-Fireball 的数据类型(Class)使用 **Fire.define** 进行定义，以便简化继承、支持[序列化](zh/dev/core/serialization)、定义属性等。为了方便区分，这些类叫做 **FireClass**。
+Fireball 的数据类型(Class)使用 **Fire.define** 进行定义，以便简化继承、支持序列化、定义属性等。为了方便区分，这些类叫做 **FireClass**。
 
 ## <a name="define"></a>定义FireClass
 
@@ -14,7 +14,7 @@ Fireball 的数据类型(Class)使用 **Fire.define** 进行定义，以便简�
 ```js
     var Sprite = Fire.define('Sprite');
 ```
-以上代码定义了一个名为 'Sprite' 的 FireClass，并且赋给 Sprite 变量。'Sprite' 这个名字即是类名又是类型ID，将会用于[序列化](serialization.md#register)等场合。
+以上代码定义了一个名为 'Sprite' 的 FireClass，并且赋给 Sprite 变量。'Sprite' 这个名字即是类名又是类型ID，将会用于序列化等场合。
 
 - **实例化**时采用
 ```js
@@ -206,7 +206,7 @@ Fireball 的数据类型(Class)使用 **Fire.define** 进行定义，以便简�
 
 ## <a name="property"></a>属性(Property)
 
-FireClass 提供了 **prop** 方法用于声明属性(property)。属性是特殊的成员变量，能够显示在 Inspector 中，也能被[序列化](serialization.md#custom)。
+FireClass 提供了 **prop** 方法用于声明属性(property)。属性是特殊的成员变量，能够显示在 Inspector 中，也能被序列化。
 - prop 需要两个参数，一是属性变量名，二是属性的默认值，默认值可以是任意类型。  
 ```js
     var Sprite = Fire.define('Sprite');
