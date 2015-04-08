@@ -6,11 +6,13 @@ permalinks: manual/start/from-unity
 虽然 Fireball 和 [Unity®](http://unity3d.com/) 有很多不同之处，但他们都是基于组件进行设计，有一些相似的使用体验。所以 Unity 的相关经验对入门 Fireball 有一定帮助，如果你了解过 Unity，那么这篇短文就是为你准备的。
 本文并不从头介绍 Fireball，也不完整列举 Fireball 和 Unity 的所有不同点。
 
-## 命名上的区别 (Fireball // Unity)
+## 术语上的区别
 
-- Entity // GameObject
-- Scene // Level
-- Assets // Project
+Fireball 中的术语 | Unity 中的术语 | 说明
+ --- | --- | ---
+Scene | Level | 场景
+Entity | GameObject | 场景中的对象，每个对象可包含多个组件(Component)
+Assets | Project | 项目资源
 
 ## 设计上的区别
 

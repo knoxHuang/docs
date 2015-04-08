@@ -53,14 +53,16 @@ permalinks: manual/scripting/class
     console.log(obj instanceof Sprite);     // true
 ```
 
-### 备注：
+**备注**
 
 - 如果不需要序列化，类名可以省略。类名可以是任意字符串，但不允许重复。可以使用 Fire.getClassName 来获得类名，使用 Fire.getClassByName 来查找对应的类。
 - 专业开发者如果确实需要使用构造参数，可以在 constructor 的 arguments 里获取。但如果这个类需要序列化，必须保证构造参数都缺省的情况下仍然能 new 出对象。
 
 ## 成员
 
-### **实例变量**请统一在构造函数中声明：
+### 实例变量
+
+实例变量请统一在构造函数中声明：
 
 ```js
     var Sprite = Fire.Class({
@@ -76,7 +78,9 @@ permalinks: manual/scripting/class
     obj.id = 1;
 ```
 
-### **实例方法**请在原型对象中声明：
+### 实例方法
+
+实例方法请在原型对象中声明：
 
 ```js
     var Sprite = Fire.Class({
@@ -93,7 +97,9 @@ permalinks: manual/scripting/class
     obj.load();
 ```
 
-### 静态的**类变量**或**类方法**请直接添加到定义好的 Class：
+### 类变量和类方法
+
+静态的类变量或类方法请直接添加到定义好的 Class：
 
 ```js
     var Sprite = Fire.Class({ ... });
@@ -106,7 +112,8 @@ permalinks: manual/scripting/class
     };
 ```
 
-### 完整代码如下
+完整代码如下：
+
 ```js
     var Sprite = Fire.Class({
         name: 'Sprite',
@@ -138,50 +145,52 @@ permalinks: manual/scripting/class
     Sprite.getBounds([obj]);
 ```
 
-### 备注：
+**备注**
 
 - 如果是**私有**成员，建议在成员命名前面加上下划线"_"以示区分。
 
-```js
-var Sprite = Fire.Class({
-    name: 'Sprite',
-    constructor: function () {
-        // 私有实例变量
-        this._myData = 0;
-    },
-    // 私有实例方法
-    _load: function () {
-        // ...
-    };
-});
-// 私有类变量
-Sprite._list = [];
-```
+    ```js
+    var Sprite = Fire.Class({
+        name: 'Sprite',
+        constructor: function () {
+            // 私有实例变量
+            this._myData = 0;
+        },
+        // 私有实例方法
+        _load: function () {
+            // ...
+        };
+    });
+    // 私有类变量
+    Sprite._list = [];
+    ```
 
 - 如果是**私有**静态成员，也可以用闭包(Closure)实现。
 
-```js
-// 私有静态方法
-var doLoad = function (sprite) {
-    // do load ...
-};
-// 私有静态变量
-var url = 'foo.png';
-
-var Sprite = Fire.Class({
-    load: function () {
-        // 调用局部作用域内的方法
-        doLoad(this, url);
+    ```js
+    // 私有静态方法
+    var doLoad = function (sprite) {
+        // do load ...
     };
-});
-```
+    // 私有静态变量
+    var url = 'foo.png';
+
+    var Sprite = Fire.Class({
+        load: function () {
+            // 调用局部作用域内的方法
+            doLoad(this, url);
+        };
+    });
+    ```
 
 - 这里所说的“实例成员”(instance member)包含了“实例变量”(member variable)和“实例方法”(instance method)。
 - 这里所说的“类成员”(static member)包含了“类变量”(static variable)和“类方法”(static method)。
 
 ## 继承
 
-### 继承时请在原型对象里设置 **extends** 为父类：
+### 声明方式
+
+继承时请在原型对象里设置 `extends` 为父类：
 
 ```js
     // define base class
@@ -277,27 +286,29 @@ var Sprite = Fire.Class({
 
 请注意，两个传入参数都必须是类的构造函数，而不是类的对象实例。如果传入的两个类相等，`isChildClassOf` 也会返回 true。
 
-备注：
+**备注**
 
 - 可以通过子类的静态变量 `$super` 来访问父类。
 - 所有实例成员和类成员都将被子类继承。
 - 如果不希望类成员被子类继承，可以用 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 声明：
 
-```js
-    Object.defineProperty(Sprite, 'getBounds', {
-        value: function (spriteList) {
-            // do get bounds ...
-        },
-        enumerable: false
-    });
-```
+    ```js
+        Object.defineProperty(Sprite, 'getBounds', {
+            value: function (spriteList) {
+                // do get bounds ...
+            },
+            enumerable: false
+        });
+    ```
 - 如果你想实现原生的 JavaScript 继承，也就是说你的父类和子类都不是 FireClass，那你可以通过 Fire.JS.extend 方法来继承。
 
 ## 属性
 
+### 属性定义和访问
+
 属性(Property)是特殊的实例变量，能够显示在 Inspector 中，也能被序列化。属性不在构造函数里定义，而是声明在原型对象的 `properties` 字典里。
 
-### 下面在 Player 类定义一个 playerName 属性：
+**下面在 Player 类定义一个 playerName 属性：**
 
 ```js
     var Player = Fire.Class({
@@ -315,7 +326,7 @@ var Sprite = Fire.Class({
 
 这里的 `default` 用来声明属性的默认值，同时也定义了值类型是字符串。default 可以接受任意类型的参数，但默认值只有在第一次创建对象的时候才会用到，如果是反序列化出来的对象，属性值将会还原为上次序列化前设置的值。
 
-### 属性本身也是实例变量，可以直接访问
+**属性本身也是实例变量，可以直接访问：**
 
 ```js
     var Sprite = Fire.Class({
@@ -337,9 +348,9 @@ var Sprite = Fire.Class({
 
 在构造函数被调用前，属性已经被定义好了，可以在构造函数内访问或者重新给属性赋值。
 
-### 每个属性可附带任意多个**参数**(Attribute)
+### 属性参数
 
-参数用于指定在 Inspector 中的显示方式、序列化方式等。
+每个属性可附带任意多个参数(Attribute)，用于指定在 Inspector 中的显示方式、序列化方式等。
 
 ```js
     properties {
@@ -362,7 +373,7 @@ var Sprite = Fire.Class({
 - tooltip: 在 Inspector 面板中添加属性的 Tooltip
 - multiline: 在 Inspector 面板中使用多行文本框
 
-### <a name="visible参数"></a>visible参数
+#### <a name="visible参数"></a>visible参数
 
 默认情况下，是否显示在 Inspector 取决于属性名是否以下划线"_"开头。如果以下划线开头，则默认不显示在 Inspector，否则默认显示。
 
@@ -388,7 +399,7 @@ var Sprite = Fire.Class({
     }
 ```
 
-### <a name="serializable"></a>serializable参数
+#### <a name="serializable"></a>serializable参数
 
 属性默认情况下都会被序列化，如果不想序列化，可以设置`serializable: false`。
 
@@ -399,7 +410,7 @@ var Sprite = Fire.Class({
     }
 ```
 
-### <a name="type"></a>type参数
+#### <a name="type"></a>type参数
 
 当`default`不能提供足够详细的类型信息时，如果想要在 Inspector 里编辑属性，则需要用`type`显式声明具体的类型：
 
@@ -460,7 +471,7 @@ var Sprite = Fire.Class({
     }
 ```
 
-### 备注：
+**备注**
 
 - 属性都能被子类继承，但子类和父类的属性不能重名。
 - 如果属性的默认值需要调用其它方法才能获得，可以在构造函数里重新赋值。
@@ -480,7 +491,9 @@ var Sprite = Fire.Class({
 
 在属性中设置了 get 或 set 以后，访问属性的时候，就能触发预定义的 get 或 set 方法。
 
-### 在属性中设置 get 方法：
+### get
+
+在属性中设置 get 方法：
 
 ```js
     properties: {
@@ -515,35 +528,36 @@ get 方法可以返回任意类型的值。
 
 - 设定了 get 以后，这个属性就不能被序列化，也不能指定默认值，但仍然可附带除了 "default", "serializable" 以外的任意参数。
 
-```js
-    width: {
-        get: function () {
-            return this.__width;
-        },
-        type: Fire.Integer,
-        tooltip: "The width of sprite"
-    }
-```
+    ```js
+        width: {
+            get: function () {
+                return this.__width;
+            },
+            type: Fire.Integer,
+            tooltip: "The width of sprite"
+        }
+    ```
 
 - get 属性本身是只读的，但返回的对象并不是只读的。用户使用代码依然可以修改对象内部的属性，例如：
 
-```js
-var Sprite = Fire.Class({
-    ...
-    position: {
-        get: function () {
-            return this.__position;
-        },
-    }
-    ...
-});
-var obj = new Sprite();
-obj.position = new Fire.Vec2(10, 20);   // 错误！position 是只读的！
-obj.position.x = 100;                   // 允许！position 对象本身可以修改！
-//
-```
+    ```js
+    var Sprite = Fire.Class({
+        ...
+        position: {
+            get: function () {
+                return this.__position;
+            },
+        }
+        ...
+    });
+    var obj = new Sprite();
+    obj.position = new Fire.Vec2(10, 20);   // 错误！position 是只读的！
+    obj.position.x = 100;                   // 允许！position 对象本身可以修改！
+    ```
 
-- 在属性中设置 set 方法
+### set
+
+在属性中设置 set 方法：
 
 ```js
     width: {
