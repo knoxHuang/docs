@@ -140,3 +140,27 @@ ol, ul
 
 button.navbar-toggle.collapsed
   margin-top 25px
+
+table
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  background-color: transparent;
+  border-spacing: 0;
+  border-collapse: collapse;
+  thead:first-child>tr:first-child>th
+    border-top: 0;
+  thead>tr>th
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+    padding: 8px;
+  tbody>tr>td:first-child
+    font-weight 600;
+  th
+    text-align left
+  td
+    padding-left 10px
+    line-height 3em
+  tbody>tr:nth-of-type(odd)
+    background-color #f9f9f9
+
