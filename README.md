@@ -43,6 +43,22 @@ permalinks: manual/group/my-doc-link
 - categories 文档分类，在`manual`、`tutorial`、`api`中的一个
 - permalinks 表示文章的链接，注意是`permalinks`结尾有s，而且链接的前后都不可以加`/`。
 
+### 图片和其他资源
+
+我们可以用两种方式嵌入图片，一种是在[文档图片库](https://github.com/fireball-x/document-images/issues)中新建 issue 并把要贴的图片放进去，issue 的名字要和文档的标题类别相对应。
+
+另一种方式是直接把图片上传到这个 repo 里，位置要求如下：
+
+```
+/_posts/category/subcategory/my-title.md
+/_posts/category/subcategory/my-title
+                              |--screenshot.png
+                              |--document.pdf
+```  
+要把图片放在和文章相同层级的同名文件夹内，如果文章的 permalink 是`category/subcategory/my-title`
+那么图片的链接就是`category/subcategory/my-title/screenshot.png`
+为了更好得可迁移性，引用图片时最好加上 hostname，如`http://docs-zh.fireball-x.com/category/subcategory/my-title/screenshot.png`
+
 ## Troubleshooting
 
 
