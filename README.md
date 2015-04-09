@@ -50,8 +50,8 @@ permalinks: manual/group/my-doc-link
 另一种方式是直接把图片上传到这个 repo 里，位置要求如下：
 
 ```
-/_posts/category/subcategory/my-title.md
-/_posts/category/subcategory/my-title
+/_posts/category/subcategory/my-file.md
+/_posts/category/subcategory/my-file
                               |--screenshot.png
                               |--document.pdf
 ```  
