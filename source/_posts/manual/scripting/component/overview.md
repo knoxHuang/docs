@@ -93,6 +93,6 @@ var Player = Fire.Class({
 
 这个脚本将会在 Inspector 中显示一个输入控件，控件标题是 "Player Name"。  
 
-![player-name-in-inspector](img/player-name-in-inspector.png)
+![player-name-in-inspector](/manual/scripting/component/overview/player-name-in-inspector.png)
 
 如果你编辑了 Player Name 并且按下播放，你就会看到输出了 "My name is Duang Duang"。事实上，Fireball 还允许你在游戏运行的任意时刻实时更改这些属性，这对游戏的调试非常方便。当游戏停止，属性值将会被重置回播放之前的状态。这样你就可以放心的在运行时任意修改并测试场景对象，而不用担心临时的修改被保存。

@@ -87,11 +87,11 @@ var Comp = Fire.Class({
 
 这段代码在 **properties** 里面声明了一个 "player" 属性，默认值为 null，并且指定它的对象类型为 Entity。就像是其它语言里面的 `public Fire.Entity player = null;`。属性在 Inspector 中看起来是这样的：
 
-![player-in-inspector-null](../img/player-in-inspector-null.png)
+![player-in-inspector-null](/manual/scripting/component/access/player-in-inspector-null.png)
 
 接着你就可以将 Hierarchy 上的任意一个 Entity 拖到 Inspector 的这个属性中。于是这个 Component 实例的 player 属性就会被设置成这个 Entity。
 
-![player-in-inspector](../img/player-in-inspector.png)
+![player-in-inspector](/manual/scripting/component/access/player-in-inspector.png)
 
 你可以直接访问 player：
 
