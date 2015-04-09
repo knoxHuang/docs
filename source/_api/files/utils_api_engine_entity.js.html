@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>utils/api/engine/entity.js - Fireball Game API</title>
+    <title>utils/api/engine/entity.js - Fireball Engine API</title>
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
@@ -14,8 +14,9 @@
     <header class="main-header">
         <div class="content">
             <div class="project-title">
-                    <h1 class="project-name">Fireball Game API</h1> <span class="project-version">0.1.7</span>
-                    <p class="description">Fireball Game API: your toolbox</p>
+                    <a href="http://docs-zh.fireball-x.com"><img class="logo" src="http://docs-zh.fireball-x.com/images/logo.png" title="Fireball Engine API"></a>
+                    <h1 class="project-name">Fireball Engine API</h1> <span class="project-version">0.2.0</span>
+                    <p class="description">Fireball is the game engine for the future.</p>
             </div>
             <ul class="jump-links">
                 <li><a href="#index" class="index-jump-link">index</a></li>
@@ -145,24 +146,28 @@
                             transform.entity = this;
                             this._components = [transform];
                             this.transform = transform;
+                
                             // add to scene
                             if (Engine._scene) {
                                 Engine._scene.appendRoot(this);
                             }
-                            // invoke callbacks
-                            Engine._renderContext.onRootEntityCreated(this);
                 
-                            // activate componet
-                            transform._onEntityActivated(true);     // 因为是刚刚创建，所以 activeInHierarchy 肯定为 true
+                            if ( Engine._canModifyCurrentScene ) {
+                                // invoke callbacks
+                                Engine._renderContext.onRootEntityCreated(this);
+                
+                                // activate componet
+                                transform._onEntityActivated(true);     // 因为是刚刚创建，所以 activeInHierarchy 肯定为 true
                 
                 // @ifdef EDITOR
-                            if (editorCallback.onEntityCreated) {
-                                editorCallback.onEntityCreated(this);
-                            }
-                            if (editorCallback.onComponentAdded) {
-                                editorCallback.onComponentAdded(this, transform);
-                            }
+                                if (editorCallback.onEntityCreated) {
+                                    editorCallback.onEntityCreated(this);
+                                }
+                                if (editorCallback.onComponentAdded) {
+                                    editorCallback.onComponentAdded(this, transform);
+                                }
                 // @endif
+                            }
                         }
                     },
                 

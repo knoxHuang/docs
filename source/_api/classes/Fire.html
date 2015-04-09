@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Fire - Fireball Game API</title>
+    <title>Fire - Fireball Engine API</title>
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
@@ -14,8 +14,9 @@
     <header class="main-header">
         <div class="content">
             <div class="project-title">
-                    <h1 class="project-name">Fireball Game API</h1> <span class="project-version">0.1.7</span>
-                    <p class="description">Fireball Game API: your toolbox</p>
+                    <a href="http://docs-zh.fireball-x.com"><img class="logo" src="http://docs-zh.fireball-x.com/images/logo.png" title="Fireball Engine API"></a>
+                    <h1 class="project-name">Fireball Engine API</h1> <span class="project-version">0.2.0</span>
+                    <p class="description">Fireball is the game engine for the future.</p>
             </div>
             <ul class="jump-links">
                 <li><a href="#index" class="index-jump-link">index</a></li>
@@ -796,7 +797,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>indicates whether executes in editor's core process(atom-shell's browser context)</p>
+                                        <p>indicates whether executes in editor&#39;s core process(atom-shell&#39;s browser context)</p>
                             
                                     </div>
                             
@@ -977,7 +978,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>indicates whether executes in common web browser, or editor's window process(atom-shell's renderer context)</p>
+                                        <p>indicates whether executes in common web browser, or editor&#39;s window process(atom-shell&#39;s renderer context)</p>
                             
                                     </div>
                             
@@ -1559,7 +1560,7 @@
                             
                                                     <div class="param-description">
                                                         <ul>
-                            <li>the attribute table to mark, new attributes will merged with existed attributes. Attribute whose key starts with '_' will be ignored.</li>
+                            <li>the attribute table to mark, new attributes will merged with existed attributes. Attribute whose key starts with &#39;_&#39; will be ignored.</li>
                             </ul>
                             
                                                     </div>
@@ -1582,14 +1583,14 @@
                                             <h4>Example:</h4>
                             
                                             <div class="example-content">
-                                                <p>var klass = function () { this.value = 0.5 };
-                            Fire.attr(klass, 'value');              // return undefined
-                            Fire.attr(klass, 'value', {}).min = 0;  // assign new attribute table associated with 'value', and set its min = 0
-                            Fire.attr(klass, 'value', {             // set values max and default
-                            max: 1,
-                            default: 0.5,
-                            });
-                            Fire.attr(klass, 'value');              // return { default: 0.5, min: 0, max: 1 }</p>
+                                                <p>   var klass = function () { this.value = 0.5 };
+                               Fire.attr(klass, &#39;value&#39;);              // return undefined
+                               Fire.attr(klass, &#39;value&#39;, {}).min = 0;  // assign new attribute table associated with &#39;value&#39;, and set its min = 0
+                               Fire.attr(klass, &#39;value&#39;, {             // set values max and default
+                                  max: 1,
+                                  default: 0.5,
+                               });
+                               Fire.attr(klass, &#39;value&#39;);              // return { default: 0.5, min: 0, max: 1 }</p>
                             
                                             </div>
                                         </div>
@@ -1670,21 +1671,21 @@
                                             <h4>Example:</h4>
                             
                                             <div class="example-content">
-                                                <p>// define base class
-                            var Node = Fire.Class();</p>
-                            <p>// define sub class
-                            var Sprite = Fire.Class({
-                            name: 'Sprite',
-                            extends: Node,
-                            constructor: function () {
-                            this.url = &quot;&quot;;
-                            this.id = 0;
-                            },</p>
+                                                <p>   // define base class
+                               var Node = Fire.Class();</p>
+                            <p>   // define sub class
+                               var Sprite = Fire.Class({
+                                   name: &#39;Sprite&#39;,
+                                   extends: Node,
+                                   constructor: function () {
+                                       this.url = &quot;&quot;;
+                                       this.id = 0;
+                                   },</p>
                             <pre class="code prettyprint"><code>   properties {
                                    width: {
                                        default: 128,
-                                       type: 'Integer',
-                                       tooltip: 'The width of sprite'
+                                       type: &#39;Integer&#39;,
+                                       tooltip: &#39;The width of sprite&#39;
                                    },
                                    height: 128,
                                    size: {
@@ -1697,17 +1698,16 @@
                                load: function () {
                                    // load this.url
                                };
-                            </code></pre>
-                            <p>});</p>
-                            <p>// instantiate</p>
-                            <p>var obj = new Sprite();
-                            obj.url = 'sprite.png';
-                            obj.load();</p>
-                            <p>// define static member</p>
-                            <p>Sprite.count = 0;
-                            Sprite.getBounds = function (spriteList) {
-                            // ...
-                            };</p>
+                            </code></pre><p>   });</p>
+                            <p>   // instantiate</p>
+                            <p>   var obj = new Sprite();
+                               obj.url = &#39;sprite.png&#39;;
+                               obj.load();</p>
+                            <p>   // define static member</p>
+                            <p>   Sprite.count = 0;
+                               Sprite.getBounds = function (spriteList) {
+                                   // ...
+                               };</p>
                             
                                             </div>
                                         </div>
@@ -2382,24 +2382,24 @@
                             
                                             <div class="example-content">
                                                 <p>Texture.WrapMode = Fire.defineEnum({
-                            Repeat: -1,
-                            Clamp: -1
+                               Repeat: -1,
+                               Clamp: -1
                             });
                             // Texture.WrapMode.Repeat == 0
                             // Texture.WrapMode.Clamp == 1
                             // Texture.WrapMode[0] == &quot;Repeat&quot;
                             // Texture.WrapMode[1] == &quot;Clamp&quot;</p>
                             <p>var FlagType = Fire.defineEnum({
-                            Flag1: 1,
-                            Flag2: 2,
-                            Flag3: 4,
-                            Flag4: 8,
+                               Flag1: 1,
+                               Flag2: 2,
+                               Flag3: 4,
+                               Flag4: 8,
                             });
                             var AtlasSizeList = Fire.defineEnum({
-                            128: 128,
-                            256: 256,
-                            512: 512,
-                            1024: 1024,
+                               128: 128,
+                               256: 256,
+                               512: 512,
+                               1024: 1024,
                             });</p>
                             
                                             </div>
@@ -2803,8 +2803,8 @@
                             
                                                     <div class="param-description">
                                                         <ul>
-                            <li>!#en The base class to inherit from
-                            !#zh 继承的基类</li>
+                            <li>!#en The base class to inherit from<pre><code>                        !#zh 继承的基类
+                            </code></pre></li>
                             </ul>
                             
                                                     </div>
@@ -2818,8 +2818,8 @@
                             
                                                     <div class="param-description">
                                                         <ul>
-                            <li>a constructor function that is used to instantiate this class,
-                            if not supplied, the constructor of baseClass will be called automatically.</li>
+                            <li>a constructor function that is used to instantiate this class,<pre><code>                            if not supplied, the constructor of baseClass will be called automatically.
+                            </code></pre></li>
                             </ul>
                             
                                                     </div>
@@ -3309,7 +3309,7 @@
                                         <p>Outputs an informational message to the Fireball Console (editor) or Web Console (runtime).</p>
                             <ul>
                             <li>In Fireball, info is blue.</li>
-                            <li>In Firefox and Chrome, a small &quot;i&quot; icon is displayed next to these items in the Web Console's log.</li>
+                            <li>In Firefox and Chrome, a small &quot;i&quot; icon is displayed next to these items in the Web Console&#39;s log.</li>
                             </ul>
                             
                                     </div>
@@ -4480,7 +4480,7 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>Set the asset's name directly in JSON object</p>
+                                        <p>Set the asset&#39;s name directly in JSON object</p>
                             
                                     </div>
                             

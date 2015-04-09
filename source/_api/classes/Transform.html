@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Transform - Fireball Game API</title>
+    <title>Transform - Fireball Engine API</title>
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
@@ -14,8 +14,9 @@
     <header class="main-header">
         <div class="content">
             <div class="project-title">
-                    <h1 class="project-name">Fireball Game API</h1> <span class="project-version">0.1.7</span>
-                    <p class="description">Fireball Game API: your toolbox</p>
+                    <a href="http://docs-zh.fireball-x.com"><img class="logo" src="http://docs-zh.fireball-x.com/images/logo.png" title="Fireball Engine API"></a>
+                    <h1 class="project-name">Fireball Engine API</h1> <span class="project-version">0.2.0</span>
+                    <p class="description">Fireball is the game engine for the future.</p>
             </div>
             <ul class="jump-links">
                 <li><a href="#index" class="index-jump-link">index</a></li>
@@ -654,7 +655,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>&lt;p&gt;indicates whether this component is enabled or not.&lt;/p&gt;</p>
+                                        <p>indicates whether this component is enabled or not.</p>
                             
                                     </div>
                             
@@ -685,7 +686,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>&lt;p&gt;indicates whether this component is enabled and its entity is also active in the hierarchy.&lt;/p&gt;</p>
+                                        <p>indicates whether this component is enabled and its entity is also active in the hierarchy.</p>
                             
                                     </div>
                             
@@ -715,7 +716,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>&lt;p&gt;The entity this component is attached to. A component is always attached to an entity.&lt;/p&gt;</p>
+                                        <p>The entity this component is attached to. A component is always attached to an entity.</p>
                             
                                     </div>
                             
@@ -803,7 +804,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>&lt;p&gt;Indicates whether the object is not yet destroyed&lt;/p&gt;</p>
+                                        <p>Indicates whether the object is not yet destroyed</p>
                             
                                     </div>
                             
@@ -834,7 +835,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>&lt;p&gt;The name of the object.&lt;/p&gt;</p>
+                                        <p>The name of the object.</p>
                             
                                     </div>
                             
@@ -864,7 +865,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>The local position in its parent's coordinate system</p>
+                                        <p>The local position in its parent&#39;s coordinate system</p>
                             
                                     </div>
                             
@@ -1049,7 +1050,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>&lt;p&gt;Returns the {% crosslink Fire.Transform Transform %} attached to the entity.&lt;/p&gt;</p>
+                                        <p>Returns the {% crosslink Fire.Transform Transform %} attached to the entity.</p>
                             
                                     </div>
                             
@@ -1264,7 +1265,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>The local x position in its parent's coordinate system</p>
+                                        <p>The local x position in its parent&#39;s coordinate system</p>
                             
                                     </div>
                             
@@ -1295,7 +1296,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>The local y position in its parent's coordinate system</p>
+                                        <p>The local y position in its parent&#39;s coordinate system</p>
                             
                                     </div>
                             
@@ -1383,9 +1384,9 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Clear all references in the instance.&lt;/p&gt;
-                            &lt;p&gt;NOTE: this method will not clear the getter or setter functions which defined in the INSTANCE of FObject.
-                            You can override the _destruct method if you need.&lt;/p&gt;</p>
+                                        <p>Clear all references in the instance.</p>
+                            <p>NOTE: this method will not clear the getter or setter functions which defined in the INSTANCE of FObject.
+                                  You can override the _destruct method if you need.</p>
                             
                                     </div>
                             
@@ -1466,7 +1467,7 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Adds a component class to the entity. You can also add component to entity by passing in the name of the script.&lt;/p&gt;</p>
+                                        <p>Adds a component class to the entity. You can also add component to entity by passing in the name of the script.</p>
                             
                                     </div>
                             
@@ -1480,9 +1481,9 @@
                             
                             
                                                     <div class="param-description">
-                                                        <p>&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;ul&gt;
-                            &lt;li&gt;the constructor or the class name of the component to add&lt;/li&gt;
-                            &lt;/ul&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</p>
+                                                        <ul>
+                            <li>the constructor or the class name of the component to add</li>
+                            </ul>
                             
                                                     </div>
                             
@@ -1495,9 +1496,9 @@
                             
                                             <div class="returns-description">
                                                         <span class="type"><a href="../classes/Component.html" class="crosslink">Component</a></span>:
-                                                    <p>&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;ul&gt;
-                            &lt;li&gt;the newly added component&lt;/li&gt;
-                            &lt;/ul&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</p>
+                                                    <ul>
+                            <li>the newly added component</li>
+                            </ul>
                             
                                             </div>
                                         </div>
@@ -1535,9 +1536,9 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Destroy this FObject, and release all its own references to other resources.&lt;/p&gt;
-                            &lt;p&gt;After destory, this FObject is not usable any more.
-                            You can use Fire.isValid(obj) (or obj.isValid if obj is non-nil) to check whether the object is destroyed before accessing it.&lt;/p&gt;</p>
+                                        <p>Destroy this FObject, and release all its own references to other resources.</p>
+                            <p>After destory, this FObject is not usable any more.
+                            You can use Fire.isValid(obj) (or obj.isValid if obj is non-nil) to check whether the object is destroyed before accessing it.</p>
                             
                                     </div>
                             
@@ -1547,7 +1548,7 @@
                             
                                             <div class="returns-description">
                                                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                                                    <p>&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;whether it is the first time the destroy being called&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</p>
+                                                    <p>whether it is the first time the destroy being called</p>
                             
                                             </div>
                                         </div>
@@ -1591,7 +1592,7 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Returns the component of supplied type if the entity has one attached, null if it doesn't. You can also get component in the entity by passing in the name of the script.&lt;/p&gt;</p>
+                                        <p>Returns the component of supplied type if the entity has one attached, null if it doesn&#39;t. You can also get component in the entity by passing in the name of the script.</p>
                             
                                     </div>
                             
@@ -1949,7 +1950,7 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>Moves the transform in the direction and distance of translation. The movement is applied relative to the transform's local space.</p>
+                                        <p>Moves the transform in the direction and distance of translation. The movement is applied relative to the transform&#39;s local space.</p>
                             
                                     </div>
                             
@@ -2003,7 +2004,7 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;LateUpdate is called every frame, if the Component is enabled.&lt;/p&gt;</p>
+                                        <p>LateUpdate is called every frame, if the Component is enabled.</p>
                             
                                     </div>
                             
@@ -2031,7 +2032,7 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Called when this component will be destroyed.&lt;/p&gt;</p>
+                                        <p>Called when this component will be destroyed.</p>
                             
                                     </div>
                             
@@ -2059,7 +2060,7 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Called when this component becomes disabled or its entity becomes inactive&lt;/p&gt;</p>
+                                        <p>Called when this component becomes disabled or its entity becomes inactive</p>
                             
                                     </div>
                             
@@ -2087,7 +2088,7 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Called when this component becomes enabled and its entity becomes active&lt;/p&gt;</p>
+                                        <p>Called when this component becomes enabled and its entity becomes active</p>
                             
                                     </div>
                             
@@ -2115,7 +2116,7 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;When attaching to an active entity or its entity first activated&lt;/p&gt;</p>
+                                        <p>When attaching to an active entity or its entity first activated</p>
                             
                                     </div>
                             
@@ -2143,7 +2144,7 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Called when the engine starts rendering the scene.&lt;/p&gt;</p>
+                                        <p>Called when the engine starts rendering the scene.</p>
                             
                                     </div>
                             
@@ -2171,7 +2172,7 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Called before all scripts' update if the Component is enabled&lt;/p&gt;</p>
+                                        <p>Called before all scripts&#39; update if the Component is enabled</p>
                             
                                     </div>
                             
@@ -2199,7 +2200,7 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Update is called every frame, if the Component is enabled.&lt;/p&gt;</p>
+                                        <p>Update is called every frame, if the Component is enabled.</p>
                             
                                     </div>
                             

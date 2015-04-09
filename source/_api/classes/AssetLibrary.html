@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>AssetLibrary - Fireball Game API</title>
+    <title>AssetLibrary - Fireball Engine API</title>
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
@@ -14,8 +14,9 @@
     <header class="main-header">
         <div class="content">
             <div class="project-title">
-                    <h1 class="project-name">Fireball Game API</h1> <span class="project-version">0.1.7</span>
-                    <p class="description">Fireball Game API: your toolbox</p>
+                    <a href="http://docs-zh.fireball-x.com"><img class="logo" src="http://docs-zh.fireball-x.com/images/logo.png" title="Fireball Engine API"></a>
+                    <h1 class="project-name">Fireball Engine API</h1> <span class="project-version">0.2.0</span>
+                    <p class="description">Fireball is the game engine for the future.</p>
             </div>
             <ul class="jump-links">
                 <li><a href="#index" class="index-jump-link">index</a></li>
@@ -240,8 +241,8 @@
                             <p>!#zh 这里保存所有已经加载的场景资源，防止同一个资源在内存中加载出多份拷贝。</p>
                             <p>这里用不了WeakMap，在浏览器中所有加载过的资源都只能手工调用 unloadAsset 释放。</p>
                             <p>参考：
-                            https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap
-                            https://github.com/TooTallNate/node-weak</p>
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap</a>
+                            <a href="https://github.com/TooTallNate/node-weak">https://github.com/TooTallNate/node-weak</a></p>
                             
                                     </div>
                             
@@ -966,7 +967,7 @@
                             
                                                     <div class="param-description">
                                                         <p>When destroyImmediate is true, if there are objects
-                            referencing the asset, the references will become invalid.</p>
+                                                                      referencing the asset, the references will become invalid.</p>
                             
                                                     </div>
                             

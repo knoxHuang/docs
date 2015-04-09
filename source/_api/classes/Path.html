@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Path - Fireball Game API</title>
+    <title>Path - Fireball Engine API</title>
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
@@ -14,8 +14,9 @@
     <header class="main-header">
         <div class="content">
             <div class="project-title">
-                    <h1 class="project-name">Fireball Game API</h1> <span class="project-version">0.1.7</span>
-                    <p class="description">Fireball Game API: your toolbox</p>
+                    <a href="http://docs-zh.fireball-x.com"><img class="logo" src="http://docs-zh.fireball-x.com/images/logo.png" title="Fireball Engine API"></a>
+                    <h1 class="project-name">Fireball Engine API</h1> <span class="project-version">0.2.0</span>
+                    <p class="description">Fireball is the game engine for the future.</p>
             </div>
             <ul class="jump-links">
                 <li><a href="#index" class="index-jump-link">index</a></li>
@@ -227,7 +228,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>The platform-specific file separator. '\' or '/'.</p>
+                                        <p>The platform-specific file separator. &#39;\&#39; or &#39;/&#39;.</p>
                             
                                     </div>
                             
@@ -317,7 +318,7 @@
                                             <h4>Example:</h4>
                             
                                             <div class="example-content">
-                                                <p>path.basename('/foo/bar/baz/asdf/quux.html')    // returns 'quux.html'</p>
+                                                <p>   path.basename(&#39;/foo/bar/baz/asdf/quux.html&#39;)    // returns &#39;quux.html&#39;</p>
                             
                                             </div>
                                         </div>
@@ -393,7 +394,7 @@
                                             <h4>Example:</h4>
                             
                                             <div class="example-content">
-                                                <p>path.dirname('/foo/bar/baz/asdf/quux') // returns '/foo/bar/baz/asdf'</p>
+                                                <p>path.dirname(&#39;/foo/bar/baz/asdf/quux&#39;) // returns &#39;/foo/bar/baz/asdf&#39;</p>
                             
                                             </div>
                                         </div>
@@ -436,8 +437,8 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>Return the extension of the path, from the last '.' to end of string in the last portion of the path.
-                            If there is no '.' in the last portion of the path or the first character of it is '.',
+                                        <p>Return the extension of the path, from the last &#39;.&#39; to end of string in the last portion of the path.
+                            If there is no &#39;.&#39; in the last portion of the path or the first character of it is &#39;.&#39;,
                             then it returns an empty string.</p>
                             
                                     </div>
@@ -471,10 +472,10 @@
                                             <h4>Example:</h4>
                             
                                             <div class="example-content">
-                                                <p>path.extname('index.html')      // returns '.html'
-                            path.extname('index.coffee.md') // returns '.md'
-                            path.extname('index.')          // returns '.'
-                            path.extname('index')           // returns ''</p>
+                                                <p>path.extname(&#39;index.html&#39;)      // returns &#39;.html&#39;
+                            path.extname(&#39;index.coffee.md&#39;) // returns &#39;.md&#39;
+                            path.extname(&#39;index.&#39;)          // returns &#39;.&#39;
+                            path.extname(&#39;index&#39;)           // returns &#39;&#39;</p>
                             
                                             </div>
                                         </div>

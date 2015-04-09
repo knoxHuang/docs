@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>MouseEvent - Fireball Game API</title>
+    <title>MouseEvent - Fireball Engine API</title>
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
@@ -14,8 +14,9 @@
     <header class="main-header">
         <div class="content">
             <div class="project-title">
-                    <h1 class="project-name">Fireball Game API</h1> <span class="project-version">0.1.7</span>
-                    <p class="description">Fireball Game API: your toolbox</p>
+                    <a href="http://docs-zh.fireball-x.com"><img class="logo" src="http://docs-zh.fireball-x.com/images/logo.png" title="Fireball Engine API"></a>
+                    <h1 class="project-name">Fireball Engine API</h1> <span class="project-version">0.2.0</span>
+                    <p class="description">Fireball is the game engine for the future.</p>
             </div>
             <ul class="jump-links">
                 <li><a href="#index" class="index-jump-link">index</a></li>
@@ -127,8 +128,8 @@
                     <p>The MouseEvent interface represents events that occur due to the user interacting with a pointing device (such as a mouse). Common events using this interface include click, dblclick, mouseup, mousedown.</p>
                 <p>See</p>
                 <ul>
-                <li>https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent</li>
-                <li>http://www.quirksmode.org/dom/w3c_events.html#mousepos</li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent">https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent</a></li>
+                <li><a href="http://www.quirksmode.org/dom/w3c_events.html#mousepos">http://www.quirksmode.org/dom/w3c_events.html#mousepos</a></li>
                 </ul>
                 
                 </div>
@@ -277,7 +278,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>&lt;p&gt;Returns true if the &lt;code&gt;alt&lt;/code&gt; key was down when the event was fired.&lt;/p&gt;</p>
+                                        <p>Returns true if the <code>alt</code> key was down when the event was fired.</p>
                             
                                     </div>
                             
@@ -340,7 +341,7 @@
                                 <div class="extended-detail">
                                     <div class="description">
                                         <p>Indicates which buttons were pressed on the mouse to trigger the event</p>
-                            <p>See https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent.buttons</p>
+                            <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent.buttons">https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent.buttons</a></p>
                             
                                     </div>
                             
@@ -371,7 +372,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>&lt;p&gt;Returns true if the &lt;code&gt;ctrl&lt;/code&gt; key was down when the event was fired.&lt;/p&gt;</p>
+                                        <p>Returns true if the <code>ctrl</code> key was down when the event was fired.</p>
                             
                                     </div>
                             
@@ -463,7 +464,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>&lt;p&gt;Returns true if the &lt;code&gt;meta&lt;/code&gt; key was down when the event was fired.&lt;/p&gt;</p>
+                                        <p>Returns true if the <code>meta</code> key was down when the event was fired.</p>
                             
                                     </div>
                             
@@ -613,7 +614,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>&lt;p&gt;Returns true if the &lt;code&gt;shift&lt;/code&gt; key was down when the event was fired.&lt;/p&gt;</p>
+                                        <p>Returns true if the <code>shift</code> key was down when the event was fired.</p>
                             
                                     </div>
                             
@@ -769,8 +770,8 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Returns the current state of the specified modifier key. true if the modifier is active (i.e., the modifier key is pressed or locked). Otherwise, false.&lt;/p&gt;
-                            &lt;p&gt;See https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent.getModifierState&lt;/p&gt;</p>
+                                        <p>Returns the current state of the specified modifier key. true if the modifier is active (i.e., the modifier key is pressed or locked). Otherwise, false.</p>
+                            <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent.getModifierState">https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent.getModifierState</a></p>
                             
                                     </div>
                             
@@ -784,10 +785,10 @@
                             
                             
                                                     <div class="param-description">
-                                                        <p>&lt;ul&gt;
-                            &lt;li&gt;A modifier key value. The value must be one of the KeyboardEvent.key values which represent modifier keys or &quot;Accel&quot;. This is case-sensitive.
-                            NOTE: If an application wishes to distinguish between right and left modifiers, this information could be deduced using keyboard events and Fire.KeyboardEvent.location.&lt;/li&gt;
-                            &lt;/ul&gt;</p>
+                                                        <ul>
+                            <li>A modifier key value. The value must be one of the KeyboardEvent.key values which represent modifier keys or &quot;Accel&quot;. This is case-sensitive.<pre><code>                   NOTE: If an application wishes to distinguish between right and left modifiers, this information could be deduced using keyboard events and Fire.KeyboardEvent.location.
+                            </code></pre></li>
+                            </ul>
                             
                                                     </div>
                             
@@ -800,7 +801,7 @@
                             
                                             <div class="returns-description">
                                                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                                                    <p>&lt;p&gt;true if it is a modifier key and the modifier is activated, false otherwise.&lt;/p&gt;</p>
+                                                    <p>true if it is a modifier key and the modifier is activated, false otherwise.</p>
                             
                                             </div>
                                         </div>
@@ -855,9 +856,9 @@
                             
                             
                                                     <div class="param-description">
-                                                        <p>&lt;ul&gt;
-                            &lt;li&gt;The original DOM event&lt;/li&gt;
-                            &lt;/ul&gt;</p>
+                                                        <ul>
+                            <li>The original DOM event</li>
+                            </ul>
                             
                                                     </div>
                             

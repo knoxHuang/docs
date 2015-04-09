@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>BitmapText - Fireball Game API</title>
+    <title>BitmapText - Fireball Engine API</title>
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
@@ -14,8 +14,9 @@
     <header class="main-header">
         <div class="content">
             <div class="project-title">
-                    <h1 class="project-name">Fireball Game API</h1> <span class="project-version">0.1.7</span>
-                    <p class="description">Fireball Game API: your toolbox</p>
+                    <a href="http://docs-zh.fireball-x.com"><img class="logo" src="http://docs-zh.fireball-x.com/images/logo.png" title="Fireball Engine API"></a>
+                    <h1 class="project-name">Fireball Engine API</h1> <span class="project-version">0.2.0</span>
+                    <p class="description">Fireball is the game engine for the future.</p>
             </div>
             <ul class="jump-links">
                 <li><a href="#index" class="index-jump-link">index</a></li>
@@ -559,7 +560,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>&lt;p&gt;Indicates whether the object is not yet destroyed&lt;/p&gt;</p>
+                                        <p>Indicates whether the object is not yet destroyed</p>
                             
                                     </div>
                             
@@ -590,7 +591,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>&lt;p&gt;The name of the object.&lt;/p&gt;</p>
+                                        <p>The name of the object.</p>
                             
                                     </div>
                             
@@ -708,9 +709,9 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Clear all references in the instance.&lt;/p&gt;
-                            &lt;p&gt;NOTE: this method will not clear the getter or setter functions which defined in the INSTANCE of FObject.
-                            You can override the _destruct method if you need.&lt;/p&gt;</p>
+                                        <p>Clear all references in the instance.</p>
+                            <p>NOTE: this method will not clear the getter or setter functions which defined in the INSTANCE of FObject.
+                                  You can override the _destruct method if you need.</p>
                             
                                     </div>
                             
@@ -785,9 +786,9 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Destroy this FObject, and release all its own references to other resources.&lt;/p&gt;
-                            &lt;p&gt;After destory, this FObject is not usable any more.
-                            You can use Fire.isValid(obj) (or obj.isValid if obj is non-nil) to check whether the object is destroyed before accessing it.&lt;/p&gt;</p>
+                                        <p>Destroy this FObject, and release all its own references to other resources.</p>
+                            <p>After destory, this FObject is not usable any more.
+                            You can use Fire.isValid(obj) (or obj.isValid if obj is non-nil) to check whether the object is destroyed before accessing it.</p>
                             
                                     </div>
                             
@@ -797,7 +798,7 @@
                             
                                             <div class="returns-description">
                                                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                                                    <p>&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;whether it is the first time the destroy being called&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</p>
+                                                    <p>whether it is the first time the destroy being called</p>
                             
                                             </div>
                                         </div>
@@ -1061,8 +1062,8 @@
                                             <div class="returns-description">
                                                         <span class="type"><a href="../classes/Vec2.html" class="crosslink">Vec2</a></span>:
                                                     <ul>
-                            <li>the array contains vectors represented in world position,
-                            in the sequence of BottomLeft, TopLeft, TopRight, BottomRight</li>
+                            <li>the array contains vectors represented in world position,<pre><code>             in the sequence of BottomLeft, TopLeft, TopRight, BottomRight
+                            </code></pre></li>
                             </ul>
                             
                                             </div>

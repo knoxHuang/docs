@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>EventTarget - Fireball Game API</title>
+    <title>EventTarget - Fireball Engine API</title>
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
@@ -14,8 +14,9 @@
     <header class="main-header">
         <div class="content">
             <div class="project-title">
-                    <h1 class="project-name">Fireball Game API</h1> <span class="project-version">0.1.7</span>
-                    <p class="description">Fireball Game API: your toolbox</p>
+                    <a href="http://docs-zh.fireball-x.com"><img class="logo" src="http://docs-zh.fireball-x.com/images/logo.png" title="Fireball Engine API"></a>
+                    <h1 class="project-name">Fireball Engine API</h1> <span class="project-version">0.2.0</span>
+                    <p class="description">Fireball is the game engine for the future.</p>
             </div>
             <ul class="jump-links">
                 <li><a href="#index" class="index-jump-link">index</a></li>
@@ -133,10 +134,10 @@
                 the scene graph until it reaches the event target, at which point it begins its return trip through
                 the scene graph. This round-trip journey to the event target is conceptually divided into three phases:</p>
                 <ul>
-                <li>The capture phase comprises the journey from the root to the last node before the event target's node</li>
+                <li>The capture phase comprises the journey from the root to the last node before the event target&#39;s node</li>
                 <li>The target phase comprises only the event target node</li>
                 <li>The bubbling phase comprises any subsequent nodes encountered on the return trip to the root of the tree
-                See also: http://www.w3.org/TR/DOM-Level-3-Events/#event-flow</li>
+                See also: <a href="http://www.w3.org/TR/DOM-Level-3-Events/#event-flow">http://www.w3.org/TR/DOM-Level-3-Events/#event-flow</a></li>
                 </ul>
                 <p>Event targets can implement the following methods:</p>
                 <ul>
@@ -542,7 +543,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>&lt;p&gt;Indicates whether the object is not yet destroyed&lt;/p&gt;</p>
+                                        <p>Indicates whether the object is not yet destroyed</p>
                             
                                     </div>
                             
@@ -573,7 +574,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>&lt;p&gt;The name of the object.&lt;/p&gt;</p>
+                                        <p>The name of the object.</p>
                             
                                     </div>
                             
@@ -660,9 +661,9 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Clear all references in the instance.&lt;/p&gt;
-                            &lt;p&gt;NOTE: this method will not clear the getter or setter functions which defined in the INSTANCE of FObject.
-                            You can override the _destruct method if you need.&lt;/p&gt;</p>
+                                        <p>Clear all references in the instance.</p>
+                            <p>NOTE: this method will not clear the getter or setter functions which defined in the INSTANCE of FObject.
+                                  You can override the _destruct method if you need.</p>
                             
                                     </div>
                             
@@ -799,9 +800,9 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Destroy this FObject, and release all its own references to other resources.&lt;/p&gt;
-                            &lt;p&gt;After destory, this FObject is not usable any more.
-                            You can use Fire.isValid(obj) (or obj.isValid if obj is non-nil) to check whether the object is destroyed before accessing it.&lt;/p&gt;</p>
+                                        <p>Destroy this FObject, and release all its own references to other resources.</p>
+                            <p>After destory, this FObject is not usable any more.
+                            You can use Fire.isValid(obj) (or obj.isValid if obj is non-nil) to check whether the object is destroyed before accessing it.</p>
                             
                                     </div>
                             
@@ -811,7 +812,7 @@
                             
                                             <div class="returns-description">
                                                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                                                    <p>&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;whether it is the first time the destroy being called&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</p>
+                                                    <p>whether it is the first time the destroy being called</p>
                             
                                             </div>
                                         </div>
@@ -885,8 +886,8 @@
                                             <div class="returns-description">
                                                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
                                                     <ul>
-                            <li>returns true if either the event's preventDefault() method was not invoked,
-                            or its cancelable attribute value is false, and false otherwise.</li>
+                            <li>returns true if either the event&#39;s preventDefault() method was not invoked,<pre><code>               or its cancelable attribute value is false, and false otherwise.
+                            </code></pre></li>
                             </ul>
                             
                                             </div>
@@ -977,10 +978,10 @@
                             
                                                     <div class="param-description">
                                                         <ul>
-                            <li>Specifies whether the callback being removed was registered as a capturing callback or not.
-                            If not specified, useCapture defaults to false. If a callback was registered twice,
-                            one with capture and one without, each must be removed separately. Removal of a capturing callback
-                            does not affect a non-capturing version of the same listener, and vice versa.</li>
+                            <li>Specifies whether the callback being removed was registered as a capturing callback or not.<pre><code>                       If not specified, useCapture defaults to false. If a callback was registered twice,
+                                                   one with capture and one without, each must be removed separately. Removal of a capturing callback
+                                                   does not affect a non-capturing version of the same listener, and vice versa.
+                            </code></pre></li>
                             </ul>
                             
                                                     </div>
@@ -1061,8 +1062,8 @@
                             
                                                     <div class="param-description">
                                                         <ul>
-                            <li>The callback that will be invoked when the event is dispatched.
-                            The callback is ignored if it is a duplicate (the callbacks are unique).</li>
+                            <li>The callback that will be invoked when the event is dispatched.<pre><code>                       The callback is ignored if it is a duplicate (the callbacks are unique).
+                            </code></pre></li>
                             </ul>
                             
                                                     </div>
@@ -1088,10 +1089,10 @@
                             
                                                     <div class="param-description">
                                                         <ul>
-                            <li>When set to true, the capture argument prevents callback
-                            from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE.
-                            When false, callback will NOT be invoked when event's eventPhase attribute value is CAPTURING_PHASE.
-                            Either way, callback will be invoked when event's eventPhase attribute value is AT_TARGET.</li>
+                            <li>When set to true, the capture argument prevents callback<pre><code>                       from being invoked when the event&#39;s eventPhase attribute value is BUBBLING_PHASE.
+                                                   When false, callback will NOT be invoked when event&#39;s eventPhase attribute value is CAPTURING_PHASE.
+                                                   Either way, callback will be invoked when event&#39;s eventPhase attribute value is AT_TARGET.
+                            </code></pre></li>
                             </ul>
                             
                                                     </div>
@@ -1171,8 +1172,8 @@
                             
                                                     <div class="param-description">
                                                         <ul>
-                            <li>The callback that will be invoked when the event is dispatched.
-                            The callback is ignored if it is a duplicate (the callbacks are unique).</li>
+                            <li>The callback that will be invoked when the event is dispatched.<pre><code>                       The callback is ignored if it is a duplicate (the callbacks are unique).
+                            </code></pre></li>
                             </ul>
                             
                                                     </div>
@@ -1198,10 +1199,10 @@
                             
                                                     <div class="param-description">
                                                         <ul>
-                            <li>When set to true, the capture argument prevents callback
-                            from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE.
-                            When false, callback will NOT be invoked when event's eventPhase attribute value is CAPTURING_PHASE.
-                            Either way, callback will be invoked when event's eventPhase attribute value is AT_TARGET.</li>
+                            <li>When set to true, the capture argument prevents callback<pre><code>                       from being invoked when the event&#39;s eventPhase attribute value is BUBBLING_PHASE.
+                                                   When false, callback will NOT be invoked when event&#39;s eventPhase attribute value is CAPTURING_PHASE.
+                                                   Either way, callback will be invoked when event&#39;s eventPhase attribute value is AT_TARGET.
+                            </code></pre></li>
                             </ul>
                             
                                                     </div>

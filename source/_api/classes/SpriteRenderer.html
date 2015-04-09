@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>SpriteRenderer - Fireball Game API</title>
+    <title>SpriteRenderer - Fireball Engine API</title>
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
@@ -14,8 +14,9 @@
     <header class="main-header">
         <div class="content">
             <div class="project-title">
-                    <h1 class="project-name">Fireball Game API</h1> <span class="project-version">0.1.7</span>
-                    <p class="description">Fireball Game API: your toolbox</p>
+                    <a href="http://docs-zh.fireball-x.com"><img class="logo" src="http://docs-zh.fireball-x.com/images/logo.png" title="Fireball Engine API"></a>
+                    <h1 class="project-name">Fireball Engine API</h1> <span class="project-version">0.2.0</span>
+                    <p class="description">Fireball is the game engine for the future.</p>
             </div>
             <ul class="jump-links">
                 <li><a href="#index" class="index-jump-link">index</a></li>
@@ -570,7 +571,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>&lt;p&gt;Indicates whether the object is not yet destroyed&lt;/p&gt;</p>
+                                        <p>Indicates whether the object is not yet destroyed</p>
                             
                                     </div>
                             
@@ -601,7 +602,7 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>&lt;p&gt;The name of the object.&lt;/p&gt;</p>
+                                        <p>The name of the object.</p>
                             
                                     </div>
                             
@@ -751,9 +752,9 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Clear all references in the instance.&lt;/p&gt;
-                            &lt;p&gt;NOTE: this method will not clear the getter or setter functions which defined in the INSTANCE of FObject.
-                            You can override the _destruct method if you need.&lt;/p&gt;</p>
+                                        <p>Clear all references in the instance.</p>
+                            <p>NOTE: this method will not clear the getter or setter functions which defined in the INSTANCE of FObject.
+                                  You can override the _destruct method if you need.</p>
                             
                                     </div>
                             
@@ -828,9 +829,9 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Destroy this FObject, and release all its own references to other resources.&lt;/p&gt;
-                            &lt;p&gt;After destory, this FObject is not usable any more.
-                            You can use Fire.isValid(obj) (or obj.isValid if obj is non-nil) to check whether the object is destroyed before accessing it.&lt;/p&gt;</p>
+                                        <p>Destroy this FObject, and release all its own references to other resources.</p>
+                            <p>After destory, this FObject is not usable any more.
+                            You can use Fire.isValid(obj) (or obj.isValid if obj is non-nil) to check whether the object is destroyed before accessing it.</p>
                             
                                     </div>
                             
@@ -840,7 +841,7 @@
                             
                                             <div class="returns-description">
                                                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                                                    <p>&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;whether it is the first time the destroy being called&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</p>
+                                                    <p>whether it is the first time the destroy being called</p>
                             
                                             </div>
                                         </div>
@@ -881,8 +882,8 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;!#zh 返回表示 renderer 的 width/height/pivot/skew/shear 等变换的 matrix，
-                            这些变换不影响子物体，getLocalToWorldMatrix 返回的变换会影响子物体。&lt;/p&gt;</p>
+                                        <p>!#zh 返回表示 renderer 的 width/height/pivot/skew/shear 等变换的 matrix，
+                            这些变换不影响子物体，getLocalToWorldMatrix 返回的变换会影响子物体。</p>
                             
                                     </div>
                             
@@ -896,9 +897,9 @@
                             
                             
                                                     <div class="param-description">
-                                                        <p>&lt;p&gt;&lt;ul&gt;
-                            &lt;li&gt;the receiving matrix&lt;/li&gt;
-                            &lt;/ul&gt;&lt;/p&gt;</p>
+                                                        <ul>
+                            <li>the receiving matrix</li>
+                            </ul>
                             
                                                     </div>
                             
@@ -946,7 +947,7 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Returns a &quot;world&quot; axis aligned bounding box(AABB) of the renderer.&lt;/p&gt;</p>
+                                        <p>Returns a &quot;world&quot; axis aligned bounding box(AABB) of the renderer.</p>
                             
                                     </div>
                             
@@ -961,9 +962,9 @@
                             
                             
                                                     <div class="param-description">
-                                                        <p>&lt;p&gt;&lt;ul&gt;
-                            &lt;li&gt;optional, the receiving rect&lt;/li&gt;
-                            &lt;/ul&gt;&lt;/p&gt;</p>
+                                                        <ul>
+                            <li>optional, the receiving rect</li>
+                            </ul>
                             
                                                     </div>
                             
@@ -976,9 +977,9 @@
                             
                                             <div class="returns-description">
                                                         <span class="type"><a href="../classes/Rect.html" class="crosslink">Rect</a></span>:
-                                                    <p>&lt;p&gt;&lt;ul&gt;
-                            &lt;li&gt;the rect represented in world position&lt;/li&gt;
-                            &lt;/ul&gt;&lt;/p&gt;</p>
+                                                    <ul>
+                            <li>the rect represented in world position</li>
+                            </ul>
                             
                                             </div>
                                         </div>
@@ -1031,7 +1032,7 @@
                                 <div class="extended-detail">
                             
                                     <div class="description">
-                                        <p>&lt;p&gt;Returns a &quot;world&quot; oriented bounding box(OBB) of the renderer.&lt;/p&gt;</p>
+                                        <p>Returns a &quot;world&quot; oriented bounding box(OBB) of the renderer.</p>
                             
                                     </div>
                             
@@ -1046,9 +1047,9 @@
                             
                             
                                                     <div class="param-description">
-                                                        <p>&lt;p&gt;&lt;ul&gt;
-                            &lt;li&gt;optional, the vector to receive the world position of bottom left&lt;/li&gt;
-                            &lt;/ul&gt;&lt;/p&gt;</p>
+                                                        <ul>
+                            <li>optional, the vector to receive the world position of bottom left</li>
+                            </ul>
                             
                                                     </div>
                             
@@ -1060,9 +1061,9 @@
                             
                             
                                                     <div class="param-description">
-                                                        <p>&lt;p&gt;&lt;ul&gt;
-                            &lt;li&gt;optional, the vector to receive the world position of top left&lt;/li&gt;
-                            &lt;/ul&gt;&lt;/p&gt;</p>
+                                                        <ul>
+                            <li>optional, the vector to receive the world position of top left</li>
+                            </ul>
                             
                                                     </div>
                             
@@ -1074,9 +1075,9 @@
                             
                             
                                                     <div class="param-description">
-                                                        <p>&lt;p&gt;&lt;ul&gt;
-                            &lt;li&gt;optional, the vector to receive the world position of top right&lt;/li&gt;
-                            &lt;/ul&gt;&lt;/p&gt;</p>
+                                                        <ul>
+                            <li>optional, the vector to receive the world position of top right</li>
+                            </ul>
                             
                                                     </div>
                             
@@ -1088,9 +1089,9 @@
                             
                             
                                                     <div class="param-description">
-                                                        <p>&lt;p&gt;&lt;ul&gt;
-                            &lt;li&gt;optional, the vector to receive the world position of bottom right&lt;/li&gt;
-                            &lt;/ul&gt;&lt;/p&gt;</p>
+                                                        <ul>
+                            <li>optional, the vector to receive the world position of bottom right</li>
+                            </ul>
                             
                                                     </div>
                             
@@ -1103,10 +1104,10 @@
                             
                                             <div class="returns-description">
                                                         <span class="type"><a href="../classes/Vec2.html" class="crosslink">Vec2</a></span>:
-                                                    <p>&lt;p&gt;&lt;ul&gt;
-                            &lt;li&gt;the array contains vectors represented in world position,
-                            in the sequence of BottomLeft, TopLeft, TopRight, BottomRight&lt;/li&gt;
-                            &lt;/ul&gt;&lt;/p&gt;</p>
+                                                    <ul>
+                            <li>the array contains vectors represented in world position,<pre><code>             in the sequence of BottomLeft, TopLeft, TopRight, BottomRight
+                            </code></pre></li>
+                            </ul>
                             
                                             </div>
                                         </div>

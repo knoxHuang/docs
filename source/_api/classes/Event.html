@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Event - Fireball Game API</title>
+    <title>Event - Fireball Engine API</title>
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
@@ -14,8 +14,9 @@
     <header class="main-header">
         <div class="content">
             <div class="project-title">
-                    <h1 class="project-name">Fireball Game API</h1> <span class="project-version">0.1.7</span>
-                    <p class="description">Fireball Game API: your toolbox</p>
+                    <a href="http://docs-zh.fireball-x.com"><img class="logo" src="http://docs-zh.fireball-x.com/images/logo.png" title="Fireball Engine API"></a>
+                    <h1 class="project-name">Fireball Engine API</h1> <span class="project-version">0.2.0</span>
+                    <p class="description">Fireball is the game engine for the future.</p>
             </div>
             <ul class="jump-links">
                 <li><a href="#index" class="index-jump-link">index</a></li>
@@ -369,7 +370,7 @@
                                 <div class="extended-detail">
                                     <div class="description">
                                         <p>The target phase comprises only the event target node
-                            see http://www.w3.org/TR/DOM-Level-3-Events/#event-flow</p>
+                            see <a href="http://www.w3.org/TR/DOM-Level-3-Events/#event-flow">http://www.w3.org/TR/DOM-Level-3-Events/#event-flow</a></p>
                             
                                     </div>
                             
@@ -432,7 +433,7 @@
                                 <div class="extended-detail">
                                     <div class="description">
                                         <p>The bubbling phase comprises any subsequent nodes encountered on the return trip to the root of the hierarchy
-                            see http://www.w3.org/TR/DOM-Level-3-Events/#event-flow</p>
+                            see <a href="http://www.w3.org/TR/DOM-Level-3-Events/#event-flow">http://www.w3.org/TR/DOM-Level-3-Events/#event-flow</a></p>
                             
                                     </div>
                             
@@ -464,8 +465,8 @@
                             
                                 <div class="extended-detail">
                                     <div class="description">
-                                        <p>The capturing phase comprises the journey from the root to the last node before the event target's node
-                            see http://www.w3.org/TR/DOM-Level-3-Events/#event-flow</p>
+                                        <p>The capturing phase comprises the journey from the root to the last node before the event target&#39;s node
+                            see <a href="http://www.w3.org/TR/DOM-Level-3-Events/#event-flow">http://www.w3.org/TR/DOM-Level-3-Events/#event-flow</a></p>
                             
                                     </div>
                             
@@ -533,7 +534,7 @@
                             <li>Event.AT_TARGET = 2</li>
                             <li>Event.BUBBLING_PHASE = 3
                             The phases are explained in the [section 3.1, Event dispatch and DOM event flow]
-                            (http://www.w3.org/TR/DOM-Level-3-Events/#event-flow), of the DOM Level 3 Events specification.</li>
+                            (<a href="http://www.w3.org/TR/DOM-Level-3-Events/#event-flow">http://www.w3.org/TR/DOM-Level-3-Events/#event-flow</a>), of the DOM Level 3 Events specification.</li>
                             </ul>
                             
                                     </div>
@@ -848,10 +849,10 @@
                             
                                                     <div class="param-description">
                                                         <ul>
-                            <li>Indicates whether or not to immediate stop the propagation, default is false.
-                            If true, for this particular event, no other callback will be called.
-                            Neither those attached on the same event target,
-                            nor those attached on targets which will be traversed later.</li>
+                            <li>Indicates whether or not to immediate stop the propagation, default is false.<pre><code>                               If true, for this particular event, no other callback will be called.
+                                                           Neither those attached on the same event target,
+                                                           nor those attached on targets which will be traversed later.
+                            </code></pre></li>
                             </ul>
                             
                                                     </div>

@@ -140,13 +140,13 @@ td {
     color: #fff;
     border: none;
     padding-right: 8px;
+    margin-left: 30px;
 }
 
 .main-header img.logo {
-    max-height: 64px;
-    max-width: 64px;
-    vertical-align: top;
-    position: absolute;
+    max-height: 30px;
+    /*vertical-align: top;*/
+    /*position: absolute;*/
     top: 0px;
     left: 8px;
     transition: top 0.4s ease 0.5s;
@@ -160,7 +160,7 @@ td {
 .main-header .project-title {
     position: relative;
     top: 8px;
-    padding-left: 84px;
+    /*padding-left: 84px;*/
     transition: padding 0.5s, top 0.5s;
     transition-delay: 0.2s, 0s;
     float: left;
@@ -683,4 +683,3 @@ ul.index-list {
     border-bottom-color: #fafafa;
     bottom: -1px;
 }
-
