@@ -3,6 +3,8 @@ categories: manual
 permalinks: manual/plugin/config-package-json
 ---
 
+TODO:
+
 ## 选项
 
  * fireball
