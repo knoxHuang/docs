@@ -1,31 +1,41 @@
-<div class="row">
-  <div class="col-lg-9 col-md-8 col-sm-9">
-    <div class="title-header">
-      {% if not is_home() %}<h1>{{ page.title }}</h1>{% endif %}
-    </div>
-    <div>
-      <ol class="breadcrumb">
-        <li><a href="/docs-zh">Home</a></li>
-        <li><a href="{{ url_for(category_link()) }}">{{ category_name() }}</a></li>
-        <li class="active">{{ page.title }}</li>
-      </ol>
-    </div>
-    {{ page.content }}
-    <div>
-      <hr>
-      <a href="https://github.com/fireball-x/docs-zh/edit/master/source/{{ page.source }}">Edit This Page</a>
-    </div>
-  </div>
-  <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
-    <aside id="article-toc" role="navigation" class="fixed">
-      <div id="article-toc-inner">
-        <strong class="sidebar-title">内容索引</strong>
-        {{ toc(page.content, {list_number: false}) }}
-        <a href="#top" id="article-toc-top">back to top</a>
-      </div>
-    </aside>
-  </div>
+<div class="container sidebar">
+    {{ partial('partial/sidebar') }}
 </div>
+<div class="container content-wrap">
+    <div class="row">
+        <div class="col-lg-8 col-md-7 col-sm-9">
+            <div class="title-header" id="top">
+                {% if not is_home() %}<h1>{{ page.title }}</h1>{% endif %}
+            </div>
+            <div>
+                <ol class="breadcrumb">
+                    <li><a href="/docs-zh">Home</a></li>
+                    <li><a href="{{ url_for(category_link()) }}">{{ category_name() }}</a></li>
+                    <li class="active">{{ page.title }}</li>
+                </ol>
+            </div>
+            {{ page.content }}
+            <div>
+                <hr>
+                <a href="https://github.com/fireball-x/docs-zh/edit/master/source/{{ page.source }}">Edit This Page</a>
+            </div>
+            <div class="footer">
+                {{ partial('partial/footer') }}
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
+            <aside id="article-toc" role="navigation" class="fixed">
+                <div id="article-toc-inner">
+                    <strong class="sidebar-title">内容索引</strong>
+                    {{ toc(page.content, {list_number: false}) }}
+                    <a href="#top" id="article-toc-top">back to top</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+
 
 {#<div id="content-wrap">#}
   {#<div id="content" class="wrapper">#}
