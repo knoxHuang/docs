@@ -1,59 +1,27 @@
 @import "bootstrap.min.css"
-sidebar-width = 200px
-header-height = 82px
+
 // Media queries
 /*mq-mobile = "screen and (max-width: 768px)"*/
 /*mq-normal = "screen and (min-width: 769px)"*/
 /*mq-tablet = "screen and (min-width: 480px)"*/
 
-html, body
-  /*height 100%*/
-  overflow-x hidden
-
-.navbar-brand
-  padding-top 10px
-  img
-    height: 50px
-
-.navbar-header
-  height 82px
-
-
-
-.navbar
-  border-radius 0
-
-.navbar-inverse
-  background-color #24272D
-
-.container-fluid
-  padding 0
-
-/*.container*/
-  /*margin-right auto*/
-  /*margin-left 20px*/
-  /*padding-left 20px*/
-  /*padding-right 20px*/
-  /*@media screen and (min-width: 1100px)*/
-    /*width 1096px*/
-  /*@media screen and (max-width: 768px)*/
-    /*width 740px*/
-  /*@media screen and (max-width: 640px)*/
-    /*width 600px*/
-
-.navbar-nav li a
-  line-height 50px
+// -------------------- basic --------------------
 
 #full-wrap
   position relative
   min-height 640px
   overflow-y auto
 
-.container.content-wrap
-  padding-bottom 60px
+.container-fluid
+  padding 0
 
 .container-fluid.footer
   margin-top 40px
+
+#top
+  position fixed
+  width 100%
+  z-index 999
 
 #footer
   position absolute
@@ -67,28 +35,122 @@ html, body
     padding-top 10px
     padding-bottom 10px
 
-.nav-stacked li.sidebar-title
-  margin-top 15px
+.row
+  margin 0px
+
+// -------------------- content --------------------
+
+.content-wrap
+  margin-top 105px
+  margin-left 300px
+  padding-bottom 60px
+
+.content-wrap img
+  max-width 100%
+
+// table
+//   width: 100%;
+//   max-width: 100%;
+//   margin-bottom: 20px;
+//   background-color: transparent;
+//   border-spacing: 0;
+//   border-collapse: collapse;
+//   thead:first-child>tr:first-child>th
+//     border-top: 0;
+//   thead>tr>th
+//     vertical-align: bottom;
+//     border-bottom: 2px solid #ddd;
+//     padding: 8px;
+//   tbody>tr>td:first-child
+//     font-weight 600;
+//   th
+//     text-align left
+//   td
+//     padding-left 10px
+//     line-height 3em
+//   tbody>tr:nth-of-type(odd)
+//     background-color #f9f9f9
+
+// -------------------- navbar --------------------
+
+button.navbar-toggle.collapsed
+  margin-top 25px
+
+.navbar-brand
+  padding-top 10px
+  img
+    height: 50px
+
+.navbar-header
+  height 82px
+  margin-left 10px
+  margin-right 120px
+
+.navbar
+  border-radius 0
+  margin-bottom 0
+
+.navbar-inverse
+  background-color #24272D
+
+.navbar-nav li a
+  line-height 50px
+
+// -------------------- sidebar --------------------
+
+.container.sidebar
+  float left
+  position fixed
+  width 280px
+  margin-top 84px
+  overflow-y auto
+  background-color #eee
+
+  &::-webkit-scrollbar
+    width 6px
+    -webkit-appearance none
+
+  &::-webkit-scrollbar-track
+    display none
+
+  &::-webkit-scrollbar-thumb
+    background-color #fdb92c
+
+#sidebar
+  &.fixed
+    position: absolute
+    top: 20
+    bottom: 0
+    .inner
+      margin-top 20px
+      position: fixed
+      top: 0
+      bottom: 0
+  .inner
+    overflow-y: auto
+
+.sidebar-title
+  margin-top 30px
+
+// -------------------- toc --------------------
 
 #article-toc
   display: block
   float: right
   width: 100%
-  /*margin-right: sidebar-width * -1*/
   opacity: 0.8
   &.fixed
     position: absolute
     top: 20
     bottom: 0
-    /*right: sidebar-width + 95*/
 
 #article-toc-inner
   /*@extend .inner*/
   overflow-x: hidden
   overflow-y: auto
-  width: sidebar-width
+  width: 200px
   .fixed &
-    margin-top 20px
+    margin-top 120px
     position: fixed
     top: 0
     bottom: 0
@@ -121,46 +183,3 @@ ol, ul
   &.toc
     list-style: none
     padding-left 0
-
-.content-wrap img
-  max-width 100%
-
-#sidebar
-  &.fixed
-    position: absolute
-    top: 20
-    bottom: 0
-    .inner
-      margin-top 20px
-      position: fixed
-      top: 0
-      bottom: 0
-  .inner
-    overflow-y: auto
-
-button.navbar-toggle.collapsed
-  margin-top 25px
-
-table
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 20px;
-  background-color: transparent;
-  border-spacing: 0;
-  border-collapse: collapse;
-  thead:first-child>tr:first-child>th
-    border-top: 0;
-  thead>tr>th
-    vertical-align: bottom;
-    border-bottom: 2px solid #ddd;
-    padding: 8px;
-  tbody>tr>td:first-child
-    font-weight 600;
-  th
-    text-align left
-  td
-    padding-left 10px
-    line-height 3em
-  tbody>tr:nth-of-type(odd)
-    background-color #f9f9f9
-
