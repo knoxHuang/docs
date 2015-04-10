@@ -13,6 +13,9 @@
       <div class="container-fluid content-wrap">
         {{ body }}
       </div>
+      <div class="container-fluid footer">
+        {{ partial('partial/footer') }}
+      </div>
     </div>
     {{ partial('partial/after_footer') }}
   </body>
