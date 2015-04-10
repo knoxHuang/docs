@@ -2,25 +2,28 @@
     {% if not is_home() %}<h1>{{ page.title }}</h1>{% endif %}
 </div>
 
-<div class="row">
-    <div class="col-lg-12">
-        {{ page.content }}
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>新手教程</h2>
-                {{ category_content('tutorial') }}
-            </div>
-            <div class="col-lg-4">
-                <h2>用户手册</h2>
-                {{ category_content('manual') }}
-            </div>
-            <div class="col-lg-4">
-                <h2>API文档</h2>
-                <a href="/api">API文档</a>
+<div class="index">
+    <div class="row">
+        <div class="col-lg-9">
+            {{ page.content }}
+            <div class="row">
+                <div class="col-lg-4">
+                    <h2>新手教程</h2>
+                    {{ category_content('tutorial') }}
+                </div>
+                <div class="col-lg-4">
+                    <h2>用户手册</h2>
+                    {{ category_content('manual') }}
+                </div>
+                <div class="col-lg-4">
+                    <h2>API文档</h2>
+                    <a href="/api">API文档</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 {#<div id="content-wrap">#}
