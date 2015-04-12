@@ -19,6 +19,7 @@
                 <hr>
                 <a href="https://github.com/fireball-x/docs-zh/edit/master/source/{{ page.source }}">Edit This Page</a>
             </div>
+            <div id="discourse-comments"></div>
             <div class="footer">
                 {{ partial('partial/footer') }}
             </div>

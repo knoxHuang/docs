@@ -24,3 +24,16 @@
 
   {#_st('install','{{ config.swiftype_key }}');#}
 {#</script>#}
+<!--discourse comment -->
+
+<script type="text/javascript">
+    var discourseUrl = "http://forum-test.fireball-x.com/";
+    console.log("http://docs-zh.fireball-x.com{{ url_for(page.path) }}");
+    var discourseEmbedUrl = "http://docs-zh.fireball-x.com{{ url_for(page.path) }}";
+
+    (function() {
+        var d = document.createElement('script'); d.type = 'text/javascript'; d.async = true;
+        d.src = discourseUrl + 'javascripts/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
+    })();
+</script>
